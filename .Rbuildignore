@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^wire\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
