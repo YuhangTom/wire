@@ -16,3 +16,12 @@ URL: https://yuhangtom.github.io/wire/
 Suggests: 
     spelling
 Language: en-US
+Imports: 
+    raster,
+    dplyr,
+    stats,
+    tidyr,
+    wires (>= 0.1.0),
+    x3ptools
+Remotes: 
+    heike/wires
