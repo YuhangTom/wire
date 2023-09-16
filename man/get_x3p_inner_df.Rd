@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_x3p_inner_df.R
 \name{get_x3p_inner_df}
 \alias{get_x3p_inner_df}
-\title{Create the summary data frame for the inner part of an x3p object}
+\title{Summary data frame for the inner polygon}
 \usage{
 get_x3p_inner_df(x3p, mask_col = "#FF0000", concavity = 1.5)
 }
@@ -14,5 +14,5 @@ get_x3p_inner_df(x3p, mask_col = "#FF0000", concavity = 1.5)
 \item{concavity}{strictly positive value used in 'concaveman::concaveman'}
 }
 \description{
-Create the summary data frame for the inner part of an x3p object.
+Create the summary data frame for the inner polygon of an x3p object.
 }

@@ -1,6 +1,6 @@
-#' Create the summary data frame for the inner part of an x3p object
+#' Summary data frame for the inner polygon
 #'
-#' Create the summary data frame for the inner part of an x3p object.
+#' Create the summary data frame for the inner polygon of an x3p object.
 #' @param x3p x3p object
 #' @param mask_col colour for the polygon
 #' @param concavity strictly positive value used in 'concaveman::concaveman'
