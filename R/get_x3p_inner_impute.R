@@ -31,7 +31,7 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
 
   ### Plot raster
   p0 <- x3p_inner_nomiss_res_raster %>%
-    raster::as.data.frame(xy = TRUE) %>%
+    as.data.frame(xy = TRUE) %>%
     as_tibble() %>%
     rename(value = layer) %>%
     ggplot(aes(x = x, y = y, fill = value)) +
@@ -57,7 +57,7 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
 
   ### First focal raster plot
   p1 <- x3p_inner_nomiss_res_focal_raster %>%
-    raster::as.data.frame(xy = TRUE) %>%
+    as.data.frame(xy = TRUE) %>%
     as_tibble() %>%
     rename(value = layer) %>%
     ggplot(aes(x = x, y = y, fill = value)) +
@@ -90,7 +90,7 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
     nimp <- nimp + 1
 
     p <- x3p_inner_nomiss_res_focal_raster %>%
-      raster::as.data.frame(xy = TRUE) %>%
+      as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
       rename(value = layer) %>%
       ggplot(aes(x = x, y = y, fill = value)) +
