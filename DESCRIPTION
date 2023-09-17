@@ -22,6 +22,9 @@ Imports:
     stats,
     tidyr,
     wires (>= 0.1.0),
-    x3ptools
+    x3ptools,
+    purrr,
+    magick,
+    stringr,
 Remotes: 
     heike/wires
