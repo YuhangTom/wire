@@ -9,7 +9,7 @@
 #' @param ifplot whether graphs are displayed
 #' @import dplyr x3ptools
 #' @importFrom assertthat assert_that not_empty
-#' @importFrom raster raster focal
+#' @importFrom raster raster focal as.data.frame
 #' @importFrom purrr map
 #' @importFrom magick image_join image_animate image_write
 #' @importFrom stringr str_detect
