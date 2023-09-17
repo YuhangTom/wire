@@ -22,13 +22,12 @@ Imports:
     stats,
     tidyr,
     wires (>= 0.1.0),
-    x3ptools (>= 0.0.3.9000),
     purrr,
     magick,
     stringr,
     assertthat,
     ggplot2,
-    imager
-Remotes:  
-    heike/wires,
-    YuhangTom/x3ptools
+    imager,
+    x3ptools
+Remotes: 
+    heike/wires
