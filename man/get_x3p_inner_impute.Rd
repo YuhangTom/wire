@@ -4,7 +4,14 @@
 \alias{get_x3p_inner_impute}
 \title{Impute the inner polygon}
 \usage{
-get_x3p_inner_impute(x3p, mask_col = "#FF0000", concavity = 1.5)
+get_x3p_inner_impute(
+  x3p,
+  mask_col = "#FF0000",
+  concavity = 1.5,
+  ifsave = FALSE,
+  dir_name = NULL,
+  ifplot = FALSE
+)
 }
 \arguments{
 \item{x3p}{x3p object}
@@ -12,6 +19,12 @@ get_x3p_inner_impute(x3p, mask_col = "#FF0000", concavity = 1.5)
 \item{mask_col}{colour for the polygon}
 
 \item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
+
+\item{ifsave}{whether the imputation procedure gif is going to be saved}
+
+\item{dir_name}{required when \code{ifsave} is \code{TRUE}}
+
+\item{ifplot}{whether graphs are displayed}
 }
 \description{
 Obtained x3p object after imputing the inner polygon.

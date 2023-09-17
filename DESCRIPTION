@@ -26,5 +26,6 @@ Imports:
     purrr,
     magick,
     stringr,
+    assertthat
 Remotes: 
     heike/wires
