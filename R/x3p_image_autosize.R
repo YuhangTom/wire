@@ -8,5 +8,5 @@
 #' @export
 
 x3p_image_autosize <- function(x3p, zoom = 0.6, ...){
-  x3p_image(x3p, size = dim(x3p$surface.matrix), zoom = zoom)
+  x3p_image(x3p, size = dim(x3p$surface.matrix), zoom = zoom, ...)
 }
