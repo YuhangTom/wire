@@ -11,7 +11,7 @@ get_x3p_inner_df(x3p, mask_col = "#FF0000", concavity = 1.5)
 
 \item{mask_col}{colour for the polygon}
 
-\item{concavity}{strictly positive value used in 'concaveman::concaveman'}
+\item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
 }
 \description{
 Create the summary data frame for the inner polygon of an x3p object.

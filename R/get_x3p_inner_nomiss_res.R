@@ -3,7 +3,7 @@
 #' Obtained x3p object after removing missing values and the quadratic trend from the inner polygon.
 #' @param x3p x3p object
 #' @param mask_col colour for the polygon
-#' @param concavity strictly positive value used in 'concaveman::concaveman'
+#' @param concavity strictly positive value used in \code{concaveman::concaveman}
 #' @import dplyr x3ptools
 #' @importFrom stats lm predict
 #' @export

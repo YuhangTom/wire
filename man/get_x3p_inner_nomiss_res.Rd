@@ -11,7 +11,7 @@ get_x3p_inner_nomiss_res(x3p, mask_col = "#FF0000", concavity = 1.5)
 
 \item{mask_col}{colour for the polygon}
 
-\item{concavity}{strictly positive value used in 'concaveman::concaveman'}
+\item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
 }
 \description{
 Obtained x3p object after removing missing values and the quadratic trend from the inner polygon.
