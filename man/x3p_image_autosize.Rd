@@ -11,7 +11,7 @@ x3p_image_autosize(x3p, zoom = 0.6, ...)
 
 \item{zoom}{numeric value indicating the amount of zoom}
 
-\item{...}{other parameter values used in \code{x3ptools::x3p_image}}
+\item{...}{other parameter values except size and zoom used in \code{x3ptools::x3p_image}}
 }
 \description{
 Plot x3p object as an image with auto-adjusted size based on \code{x3ptools::x3p_image}.
