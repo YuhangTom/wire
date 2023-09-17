@@ -7,11 +7,11 @@
 #' @param ifsave whether the imputation procedure gif is going to be saved
 #' @param dir_name required when \code{ifsave} is \code{TRUE}
 #' @param ifplot whether graphs are displayed
-#' @import dplyr x3ptools
+#' @import dplyr x3ptools ggplot2
 #' @importFrom assertthat assert_that not_empty
 #' @importFrom raster raster focal as.data.frame as.matrix
 #' @importFrom purrr map
-#' @importFrom magick image_join image_animate image_write
+#' @importFrom magick image_read image_join image_animate image_write
 #' @importFrom stringr str_detect
 #' @importFrom wires x3p_surface_polygon
 #' @export

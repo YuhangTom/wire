@@ -1,0 +1,108 @@
+#' Compute the rotation angle using quantile
+#'
+#' Compute the rotation angle using quantile with hough transformation.
+#' @param x3p x3p object
+#' @param ntheta number of bins along theta used in \code{imager::hough_line}
+#' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
+#' @param ifplot whether graphs are displayed
+#' @import dplyr ggplot2
+#' @importFrom raster raster
+#' @importFrom imager as.cimg hough_line nfline
+#' @importFrom stats quantile median
+#' @export
+
+get_x3p_rotate_angle_quantile <- function(x3p, ntheta = 720, min_score_cut = 2,
+                                          ifplot = FALSE) {
+  ### Change to contrast color
+  x3p_shift <- x3p$surface.matrix
+  x3p_shift[is.na(x3p$surface.matrix)] <-
+    -(x3p$surface.matrix %>%
+      c() %>%
+      summary() %>%
+      .[c("Min.", "Max.")] %>%
+      abs() %>%
+      max() %>%
+      ceiling())
+
+  ### Change to raster
+  x3p_raster <- t(x3p_shift) %>%
+    raster(xmx = (x3p$header.info$sizeX - 1) * x3p$header.info$incrementX, ymx = (x3p$header.info$sizeY - 1) * x3p$header.info$incrementY)
+
+  ### Change to cimg
+  x3p_cimg <- as.cimg(x3p_raster)
+  if (ifplot) {
+    plot(x3p_cimg)
+  }
+
+  ### Hough transformation for lines
+  x3p_hough_df <- hough_line(x3p_cimg, ntheta = ntheta, data.frame = TRUE, shift = FALSE)
+
+  ### For theta_mod: 0 = pi = 2 * pi <- pi / 2, pi / 2 = pi * 3 / 2 <- 0
+  ### For theta_mod_shift: 0 = pi = 2 * pi <- pi, pi / 2 = pi * 3 / 2 <- pi / 2
+  ### For theta_mod_shift / pi: 0 = pi = 2 * pi <- 1, pi / 2 = pi * 3 / 2 <- 1 / 2
+  x3p_hough_df_shift <- x3p_hough_df %>%
+    mutate(
+      theta_mod = (theta - pi / 2) %% pi,
+      theta_mod_shift = theta_mod + pi / 2
+    )
+
+  if (ifplot) {
+    (x3p_hough_df_shift %>%
+      ggplot(aes(x = theta_mod_shift / pi, weight = score)) +
+      geom_histogram()) %>%
+      plot()
+  }
+
+  if (ifplot) {
+    (x3p_hough_df_shift %>%
+      ggplot(aes(x = theta_mod_shift / pi, y = score)) +
+      geom_point()) %>%
+      plot()
+  }
+
+  ### How to set a score cutoff line without hardcoding the quantile?
+  theta_mod_shift_med <- x3p_hough_df_shift %>%
+    filter(score >= quantile(.$score, 0.99995, na.rm = TRUE)) %>%
+    summarise(med = median(theta_mod_shift)) %>%
+    unlist()
+
+  if (ifplot) {
+    ### Get theta near the median of theta with high scores in a very small range
+    ### Divide by ntheta as hough_line cut whole circle into ntheta tiny intervals
+    (x3p_hough_df_shift %>%
+      filter(between(theta_mod_shift, theta_mod_shift_med - 2 * pi / ntheta, theta_mod_shift_med + 2 * pi / ntheta)) %>%
+      ggplot(aes(x = rho, weight = score)) +
+      geom_histogram()) %>%
+      plot()
+  }
+
+  ### How to set a score cutoff line without hardcoding?
+  main_lines <- x3p_hough_df_shift %>%
+    filter(between(theta_mod_shift, theta_mod_shift_med - 2 * pi / ntheta, theta_mod_shift_med + 2 * pi / ntheta)) %>%
+    filter(score > min_score_cut)
+
+  if (ifplot) {
+    ### Plot image with main lines after selecting theta
+    plot(x3p_cimg)
+    with(main_lines, nfline(theta, rho, col = "red"))
+  }
+
+  if (ifplot) {
+    ### Distribution of transformed theta and absolute value of rho
+    (main_lines %>%
+      ggplot(aes(x = theta_mod_shift / pi, weight = score)) +
+      geom_histogram() +
+      main_lines %>%
+      ggplot(aes(x = abs(rho), weight = score)) +
+      geom_histogram()) %>%
+      plot()
+  }
+
+  return(
+    (
+      (main_lines$theta / pi * 180) %>%
+        unique()
+      ### 0 is same as pi on the same line
+    ) %% 180
+  )
+}

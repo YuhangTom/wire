@@ -26,6 +26,8 @@ Imports:
     purrr,
     magick,
     stringr,
-    assertthat
+    assertthat,
+    ggplot2,
+    imager
 Remotes: 
     heike/wires
