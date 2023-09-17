@@ -4,10 +4,12 @@
 \alias{x3p_image_autosize}
 \title{Plot x3p object as an image with auto-adjusted size}
 \usage{
-x3p_image_autosize(x3p, zoom = 0.6, ...)
+x3p_image_autosize(x3p, ifhtml = FALSE, zoom = 0.6, ...)
 }
 \arguments{
 \item{x3p}{x3p object}
+
+\item{ifhtml}{logical, whether the image will be put on html}
 
 \item{zoom}{numeric value indicating the amount of zoom}
 

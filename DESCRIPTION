@@ -28,6 +28,8 @@ Imports:
     assertthat,
     ggplot2,
     imager,
-    x3ptools
+    x3ptools,
+    rgl,
+    htmltools
 Remotes: 
     heike/wires
