@@ -13,6 +13,7 @@
 #' @importFrom purrr map
 #' @importFrom magick image_join image_animate image_write
 #' @importFrom stringr str_detect
+#' @importFrom wires x3p_surface_polygon
 #' @export
 
 get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
@@ -141,8 +142,11 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
     as.matrix() %>%
     t()
 
-  x3p_inner <- x3p_inner_df %>%
-    df_to_x3p()
+  x3p <- x3p %>%
+    x3p_surface_polygon(colour = mask_col, concavity = concavity)
+  ### Extract inner part as x3p based on mask
+  x3p_inner <- x3p_extract(x3p, mask_vals = mask_col) %>%
+    x3p_average(m = 3, na.rm = TRUE)
   x3p_inner_focal_impute <- x3p_add_mask(x3p_inner_focal_impute, x3p_inner$mask)
 
   x3p_inner_impute <- x3p_inner_focal_impute %>%
