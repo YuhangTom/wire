@@ -19,10 +19,10 @@ get_x3p_inner_nomiss_res <- function(x3p, mask_col = "#FF0000", concavity = 1.5)
   x3p_inner_nomiss_res_df <- x3p_inner_nomiss_df %>%
     mutate(value = value - predict(x3p_inner_nomiss_lm, select(., x, y)))
 
+  ### Convert df to x3p
   x3p_inner_nomiss_res <- x3p_inner_nomiss_res_df %>%
+    left_join(x3p_inner_df[, c("x", "y")], .) %>%
     df_to_x3p()
-  x3p_inner_nomiss_res$header.info$sizeX <- nrow(x3p_inner_nomiss_res$surface.matrix)
-  x3p_inner_nomiss_res$header.info$sizeY <- ncol(x3p_inner_nomiss_res$surface.matrix)
 
   return(x3p_inner_nomiss_res)
 }
