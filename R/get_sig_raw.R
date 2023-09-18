@@ -15,7 +15,7 @@ get_sig_raw <- function(x3p, method = "median", ifplot = FALSE) {
   sig <- x3p_df %>%
     na.omit() %>%
     group_by(x) %>%
-    summarise(value_summ = ifelse(method == "median", median(value, na.rm = TRUE),
+    summarise(value_summary = ifelse(method == "median", median(value, na.rm = TRUE),
       ifelse(method == "mean", mean(value, na.rm = TRUE),
         stop('Not an applicable method, choose from "method = median" or "method = mean"')
       )
@@ -23,7 +23,7 @@ get_sig_raw <- function(x3p, method = "median", ifplot = FALSE) {
 
   if (ifplot) {
     (sig %>%
-      ggplot(aes(x = x, y = value_summ)) +
+      ggplot(aes(x = x, y = value_summary)) +
       geom_line()) %>%
       print()
   }
