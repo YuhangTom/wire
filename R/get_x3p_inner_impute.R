@@ -38,7 +38,7 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
     ggplot(aes(x = x, y = y, fill = value)) +
     geom_raster() +
     scale_fill_gradient2(midpoint = 4e-7) +
-    labs(title = x3p_name, subtitle = "Number of imputation: 0")
+    labs(title = "Number of imputation: 0")
 
   if (ifplot) {
     print(p0)
@@ -64,7 +64,7 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
     ggplot(aes(x = x, y = y, fill = value)) +
     geom_raster() +
     scale_fill_gradient2(midpoint = 4e-7) +
-    labs(title = x3p_name, subtitle = "Number of imputation: 1")
+    labs(title = "Number of imputation: 1")
 
   if (ifplot) {
     print(p1)
@@ -97,7 +97,7 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
       ggplot(aes(x = x, y = y, fill = value)) +
       geom_raster() +
       scale_fill_gradient2(midpoint = 4e-7) +
-      labs(title = x3p_name, subtitle = paste0("Number of imputation: ", nimp))
+      labs(title = paste0("Number of imputation: ", nimp))
 
     if (ifsave) {
       ggsave(paste0(dir_name, "/gif_p", nimp, ".png"), p, width = 5, height = 3)
