@@ -169,7 +169,7 @@ get_sig_MSE <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
 
   if (ifplot) {
     (p_all +
-      geom_line(aes(x = x, y = value_median), data = sig, color = "red")) %>%
+      geom_line(aes(x = x, y = value_summary), data = sig, color = "red")) %>%
       print()
   }
 
