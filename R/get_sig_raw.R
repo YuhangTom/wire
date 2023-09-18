@@ -22,9 +22,9 @@ get_sig_raw <- function(x3p, method = "median", ifplot = FALSE) {
     ))
 
   if (ifplot) {
-    sig %>%
+    (sig %>%
       ggplot(aes(x = x, y = value_median)) +
-      geom_line() %>%
+      geom_line()) %>%
       print()
   }
 

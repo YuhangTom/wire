@@ -50,14 +50,14 @@ get_x3p_rotate_angle_quantile <- function(x3p, ntheta = 720, min_score_cut = 2,
     (x3p_hough_df_shift %>%
       ggplot(aes(x = theta_mod_shift / pi, weight = score)) +
       geom_histogram()) %>%
-      plot()
+      print()
   }
 
   if (ifplot) {
     (x3p_hough_df_shift %>%
       ggplot(aes(x = theta_mod_shift / pi, y = score)) +
       geom_point()) %>%
-      plot()
+      print()
   }
 
   ### How to set a score cutoff line without hardcoding the quantile?
@@ -73,7 +73,7 @@ get_x3p_rotate_angle_quantile <- function(x3p, ntheta = 720, min_score_cut = 2,
       filter(between(theta_mod_shift, theta_mod_shift_med - 2 * pi / ntheta, theta_mod_shift_med + 2 * pi / ntheta)) %>%
       ggplot(aes(x = rho, weight = score)) +
       geom_histogram()) %>%
-      plot()
+      print()
   }
 
   ### How to set a score cutoff line without hardcoding?
@@ -95,7 +95,7 @@ get_x3p_rotate_angle_quantile <- function(x3p, ntheta = 720, min_score_cut = 2,
       main_lines %>%
       ggplot(aes(x = abs(rho), weight = score)) +
       geom_histogram()) %>%
-      plot()
+      print()
   }
 
   return(
