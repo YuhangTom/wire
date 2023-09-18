@@ -123,7 +123,7 @@ get_sig_MSE <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
 
   x3p_approx_df <- x3p_shift_delta_df %>%
     group_by(y) %>%
-    nest() %>%
+    nest(.key = "Dat") %>%
     mutate(Dat = Dat %>% map(.f = function(dat) {
       dat$value_approx <- approx(x = dat$x_shift_delta, y = dat$value, xout = dat$x)$y
       dat
