@@ -2,8 +2,9 @@ name: Remove old artifacts
 
 on:
   schedule:
-    # Every day at 7am
-    - cron: '0 7 * * *'
+    # Every day at 7:30am chicago time
+    # UTC time for github action
+    - cron: '30 12 * * *'
 
 jobs:
   remove-old-artifacts:
