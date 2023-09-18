@@ -6,7 +6,7 @@
 #' @param ifplot whether graphs are displayed
 #' @param delta shifting range when minimizing MSE
 #' @import dplyr x3ptools ggplot2
-#' @importFrom stats na.omit median lm coef
+#' @importFrom stats na.omit median lm coef approx
 #' @importFrom purrr map_dbl map set_names
 #' @importFrom tidyr nest unnest
 #' @export
@@ -16,16 +16,16 @@ get_sig_MSE <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
     x3p_to_df()
 
   ### Number of non-missing values for each y
-  value_nobs <- x3p_df %>%
+  x3p_df_nobs <- x3p_df %>%
     na.omit() %>%
     group_by(y) %>%
-    summarise(nobs = n()) %>%
-    arrange(nobs)
+    summarise(value_nobs = n()) %>%
+    arrange(value_nobs)
 
   ### Sort unique y values
-  y_sort <- inner_join(x3p_df, value_nobs) %>%
+  y_sort <- inner_join(x3p_df, x3p_df_nobs) %>%
     ### Filter to have at least 2 observations for approx later
-    filter(nobs >= 2) %>%
+    filter(value_nobs >= 2) %>%
     distinct(y) %>%
     arrange(y) %>%
     unlist()
@@ -124,11 +124,11 @@ get_sig_MSE <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
   x3p_approx_df <- x3p_shift_delta_df %>%
     group_by(y) %>%
     nest() %>%
-    mutate(data = data %>% map(.f = function(d) {
-      d$value_approx <- approx(x = d$x_shift_delta, y = d$value, xout = d$x)$y
-      d
+    mutate(Dat = Dat %>% map(.f = function(dat) {
+      dat$value_approx <- approx(x = dat$x_shift_delta, y = dat$value, xout = dat$x)$y
+      dat
     })) %>%
-    unnest(data) %>%
+    unnest(Dat) %>%
     select(x, y, value, value_approx, mask)
 
   if (ifplot) {
