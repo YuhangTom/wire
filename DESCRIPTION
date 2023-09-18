@@ -30,6 +30,7 @@ Imports:
     imager,
     x3ptools,
     rgl,
-    htmltools
+    htmltools,
+    magrittr
 Remotes: 
     heike/wires
