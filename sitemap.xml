@@ -16,7 +16,13 @@
     <loc>https://yuhangtom.github.io/wire/index.html</loc>
   </url>
   <url>
+    <loc>https://yuhangtom.github.io/wire/reference/get_sig_MSE.html</loc>
+  </url>
+  <url>
     <loc>https://yuhangtom.github.io/wire/reference/get_sig_raw.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/get_sigalign.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/get_x3p_bin_rotate.html</loc>
@@ -38,6 +44,9 @@
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/pipe.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_image_autosize.html</loc>
