@@ -47,5 +47,10 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Create by usethis
 .Rproj.user
 docs
+
+# Raw x3p
+data-raw/*.x3p
