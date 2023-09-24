@@ -16,18 +16,7 @@
 #' @importFrom concaveman concaveman
 #' @importFrom tidyr pivot_longer
 #' @export
-#' @examples
-#' library(x3ptools)
-#' x3p <- x3p_read(system.file(file="T1AW-LI-R4.x3p", package="wires"))
-#' bounds <- x3p_boundary_points(x3p, 2)
-#' polygon <- inside_polygon(bounds$x, bounds$y, 1)
-#'
-#' library(ggplot2)
-#' library(dplyr)
-#' bounds %>%
-#' ggplot(aes(x = x, y = y)) + geom_point() +
-#'   geom_polygon(data = polygon)
-#'
+
 inside_polygon <- function(x, y, concavity, center = NULL) {
   stopifnot(concavity > 0)
 

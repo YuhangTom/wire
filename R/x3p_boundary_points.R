@@ -9,14 +9,7 @@
 #' @importFrom dplyr `%>%` group_by mutate filter summarize select
 #' @importFrom rlang .data
 #' @export
-#' @examples
-#' library(x3ptools)
-#' x3p <- x3p_read(system.file("T1AW-LI-R4.x3p", package="wires"))
-#' bounds <- x3p_boundary_points(x3p, 2)
-#'
-#' library(ggplot2)
-#' library(dplyr)
-#' bounds %>% ggplot(aes(x = x, y = y)) + geom_point()
+
 x3p_boundary_points <- function(x3p, sample) {
   stopifnot('x3p' %in% class(x3p))
   x3p_df <- x3p %>% x3p_sample(m=sample) %>% x3p_to_df()

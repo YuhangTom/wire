@@ -16,13 +16,7 @@
 #' @importFrom grDevices as.raster dev.off
 #' @importFrom graphics par plot.default polygon
 #' @export
-#' @examples
-#' if (interactive()) {
-#'   library(x3ptools)
-#'   x3p <- x3p_read(system.file("T1AW-LI-R4.x3p", package="wires"))
-#'   x3p <- x3p %>% x3p_surface_polygon(sample=1)
-#'   x3p_image(x3p, size = dim(x3p$surface.matrix), zoom=.6)
-#' }
+
 x3p_surface_polygon <- function(x3p, colour = "red", sample = 10, center = NULL, concavity = 1.5) {
   stopifnot("x3p" %in% class(x3p), is.numeric(concavity), concavity > 0)
 
