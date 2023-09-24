@@ -46,12 +46,21 @@
     <loc>https://yuhangtom.github.io/wire/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://yuhangtom.github.io/wire/reference/inside_polygon.html</loc>
+  </url>
+  <url>
     <loc>https://yuhangtom.github.io/wire/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_boundary_points.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_image_autosize.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_subsamples.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_surface_polygon.html</loc>
   </url>
 </urlset>
