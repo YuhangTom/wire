@@ -7,9 +7,16 @@
 #' @import dplyr
 #' @importFrom x3ptools df_to_x3p
 #' @importFrom stats lm predict
+#' @importFrom rlang .data
 #' @export
 
 get_x3p_inner_nomiss_res <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
+  n_neighbor_val_miss <-
+    value <-
+    x <-
+    y <-
+    NULL
+
   x3p_inner_df <- get_x3p_inner_df(x3p, mask_col = mask_col, concavity = concavity)
 
   x3p_inner_nomiss_df <- x3p_inner_df %>%
@@ -18,11 +25,11 @@ get_x3p_inner_nomiss_res <- function(x3p, mask_col = "#FF0000", concavity = 1.5)
   ### Remove trend
   x3p_inner_nomiss_lm <- lm(value ~ x + y + I(x^2) + I(y^2) + x:y, data = x3p_inner_nomiss_df)
   x3p_inner_nomiss_res_df <- x3p_inner_nomiss_df %>%
-    mutate(value = value - predict(x3p_inner_nomiss_lm, select(., x, y)))
+    mutate(value = value - predict(x3p_inner_nomiss_lm, select(.data, x, y)))
 
   ### Convert df to x3p
   x3p_inner_nomiss_res <- x3p_inner_nomiss_res_df %>%
-    left_join(x3p_inner_df[, c("x", "y")], .) %>%
+    left_join(x3p_inner_df[, c("x", "y")], .data) %>%
     df_to_x3p()
 
   return(x3p_inner_nomiss_res)

@@ -10,9 +10,18 @@
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell
 #' @importFrom wires x3p_surface_polygon
+#' @importFrom rlang .data
 #' @export
 
 get_x3p_inner_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
+  to <-
+    from <-
+    neighbor_val <-
+    x <-
+    y <-
+    n_neighbor_val_miss <-
+    NULL
+
   x3p <- x3p %>%
     x3p_surface_polygon(colour = mask_col, concavity = concavity)
 
@@ -82,7 +91,7 @@ get_x3p_inner_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
         )
     ) %>%
     full_join(
-      .,
+      .data,
       x3p_inner_df_wide_sd_not_miss %>%
         pivot_longer(
           cols = everything(),

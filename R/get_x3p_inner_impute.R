@@ -16,10 +16,17 @@
 #' @importFrom magick image_read image_join image_animate image_write
 #' @importFrom stringr str_detect
 #' @importFrom wires x3p_surface_polygon
+#' @importFrom rlang .data
 #' @export
 
 get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
                                  ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
+  layer <-
+    x <-
+    y <-
+    value <-
+    NULL
+
   if (ifsave) {
     assert_that(not_empty(dir_name), msg = "dir_name must be non-empty")
     assert_that(is.character(dir_name), msg = "dir_name must be character")
@@ -133,7 +140,7 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
       path = dir_name,
       full.names = TRUE
     ) %>%
-      .[str_detect(., pattern = ".png")] %>%
+      .data[str_detect(.data, pattern = ".png")] %>%
       file.remove() %>%
       invisible()
   }

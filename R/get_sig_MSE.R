@@ -14,6 +14,18 @@
 #' @export
 
 get_sig_MSE <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
+  y <-
+    value_nobs <-
+    x <-
+    value <-
+    x_shift_delta_value <-
+    x_shift_delta <-
+    Dat <-
+    value_approx <-
+    mask <-
+    value_summary <-
+    NULL
+
   x3p_df <- x3p %>%
     x3p_to_df()
 

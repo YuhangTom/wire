@@ -11,17 +11,25 @@
 #' @importFrom raster raster
 #' @importFrom imager as.cimg hough_line nfline
 #' @importFrom stats loess predict
+#' @importFrom rlang .data
 #' @export
 
 get_x3p_rotate_angle_MLE <- function(x3p, ntheta = 720, min_score_cut = 2,
                                      ifplot = FALSE,
                                      loess_span = 0.2) {
+  theta <-
+    score <-
+    theta_mod <-
+    theta_mod_shift <-
+    rho <-
+    NULL
+
   ### Change to contrast color
   x3p_shift <- x3p$surface.matrix
   NA_val <- -(x3p$surface.matrix %>%
     c() %>%
     summary() %>%
-    .[c("Min.", "Max.")] %>%
+    .data[c("Min.", "Max.")] %>%
     abs() %>%
     max() %>%
     ceiling())

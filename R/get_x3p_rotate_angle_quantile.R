@@ -10,17 +10,25 @@
 #' @importFrom raster raster
 #' @importFrom imager as.cimg hough_line nfline
 #' @importFrom stats quantile median
+#' @importFrom rlang .data
 #' @export
 
 get_x3p_rotate_angle_quantile <- function(x3p, ntheta = 720, min_score_cut = 2,
                                           ifplot = FALSE) {
+  theta <-
+    theta_mod <-
+    theta_mod_shift <-
+    score <-
+    rho <-
+    NULL
+
   ### Change to contrast color
   x3p_shift <- x3p$surface.matrix
   x3p_shift[is.na(x3p$surface.matrix)] <-
     -(x3p$surface.matrix %>%
       c() %>%
       summary() %>%
-      .[c("Min.", "Max.")] %>%
+      .data[c("Min.", "Max.")] %>%
       abs() %>%
       max() %>%
       ceiling())
@@ -63,7 +71,7 @@ get_x3p_rotate_angle_quantile <- function(x3p, ntheta = 720, min_score_cut = 2,
 
   ### How to set a score cutoff line without hardcoding the quantile?
   theta_mod_shift_med <- x3p_hough_df_shift %>%
-    filter(score >= quantile(.$score, 0.99995, na.rm = TRUE)) %>%
+    filter(score >= quantile(.data$score, 0.99995, na.rm = TRUE)) %>%
     summarise(med = median(theta_mod_shift)) %>%
     unlist()
 

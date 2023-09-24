@@ -11,6 +11,11 @@
 #' @export
 
 get_sig_raw <- function(x3p, method = "median", ifplot = FALSE) {
+  x <-
+    value <-
+    value_summary <-
+    NULL
+
   x3p_df <- x3p %>%
     x3p_to_df()
 

@@ -22,6 +22,8 @@ get_sigalign <- function(
     name2 = "Cut2",
     legendname = "Signal",
     titlename = NULL) {
+  x <- NULL
+
   sigalign <- sig_align(sig1, sig2)
   if (ifplot) {
     p <- sigalign$lands %>%
