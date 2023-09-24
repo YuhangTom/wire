@@ -16,31 +16,7 @@
     <loc>https://yuhangtom.github.io/wire/index.html</loc>
   </url>
   <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_sig_MSE.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_sig_raw.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_sigalign.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_x3p_bin_rotate.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_x3p_inner_df.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_x3p_inner_impute.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_x3p_inner_nomiss_res.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_x3p_rotate_angle_MLE.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/get_x3p_rotate_angle_quantile.html</loc>
+    <loc>https://yuhangtom.github.io/wire/reference/df_rmtrend_x3p.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/index.html</loc>
@@ -52,15 +28,39 @@
     <loc>https://yuhangtom.github.io/wire/reference/pipe.html</loc>
   </url>
   <url>
+    <loc>https://yuhangtom.github.io/wire/reference/vec_align_sigs_list.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_MLE_angle_vec.html</loc>
+  </url>
+  <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_boundary_points.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_image_autosize.html</loc>
   </url>
   <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_impute.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_insidepoly_df.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_quantile_angle_vec.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_raw_sig_vec.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_shift_sig_vec.html</loc>
+  </url>
+  <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_subsamples.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_surface_polygon.html</loc>
+  </url>
+  <url>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_vertical.html</loc>
   </url>
 </urlset>
