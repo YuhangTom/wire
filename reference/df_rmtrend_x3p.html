@@ -42,21 +42,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">df_rmtrend_x3p</span><span class="op">(</span><span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="st">"#FF0000"</span>, concavity <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">df_rmtrend_x3p</span><span class="op">(</span><span class="va">insidepoly_df</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>x3p</dt>
-<dd><p>x3p object</p></dd>
-
-
-<dt>mask_col</dt>
-<dd><p>colour for the polygon</p></dd>
-
-
-<dt>concavity</dt>
-<dd><p>strictly positive value used in <code><a href="https://joelgombin.github.io/concaveman/reference/concaveman.html" class="external-link">concaveman::concaveman</a></code></p></dd>
+    <dl><dt>insidepoly_df</dt>
+<dd><p>data frame of inside polygon</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -66,6 +58,31 @@
 <p>x3p object of residuals after removing trend</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x3p</span> <span class="op">&lt;-</span> <span class="va">x3p_subsamples</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">mask_col</span> <span class="op">&lt;-</span> <span class="st">"#FF0000"</span></span></span>
+<span class="r-in"><span><span class="va">concavity</span> <span class="op">&lt;-</span> <span class="fl">1.5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">insidepoly_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="x3p_insidepoly_df.html">x3p_insidepoly_df</a></span><span class="op">(</span><span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="va">mask_col</span>, concavity <span class="op">=</span> <span class="va">concavity</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `x` argument of `as_tibble.matrix()` must have unique column names if</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> `.name_repair` is omitted as of tibble 2.0.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Using compatibility `.name_repair`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">wire</span> package.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Please report the issue to the authors.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x3p_inner_nomiss_res</span> <span class="op">&lt;-</span> <span class="fu">df_rmtrend_x3p</span><span class="op">(</span><span class="va">insidepoly_df</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x3p_inner_nomiss_res</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x3p object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> size (width x height): 23 x 18 in pixel </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> resolution: 6.4500e+01 x 6.4500e+01 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="x3p_image_autosize.html">x3p_image_autosize</a></span><span class="op">(</span><span class="va">x3p_inner_nomiss_res</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -97,6 +97,52 @@
 
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x3p</span> <span class="op">&lt;-</span> <span class="va">x3p_subsamples</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">mask_col</span> <span class="op">&lt;-</span> <span class="st">"#FF0000"</span></span></span>
+<span class="r-in"><span><span class="va">concavity</span> <span class="op">&lt;-</span> <span class="fl">1.5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">insidepoly_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="x3p_insidepoly_df.html">x3p_insidepoly_df</a></span><span class="op">(</span><span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="va">mask_col</span>, concavity <span class="op">=</span> <span class="va">concavity</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x3p_inner_nomiss_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="df_rmtrend_x3p.html">df_rmtrend_x3p</a></span><span class="op">(</span><span class="va">insidepoly_df</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x3p_inner_impute</span> <span class="op">&lt;-</span> <span class="fu"><a href="x3p_impute.html">x3p_impute</a></span><span class="op">(</span><span class="va">x3p_inner_nomiss_res</span>, <span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="va">mask_col</span>,</span></span>
+<span class="r-in"><span>concavity <span class="op">=</span> <span class="va">concavity</span>, ifsave <span class="op">=</span> <span class="cn">FALSE</span>, dir_name <span class="op">=</span> <span class="cn">NULL</span>, ifplot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x3p_bin_rotate</span> <span class="op">&lt;-</span> <span class="fu"><a href="x3p_vertical.html">x3p_vertical</a></span><span class="op">(</span><span class="va">x3p_inner_impute</span>, min_score_cut <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">vec_align_sigs_list</span><span class="op">(</span><span class="fu"><a href="x3p_raw_sig_vec.html">x3p_raw_sig_vec</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span><span class="op">)</span>, <span class="fu"><a href="x3p_shift_sig_vec.html">x3p_shift_sig_vec</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ccf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3912207</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lag</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lands</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     x        sig1         sig2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1          NA -1.600896588</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2          NA -1.413369765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3 -0.34394423 -1.320326547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4 -0.25032694 -1.018669732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   5  0.29625404 -0.786609104</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   6 -0.26948541 -1.545646274</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   7 -0.32002300 -1.556757240</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8  0.07094502 -1.022032987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9 -0.54827515 -0.059947341</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10  0.31778605  0.007127081</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 11  0.47245686 -0.419964748</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 12 -0.05047489  0.152132074</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 13  0.18166807  0.003687088</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 14 -0.69227580           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 15 -1.42275339           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 16  2.35057318           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 17 -0.08900494           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 18 -0.65667000           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 19  0.28954578           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 20  0.20923010           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 21  0.01459319           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

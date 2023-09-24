@@ -45,7 +45,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">x3p_MLE_angle_vec</span><span class="op">(</span></span>
 <span>  <span class="va">x3p</span>,</span>
 <span>  ntheta <span class="op">=</span> <span class="fl">720</span>,</span>
-<span>  min_score_cut <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  min_score_cut <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>  ifplot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  loess_span <span class="op">=</span> <span class="fl">0.2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -80,6 +80,23 @@
 <p>vector of rotation angles computed by MLE procedure</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x3p</span> <span class="op">&lt;-</span> <span class="va">x3p_subsamples</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">mask_col</span> <span class="op">&lt;-</span> <span class="st">"#FF0000"</span></span></span>
+<span class="r-in"><span><span class="va">concavity</span> <span class="op">&lt;-</span> <span class="fl">1.5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">insidepoly_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="x3p_insidepoly_df.html">x3p_insidepoly_df</a></span><span class="op">(</span><span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="va">mask_col</span>, concavity <span class="op">=</span> <span class="va">concavity</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x3p_inner_nomiss_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="df_rmtrend_x3p.html">df_rmtrend_x3p</a></span><span class="op">(</span><span class="va">insidepoly_df</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x3p_inner_impute</span> <span class="op">&lt;-</span> <span class="fu"><a href="x3p_impute.html">x3p_impute</a></span><span class="op">(</span><span class="va">x3p_inner_nomiss_res</span>, <span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="va">mask_col</span>,</span></span>
+<span class="r-in"><span>concavity <span class="op">=</span> <span class="va">concavity</span>, ifsave <span class="op">=</span> <span class="cn">FALSE</span>, dir_name <span class="op">=</span> <span class="cn">NULL</span>, ifplot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">x3p_MLE_angle_vec</span><span class="op">(</span><span class="va">x3p_inner_impute</span>, min_score_cut <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 90.37552</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
