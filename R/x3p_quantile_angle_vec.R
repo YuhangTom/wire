@@ -114,9 +114,7 @@ x3p_quantile_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
     (main_lines %>%
       ggplot(aes(x = theta_mod_shift / pi, weight = score)) +
       geom_histogram() +
-      main_lines %>%
-      ggplot(aes(x = abs(rho), weight = score)) +
-      geom_histogram()) %>%
+      geom_histogram(aes(x = abs(rho), weight = score), data = main_lines)) %>%
       print()
   }
 
