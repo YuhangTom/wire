@@ -5,6 +5,7 @@
 #' @param x3p_mask x3p object for mask
 #' @param mask_col colour for the polygon
 #' @param concavity strictly positive value used in \code{concaveman::concaveman}
+#' @param b positive integer value, block size, used in \code{x3ptools::x3p_average}
 #' @param ifsave whether the imputation procedure gif is going to be saved
 #' @param dir_name required when \code{ifsave} is \code{TRUE}
 #' @param ifplot whether graphs are displayed
@@ -24,11 +25,11 @@
 #' mask_col <- "#FF0000"
 #' concavity <- 1.5
 #'
-#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity, b = 1)
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #'
 #' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
-#' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
+#' concavity = concavity, b = 1, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
 #' x3p_inner_impute
 #'
 #' if (interactive()) {
@@ -36,7 +37,8 @@
 #' }
 #'
 x3p_impute <- function(x3p, x3p_mask, mask_col = "#FF0000",
-                       concavity = 1.5, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
+                       concavity = 1.5, b = 10,
+                       ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   layer <-
     x <-
     y <-
@@ -170,7 +172,7 @@ x3p_impute <- function(x3p, x3p_mask, mask_col = "#FF0000",
     x3p_surface_polygon(colour = mask_col, concavity = concavity)
   ### Extract inner part as x3p based on mask
   x3p_inner <- x3p_extract(x3p_mask, mask_vals = mask_col) %>%
-    x3p_average(b = 1, na.rm = TRUE)
+    x3p_average(b = b, na.rm = TRUE)
   x3p_inner_focal_impute <- x3p_add_mask(x3p_inner_focal_impute, x3p_inner$mask)
 
   x3p_inner_impute <- x3p_inner_focal_impute %>%

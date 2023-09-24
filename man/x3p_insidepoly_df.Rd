@@ -4,7 +4,7 @@
 \alias{x3p_insidepoly_df}
 \title{Summary data frame for the inner polygon}
 \usage{
-x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5)
+x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10)
 }
 \arguments{
 \item{x3p}{x3p object}
@@ -12,6 +12,8 @@ x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5)
 \item{mask_col}{colour for the polygon}
 
 \item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
+
+\item{b}{positive integer value, block size, used in \code{x3ptools::x3p_average}}
 }
 \value{
 data frame of inside polygon
@@ -24,7 +26,7 @@ x3p <- x3p_subsamples[[1]]
 mask_col <- "#FF0000"
 concavity <- 1.5
 
-insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity, b = 1)
 str(insidepoly_df)
 
 }

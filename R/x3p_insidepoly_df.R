@@ -4,6 +4,7 @@
 #' @param x3p x3p object
 #' @param mask_col colour for the polygon
 #' @param concavity strictly positive value used in \code{concaveman::concaveman}
+#' @param b positive integer value, block size, used in \code{x3ptools::x3p_average}
 #' @return data frame of inside polygon
 #' @import dplyr
 #' @importFrom x3ptools x3p_extract x3p_average x3p_to_df
@@ -17,10 +18,10 @@
 #' mask_col <- "#FF0000"
 #' concavity <- 1.5
 #'
-#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity, b = 1)
 #' str(insidepoly_df)
 #'
-x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
+x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10) {
   to <-
     from <-
     neighbor_val <-
@@ -35,7 +36,7 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
 
   ### Extract inner part as x3p based on mask
   x3p_inner <- x3p_extract(x3p, mask_vals = mask_col) %>%
-    x3p_average(b = 1, na.rm = TRUE)
+    x3p_average(b = b, na.rm = TRUE)
 
   x3p_inner_df <- x3p_inner %>%
     x3p_to_df()

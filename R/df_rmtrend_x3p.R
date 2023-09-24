@@ -12,7 +12,7 @@
 #' mask_col <- "#FF0000"
 #' concavity <- 1.5
 #'
-#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity, b = 1)
 #'
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #' x3p_inner_nomiss_res
