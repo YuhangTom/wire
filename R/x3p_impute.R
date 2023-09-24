@@ -170,7 +170,7 @@ x3p_impute <- function(x3p, x3p_mask, mask_col = "#FF0000",
     x3p_surface_polygon(colour = mask_col, concavity = concavity)
   ### Extract inner part as x3p based on mask
   x3p_inner <- x3p_extract(x3p_mask, mask_vals = mask_col) %>%
-    x3p_average(m = 3, na.rm = TRUE)
+    x3p_average(b = 1, na.rm = TRUE)
   x3p_inner_focal_impute <- x3p_add_mask(x3p_inner_focal_impute, x3p_inner$mask)
 
   x3p_inner_impute <- x3p_inner_focal_impute %>%

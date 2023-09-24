@@ -35,7 +35,7 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
 
   ### Extract inner part as x3p based on mask
   x3p_inner <- x3p_extract(x3p, mask_vals = mask_col) %>%
-    x3p_average(m = 3, na.rm = TRUE)
+    x3p_average(b = 1, na.rm = TRUE)
 
   x3p_inner_df <- x3p_inner %>%
     x3p_to_df()
