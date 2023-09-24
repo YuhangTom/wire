@@ -26,6 +26,9 @@ x3p_impute(
 
 \item{ifplot}{whether graphs are displayed}
 }
+\value{
+x3p obeject after imputation
+}
 \description{
 Obtained x3p object after imputing the inner polygon.
 }

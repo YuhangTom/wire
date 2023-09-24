@@ -4,6 +4,7 @@
 #' @param x3p x3p object
 #' @param method choice of \code{median} or \code{mean} when computing the summary statistics
 #' @param ifplot whether graphs are displayed
+#' @return vector of raw signal extracted
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df
 #' @importFrom ggplot2 ggplot aes geom_line

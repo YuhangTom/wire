@@ -5,6 +5,7 @@
 #' @param method choice of \code{median} or \code{mean} when computing the summary statistics
 #' @param ifplot whether graphs are displayed
 #' @param delta shifting range when minimizing MSE
+#' @return vector of shifted signals
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
 #' @importFrom ggplot2 ggplot aes geom_line geom_point

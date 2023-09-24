@@ -6,6 +6,7 @@
 #' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
 #' @param ifplot whether graphs are displayed
 #' @param loess_span the parameter which controls the degree of smoothing
+#' @return vector of rotation angles computed by MLE procedure
 #' @import dplyr
 #' @importFrom ggplot2 ggplot geom_histogram geom_point geom_smooth
 #' @importFrom raster raster

@@ -29,6 +29,9 @@ x3p_vertical(
 
 \item{loess_span}{the parameter which controls the degree of smoothing, only available when \code{method = MLE}}
 }
+\value{
+x3p object after rotation with vertical striations
+}
 \description{
 Rotate imputed x3p object with striations to the vertical direction.
 }

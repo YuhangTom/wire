@@ -23,6 +23,9 @@ x3p_MLE_angle_vec(
 
 \item{loess_span}{the parameter which controls the degree of smoothing}
 }
+\value{
+vector of rotation angles computed by MLE procedure
+}
 \description{
 Compute the rotation angle using MLE with hough transformation.
 }

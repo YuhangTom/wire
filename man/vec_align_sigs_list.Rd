@@ -32,6 +32,9 @@ vec_align_sigs_list(
 
 \item{titlename}{title name}
 }
+\value{
+list of aligned signals named \code{ccf}, \code{lag} and \code{lands} followed the output format of \code{bulletxtrctr::sig_align}
+}
 \description{
 Align signals with plot.
 }

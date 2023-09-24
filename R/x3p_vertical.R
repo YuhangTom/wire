@@ -8,6 +8,7 @@
 #' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
 #' @param ifplot whether graphs are displayed
 #' @param loess_span the parameter which controls the degree of smoothing, only available when \code{method = MLE}
+#' @return x3p object after rotation with vertical striations
 #' @import dplyr
 #' @importFrom x3ptools x3p_bin_stripes x3p_extract x3p_rotate
 #' @export

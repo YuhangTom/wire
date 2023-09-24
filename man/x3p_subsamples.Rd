@@ -6,7 +6,7 @@
 \title{Subsampled wire cuts data}
 \format{
 list
-A list of x3p objects
+A list of x3p objects named with surface scan names
 }
 \usage{
 x3p_subsamples

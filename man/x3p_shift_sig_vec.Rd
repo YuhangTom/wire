@@ -15,6 +15,9 @@ x3p_shift_sig_vec(x3p, method = "median", ifplot = FALSE, delta = -5:5)
 
 \item{delta}{shifting range when minimizing MSE}
 }
+\value{
+vector of shifted signals
+}
 \description{
 Extract signal by computing summary statistics of values along y for each x with transformed x3p object by minimizing MSE.
 }

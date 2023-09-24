@@ -5,6 +5,7 @@
 #' @param ntheta number of bins along theta used in \code{imager::hough_line}
 #' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
 #' @param ifplot whether graphs are displayed
+#' @return vector of rotation angles computed by quantile procedure
 #' @import dplyr
 #' @importFrom ggplot2 ggplot aes geom_histogram geom_point
 #' @importFrom raster raster

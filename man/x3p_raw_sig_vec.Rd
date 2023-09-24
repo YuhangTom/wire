@@ -13,6 +13,9 @@ x3p_raw_sig_vec(x3p, method = "median", ifplot = FALSE)
 
 \item{ifplot}{whether graphs are displayed}
 }
+\value{
+vector of raw signal extracted
+}
 \description{
 Extract signal by computing summary statistics of values along y for each x with raw x3p object.
 }

@@ -9,6 +9,7 @@
 #' @param name2 name for the second cut
 #' @param legendname legend name
 #' @param titlename title name
+#' @return list of aligned signals named \code{ccf}, \code{lag} and \code{lands} followed the output format of \code{bulletxtrctr::sig_align}
 #' @importFrom ggplot2 ggplot aes geom_line labs xlab ggtitle
 #' @importFrom bulletxtrctr sig_align
 #' @export

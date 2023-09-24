@@ -13,6 +13,9 @@ df_rmtrend_x3p(x3p, mask_col = "#FF0000", concavity = 1.5)
 
 \item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
 }
+\value{
+x3p object of residuals after removing trend
+}
 \description{
 Obtained x3p object after removing missing values and the quadratic trend from the inner polygon.
 }

@@ -5,6 +5,7 @@
 #' @param ifhtml logical, whether the image will be put on html
 #' @param zoom numeric value indicating the amount of zoom
 #' @param ... other parameter values except size and zoom used in \code{x3ptools::x3p_image}
+#' @return rgl plot, list of tags when \code{ifhtml = TRUE}
 #' @importFrom x3ptools x3p_image
 #' @importFrom rgl rglwidget
 #' @importFrom htmltools tagList

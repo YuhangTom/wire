@@ -15,6 +15,9 @@ x3p_quantile_angle_vec(x3p, ntheta = 720, min_score_cut = 2, ifplot = FALSE)
 
 \item{ifplot}{whether graphs are displayed}
 }
+\value{
+vector of rotation angles computed by quantile procedure
+}
 \description{
 Compute the rotation angle using quantile with hough transformation.
 }
