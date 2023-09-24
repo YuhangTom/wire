@@ -24,7 +24,8 @@
 #' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 #'
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1)
-#' vec_align_sigs_list(x3p_raw_sig_vec(x3p_bin_rotate), x3p_shift_sig_vec(x3p_bin_rotate))
+#' vec_align_sigs_list(x3p_raw_sig_vec(x3p_bin_rotate), x3p_shift_sig_vec(x3p_bin_rotate),
+#' ifplot = TRUE)
 #'
 vec_align_sigs_list <- function(
     sig1,

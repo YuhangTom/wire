@@ -28,7 +28,7 @@
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #'
 #' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
-#' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+#' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
 #' x3p_inner_impute
 #'
 #' if (interactive()) {

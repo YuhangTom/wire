@@ -21,7 +21,7 @@
 #' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 #'
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1)
-#' x3p_raw_sig_vec(x3p_bin_rotate) %>%
+#' x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE) %>%
 #' str()
 #'
 x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {

@@ -22,7 +22,7 @@
 #' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
 #' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 #'
-#' x3p_quantile_angle_vec(x3p_inner_impute, min_score_cut = 0.1)
+#' x3p_quantile_angle_vec(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE)
 #'
 #'
 x3p_quantile_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
