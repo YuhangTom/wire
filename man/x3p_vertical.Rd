@@ -15,7 +15,7 @@ x3p_vertical(
 )
 }
 \arguments{
-\item{x3p_inner_impute}{imputed x3p object}
+\item{x3p_inner_impute}{x3p object after imputation}
 
 \item{freqs}{length 4 vector of values corresponding to color frequency (turned into quantiles of the differenced values) used in \code{x3ptools::x3p_bin_stripes}}
 

@@ -4,14 +4,10 @@
 \alias{df_rmtrend_x3p}
 \title{Removing missing values and the quadratic trend from inner polygon}
 \usage{
-df_rmtrend_x3p(x3p, mask_col = "#FF0000", concavity = 1.5)
+df_rmtrend_x3p(insidepoly_df)
 }
 \arguments{
-\item{x3p}{x3p object}
-
-\item{mask_col}{colour for the polygon}
-
-\item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
+\item{insidepoly_df}{data frame of inside polygon}
 }
 \value{
 x3p object of residuals after removing trend

@@ -34,11 +34,9 @@ x3p_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
     dir.create(dir_name, showWarnings = FALSE)
   }
 
-  x3p_inner_nomiss_res <- df_rmtrend_x3p(x3p, mask_col = mask_col, concavity = concavity)
-
   ### Convert x3p to raster
-  x3p_inner_nomiss_res_raster <- t(x3p_inner_nomiss_res$surface.matrix) %>%
-    raster(xmx = (x3p_inner_nomiss_res$header.info$sizeX - 1) * x3p_inner_nomiss_res$header.info$incrementX, ymx = (x3p_inner_nomiss_res$header.info$sizeY - 1) * x3p_inner_nomiss_res$header.info$incrementY)
+  x3p_inner_nomiss_res_raster <- t(x3p$surface.matrix) %>%
+    raster(xmx = (x3p$header.info$sizeX - 1) * x3p$header.info$incrementX, ymx = (x3p$header.info$sizeY - 1) * x3p$header.info$incrementY)
 
   ### Plot raster
   p0 <- x3p_inner_nomiss_res_raster %>%
@@ -146,7 +144,7 @@ x3p_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
       invisible()
   }
 
-  x3p_inner_focal_impute <- x3p_inner_nomiss_res %>%
+  x3p_inner_focal_impute <- x3p %>%
     x3p_delete_mask()
   x3p_inner_focal_impute$surface.matrix <- x3p_inner_nomiss_res_focal_raster %>%
     as.matrix() %>%

@@ -1,7 +1,7 @@
 #' Rotate imputed x3p object to vertical direction
 #'
 #' Rotate imputed x3p object with striations to the vertical direction.
-#' @param x3p_inner_impute imputed x3p object
+#' @param x3p_inner_impute x3p object after imputation
 #' @param freqs length 4 vector of values corresponding to color frequency (turned into quantiles of the differenced values) used in \code{x3ptools::x3p_bin_stripes}
 #' @param method choice of \code{MLE} or \code{quantile} when computing rotation angle
 #' @param ntheta number of bins along theta used in \code{imager::hough_line}

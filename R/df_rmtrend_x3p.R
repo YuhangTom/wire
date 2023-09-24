@@ -1,9 +1,7 @@
 #' Removing missing values and the quadratic trend from inner polygon
 #'
 #' Obtained x3p object after removing missing values and the quadratic trend from the inner polygon.
-#' @param x3p x3p object
-#' @param mask_col colour for the polygon
-#' @param concavity strictly positive value used in \code{concaveman::concaveman}
+#' @param insidepoly_df data frame of inside polygon
 #' @return x3p object of residuals after removing trend
 #' @import dplyr
 #' @importFrom x3ptools df_to_x3p
@@ -11,16 +9,14 @@
 #' @importFrom rlang .data
 #' @export
 
-df_rmtrend_x3p <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
+df_rmtrend_x3p <- function(insidepoly_df) {
   n_neighbor_val_miss <-
     value <-
     x <-
     y <-
     NULL
 
-  x3p_inner_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
-
-  x3p_inner_nomiss_df <- x3p_inner_df %>%
+  x3p_inner_nomiss_df <- insidepoly_df %>%
     filter(n_neighbor_val_miss == 0)
 
   ### Remove trend
@@ -30,7 +26,7 @@ df_rmtrend_x3p <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
 
   ### Convert df to x3p
   x3p_inner_nomiss_res <- x3p_inner_nomiss_res_df %>%
-    left_join(x3p_inner_df[, c("x", "y")], .data) %>%
+    left_join(insidepoly_df[, c("x", "y")], .data) %>%
     df_to_x3p()
 
   return(x3p_inner_nomiss_res)
