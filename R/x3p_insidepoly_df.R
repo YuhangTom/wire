@@ -13,7 +13,7 @@
 #' @importFrom rlang .data
 #' @export
 
-get_x3p_inner_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
+x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
   to <-
     from <-
     neighbor_val <-

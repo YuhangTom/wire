@@ -12,7 +12,7 @@
 #' @importFrom x3ptools x3p_bin_stripes x3p_extract x3p_rotate
 #' @export
 
-get_x3p_bin_rotate <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
+x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
                                method = "MLE",
                                ntheta = 720, min_score_cut = 2,
                                ifplot = FALSE,
@@ -29,12 +29,12 @@ get_x3p_bin_rotate <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
   x3p_bin_blue <- x3p_extract(x3p_bin, mask_vals = "#134D6B")
 
   if (method == "MLE") {
-    angle_red <- get_x3p_rotate_angle_MLE(x3p_bin_red, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot, loess_span = loess_span)
-    angle_blue <- get_x3p_rotate_angle_MLE(x3p_bin_blue, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot, loess_span = loess_span)
+    angle_red <- x3p_MLE_angle_vec(x3p_bin_red, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot, loess_span = loess_span)
+    angle_blue <- x3p_MLE_angle_vec(x3p_bin_blue, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot, loess_span = loess_span)
   } else {
     if (method == "quantile") {
-      angle_red <- get_x3p_rotate_angle_quantile(x3p_bin_red, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot)
-      angle_blue <- get_x3p_rotate_angle_quantile(x3p_bin_blue, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot)
+      angle_red <- x3p_quantile_angle_vec(x3p_bin_red, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot)
+      angle_blue <- x3p_quantile_angle_vec(x3p_bin_blue, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot)
     } else {
       stop('Not an applicable method, choose from "method = MLE" or "method = quantile"')
     }

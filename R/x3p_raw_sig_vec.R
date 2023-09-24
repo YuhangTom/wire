@@ -10,7 +10,7 @@
 #' @importFrom stats na.omit median
 #' @export
 
-get_sig_raw <- function(x3p, method = "median", ifplot = FALSE) {
+x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
   x <-
     value <-
     value_summary <-

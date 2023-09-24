@@ -10,14 +10,14 @@
 #' @importFrom rlang .data
 #' @export
 
-get_x3p_inner_nomiss_res <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
+df_rmtrend_x3p <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
   n_neighbor_val_miss <-
     value <-
     x <-
     y <-
     NULL
 
-  x3p_inner_df <- get_x3p_inner_df(x3p, mask_col = mask_col, concavity = concavity)
+  x3p_inner_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
 
   x3p_inner_nomiss_df <- x3p_inner_df %>%
     filter(n_neighbor_val_miss == 0)

@@ -13,7 +13,7 @@
 #' @importFrom tidyr nest unnest
 #' @export
 
-get_sig_MSE <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
+x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
   y <-
     value_nobs <-
     x <-

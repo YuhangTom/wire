@@ -13,7 +13,7 @@
 #' @importFrom bulletxtrctr sig_align
 #' @export
 
-get_sigalign <- function(
+vec_align_sigs_list <- function(
     sig1,
     sig2,
     min.overlap = round(0.75 * min(length(sig1), length(sig2))),

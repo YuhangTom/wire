@@ -13,7 +13,7 @@
 #' @importFrom rlang .data
 #' @export
 
-get_x3p_rotate_angle_quantile <- function(x3p, ntheta = 720, min_score_cut = 2,
+x3p_quantile_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 2,
                                           ifplot = FALSE) {
   theta <-
     theta_mod <-

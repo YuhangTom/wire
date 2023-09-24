@@ -19,7 +19,7 @@
 #' @importFrom rlang .data
 #' @export
 
-get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
+x3p_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
                                  ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   layer <-
     x <-
@@ -33,7 +33,7 @@ get_x3p_inner_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
     dir.create(dir_name, showWarnings = FALSE)
   }
 
-  x3p_inner_nomiss_res <- get_x3p_inner_nomiss_res(x3p, mask_col = mask_col, concavity = concavity)
+  x3p_inner_nomiss_res <- df_rmtrend_x3p(x3p, mask_col = mask_col, concavity = concavity)
 
   ### Convert x3p to raster
   x3p_inner_nomiss_res_raster <- t(x3p_inner_nomiss_res$surface.matrix) %>%
