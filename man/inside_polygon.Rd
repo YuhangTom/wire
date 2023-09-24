@@ -27,3 +27,15 @@ described by the input x and y, variable id describes the order of the points
 Uses concentric mirroring onto a radius around the center point, applies an
 alpha hull to that shape, and mirrors the result back.
 }
+\examples{
+x3p <- x3p_subsamples[[1]]
+bounds <- x3p_boundary_points(x3p, 2)
+polygon <- inside_polygon(bounds$x, bounds$y, 1)
+
+library(ggplot2)
+library(dplyr)
+bounds \%>\%
+ggplot(aes(x = x, y = y)) + geom_point() +
+  geom_polygon(data = polygon)
+
+}

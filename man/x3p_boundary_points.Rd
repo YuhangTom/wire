@@ -19,3 +19,14 @@ data frame of boundary points, variables are named \code{x} and \code{y}
 \description{
 Identify boundary of a 3d topographic scan in x3p format
 }
+\examples{
+x3p <- x3p_subsamples[[1]]
+bounds <- x3p_boundary_points(x3p, 2)
+
+library(ggplot2)
+library(dplyr)
+bounds \%>\%
+ggplot(aes(x = x, y = y)) +
+geom_point()
+
+}

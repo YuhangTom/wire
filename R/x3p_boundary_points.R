@@ -9,7 +9,16 @@
 #' @importFrom dplyr `%>%` group_by mutate filter summarize select
 #' @importFrom rlang .data
 #' @export
-
+#' @examples
+#' x3p <- x3p_subsamples[[1]]
+#' bounds <- x3p_boundary_points(x3p, 2)
+#'
+#' library(ggplot2)
+#' library(dplyr)
+#' bounds %>%
+#' ggplot(aes(x = x, y = y)) +
+#' geom_point()
+#'
 x3p_boundary_points <- function(x3p, sample) {
   stopifnot("x3p" %in% class(x3p))
   x3p_df <- x3p %>%
