@@ -34,7 +34,6 @@ x3p_surface_polygon <- function(x3p, colour = "red", sample = 10, center = NULL,
   par(mar = c(0, 0, 0, 0))
   plot.default(x = c(1, dims[1]) * resolution, y = c(1, dims[2]) * resolution, type = "n", frame.plot = FALSE, axes = FALSE)
   polygon(rbind(polygon_inside[, c("x", "y")], polygon_inside[1, c("x", "y")]), col = colour, border = FALSE)
-  # savePlot("mask.png",device = dev.cur())
   dev.off()
   mask <- png::readPNG(mask_png)
 
