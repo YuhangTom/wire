@@ -10,7 +10,7 @@
 #' @param legendname legend name
 #' @param titlename title name
 #' @return list of aligned signals named \code{ccf}, \code{lag} and \code{lands} followed the output format of \code{bulletxtrctr::sig_align}
-#' @importFrom ggplot2 ggplot aes geom_line labs xlab ggtitle
+#' @importFrom ggplot2 ggplot aes geom_line labs xlab ylab ggtitle
 #' @importFrom bulletxtrctr sig_align
 #' @export
 #' @examples
@@ -45,7 +45,8 @@ vec_align_sigs_list <- function(
       geom_line(aes(y = sig2, color = name2)) +
       labs(color = legendname) +
       xlab("x") +
-      ggtitle(titlename)
+      ylab("sig") +
+      ggtitle(titlename, subtitle = paste0("ccf = ", round(sigalign$ccf, 3), "; lag = ", sigalign$lag))
     print(p)
   }
 
