@@ -5,7 +5,9 @@
 #' @param method choice of \code{median} or \code{mean} when computing the summary statistics
 #' @param ifplot whether graphs are displayed
 #' @param delta shifting range when minimizing MSE
-#' @import dplyr x3ptools ggplot2
+#' @import dplyr
+#' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
+#' @importFrom ggplot2 ggplot geom_line geom_point
 #' @importFrom stats na.omit median lm coef approx
 #' @importFrom purrr map_dbl map set_names
 #' @importFrom tidyr nest unnest

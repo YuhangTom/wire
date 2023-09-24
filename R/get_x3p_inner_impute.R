@@ -7,7 +7,9 @@
 #' @param ifsave whether the imputation procedure gif is going to be saved
 #' @param dir_name required when \code{ifsave} is \code{TRUE}
 #' @param ifplot whether graphs are displayed
-#' @import dplyr x3ptools ggplot2
+#' @import dplyr
+#' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask
+#' @importFrom ggplot2 ggplot geom_raster scale_fill_gradient2 labs ggsave
 #' @importFrom assertthat assert_that not_empty
 #' @importFrom raster raster focal as.data.frame as.matrix
 #' @importFrom purrr map

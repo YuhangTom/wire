@@ -4,7 +4,8 @@
 #' @param x3p x3p object
 #' @param mask_col colour for the polygon
 #' @param concavity strictly positive value used in \code{concaveman::concaveman}
-#' @import dplyr x3ptools
+#' @import dplyr
+#' @importFrom x3ptools x3p_extract x3p_average x3p_to_df
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell

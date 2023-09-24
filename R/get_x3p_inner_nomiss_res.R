@@ -4,7 +4,8 @@
 #' @param x3p x3p object
 #' @param mask_col colour for the polygon
 #' @param concavity strictly positive value used in \code{concaveman::concaveman}
-#' @import dplyr x3ptools
+#' @import dplyr
+#' @importFrom x3ptools df_to_x3p
 #' @importFrom stats lm predict
 #' @export
 

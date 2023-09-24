@@ -8,7 +8,8 @@
 #' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
 #' @param ifplot whether graphs are displayed
 #' @param loess_span the parameter which controls the degree of smoothing, only available when \code{method = MLE}
-#' @import dplyr x3ptools
+#' @import dplyr
+#' @importFrom x3ptools x3p_bin_stripes x3p_extract x3p_rotate
 #' @export
 
 get_x3p_bin_rotate <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),

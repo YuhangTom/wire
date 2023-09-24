@@ -4,7 +4,9 @@
 #' @param x3p x3p object
 #' @param method choice of \code{median} or \code{mean} when computing the summary statistics
 #' @param ifplot whether graphs are displayed
-#' @import dplyr x3ptools ggplot2
+#' @import dplyr
+#' @importFrom x3ptools x3p_to_df
+#' @importFrom ggplot2 ggplot geom_line
 #' @importFrom stats na.omit median
 #' @export
 

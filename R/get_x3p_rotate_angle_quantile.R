@@ -5,7 +5,8 @@
 #' @param ntheta number of bins along theta used in \code{imager::hough_line}
 #' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
 #' @param ifplot whether graphs are displayed
-#' @import dplyr ggplot2
+#' @import dplyr
+#' @importFrom ggplot2 ggplot geom_histogram geom_point
 #' @importFrom raster raster
 #' @importFrom imager as.cimg hough_line nfline
 #' @importFrom stats quantile median
