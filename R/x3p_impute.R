@@ -7,7 +7,7 @@
 #' @param ifsave whether the imputation procedure gif is going to be saved
 #' @param dir_name required when \code{ifsave} is \code{TRUE}
 #' @param ifplot whether graphs are displayed
-#' @return x3p obeject after imputation
+#' @return x3p object after imputation
 #' @import dplyr
 #' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask
 #' @importFrom ggplot2 ggplot aes geom_raster scale_fill_gradient2 labs ggsave
