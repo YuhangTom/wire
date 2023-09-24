@@ -9,7 +9,7 @@
 #' @param ifplot whether graphs are displayed
 #' @import dplyr
 #' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask
-#' @importFrom ggplot2 ggplot geom_raster scale_fill_gradient2 labs ggsave
+#' @importFrom ggplot2 ggplot aes geom_raster scale_fill_gradient2 labs ggsave
 #' @importFrom assertthat assert_that not_empty
 #' @importFrom raster raster focal as.data.frame as.matrix
 #' @importFrom purrr map

@@ -9,7 +9,7 @@
 #' @param name2 name for the second cut
 #' @param legendname legend name
 #' @param titlename title name
-#' @importFrom ggplot2 ggplot geom_line labs xlab ggtitle
+#' @importFrom ggplot2 ggplot aes geom_line labs xlab ggtitle
 #' @importFrom bulletxtrctr sig_align
 #' @export
 

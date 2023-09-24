@@ -6,7 +6,7 @@
 #' @param ifplot whether graphs are displayed
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df
-#' @importFrom ggplot2 ggplot geom_line
+#' @importFrom ggplot2 ggplot aes geom_line
 #' @importFrom stats na.omit median
 #' @export
 
