@@ -162,7 +162,7 @@ x3p_impute <- function(x3p, x3p_mask, mask_col = "#FF0000",
       invisible()
   }
 
-  x3p_inner_focal_impute <- x3p_mask %>%
+  x3p_inner_focal_impute <- x3p %>%
     x3p_delete_mask()
   x3p_inner_focal_impute$surface.matrix <- x3p_inner_nomiss_res_focal_raster %>%
     as.matrix() %>%
