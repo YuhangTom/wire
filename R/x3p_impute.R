@@ -2,6 +2,7 @@
 #'
 #' Obtained x3p object after imputing the inner polygon.
 #' @param x3p x3p object
+#' @param x3p_mask x3p object for mask
 #' @param mask_col colour for the polygon
 #' @param concavity strictly positive value used in \code{concaveman::concaveman}
 #' @param ifsave whether the imputation procedure gif is going to be saved
@@ -17,15 +18,30 @@
 #' @importFrom magick image_read image_join image_animate image_write
 #' @importFrom stringr str_detect
 #' @importFrom wires x3p_surface_polygon
-#' @importFrom rlang .data
 #' @export
-
-x3p_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
-                                 ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
+#' @examples
+#' x3p <- x3p_subsamples[[1]]
+#' mask_col <- "#FF0000"
+#' concavity <- 1.5
+#'
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+#' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
+#'
+#' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
+#' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+#' x3p_inner_impute
+#'
+#' if (interactive()) {
+#'   x3p_image_autosize(x3p_inner_impute)
+#' }
+#'
+x3p_impute <- function(x3p, x3p_mask, mask_col = "#FF0000",
+                       concavity = 1.5, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   layer <-
     x <-
     y <-
     value <-
+    . <-
     NULL
 
   if (ifsave) {
@@ -139,21 +155,21 @@ x3p_impute <- function(x3p, mask_col = "#FF0000", concavity = 1.5,
       path = dir_name,
       full.names = TRUE
     ) %>%
-      .data[str_detect(.data, pattern = ".png")] %>%
+      .[str_detect(., pattern = ".png")] %>%
       file.remove() %>%
       invisible()
   }
 
-  x3p_inner_focal_impute <- x3p %>%
+  x3p_inner_focal_impute <- x3p_mask %>%
     x3p_delete_mask()
   x3p_inner_focal_impute$surface.matrix <- x3p_inner_nomiss_res_focal_raster %>%
     as.matrix() %>%
     t()
 
-  x3p <- x3p %>%
+  x3p_mask <- x3p_mask %>%
     x3p_surface_polygon(colour = mask_col, concavity = concavity)
   ### Extract inner part as x3p based on mask
-  x3p_inner <- x3p_extract(x3p, mask_vals = mask_col) %>%
+  x3p_inner <- x3p_extract(x3p_mask, mask_vals = mask_col) %>%
     x3p_average(m = 3, na.rm = TRUE)
   x3p_inner_focal_impute <- x3p_add_mask(x3p_inner_focal_impute, x3p_inner$mask)
 

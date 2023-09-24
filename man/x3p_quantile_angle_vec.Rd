@@ -4,7 +4,7 @@
 \alias{x3p_quantile_angle_vec}
 \title{Compute the rotation angle using quantile}
 \usage{
-x3p_quantile_angle_vec(x3p, ntheta = 720, min_score_cut = 2, ifplot = FALSE)
+x3p_quantile_angle_vec(x3p, ntheta = 720, min_score_cut = 0.1, ifplot = FALSE)
 }
 \arguments{
 \item{x3p}{x3p object}
@@ -20,4 +20,18 @@ vector of rotation angles computed by quantile procedure
 }
 \description{
 Compute the rotation angle using quantile with hough transformation.
+}
+\examples{
+x3p <- x3p_subsamples[[1]]
+mask_col <- "#FF0000"
+concavity <- 1.5
+
+insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
+x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
+concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+
+x3p_quantile_angle_vec(x3p_inner_impute, min_score_cut = 0.1)
+
+
 }

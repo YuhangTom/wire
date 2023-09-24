@@ -9,7 +9,7 @@ x3p_vertical(
   freqs = c(0, 0.3, 0.7, 1),
   method = "MLE",
   ntheta = 720,
-  min_score_cut = 2,
+  min_score_cut = 0.1,
   ifplot = FALSE,
   loess_span = 0.2
 )
@@ -34,4 +34,22 @@ x3p object after rotation with vertical striations
 }
 \description{
 Rotate imputed x3p object with striations to the vertical direction.
+}
+\examples{
+x3p <- x3p_subsamples[[1]]
+mask_col <- "#FF0000"
+concavity <- 1.5
+
+insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
+x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
+concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+
+x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1)
+x3p_bin_rotate
+
+if (interactive()) {
+  x3p_image_autosize(x3p_bin_rotate)
+}
+
 }

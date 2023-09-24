@@ -6,6 +6,7 @@
 \usage{
 x3p_impute(
   x3p,
+  x3p_mask,
   mask_col = "#FF0000",
   concavity = 1.5,
   ifsave = FALSE,
@@ -15,6 +16,8 @@ x3p_impute(
 }
 \arguments{
 \item{x3p}{x3p object}
+
+\item{x3p_mask}{x3p object for mask}
 
 \item{mask_col}{colour for the polygon}
 
@@ -31,4 +34,21 @@ x3p object after imputation
 }
 \description{
 Obtained x3p object after imputing the inner polygon.
+}
+\examples{
+x3p <- x3p_subsamples[[1]]
+mask_col <- "#FF0000"
+concavity <- 1.5
+
+insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
+
+x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
+concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+x3p_inner_impute
+
+if (interactive()) {
+  x3p_image_autosize(x3p_inner_impute)
+}
+
 }

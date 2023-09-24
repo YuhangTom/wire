@@ -11,9 +11,15 @@
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell
 #' @importFrom wires x3p_surface_polygon
-#' @importFrom rlang .data
 #' @export
-
+#' @examples
+#' x3p <- x3p_subsamples[[1]]
+#' mask_col <- "#FF0000"
+#' concavity <- 1.5
+#'
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+#' str(insidepoly_df)
+#'
 x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
   to <-
     from <-
@@ -21,6 +27,7 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
     x <-
     y <-
     n_neighbor_val_miss <-
+    . <-
     NULL
 
   x3p <- x3p %>%
@@ -89,10 +96,11 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
           y = x3p_inner_df$y,
           x = as.character(x),
           y = as.character(y)
-        )
+        ),
+      by = join_by(x, y)
     ) %>%
     full_join(
-      .data,
+      x = .,
       x3p_inner_df_wide_sd_not_miss %>%
         pivot_longer(
           cols = everything(),
@@ -103,7 +111,8 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5) {
           y = x3p_inner_df$y,
           x = as.character(x),
           y = as.character(y)
-        )
+        ),
+      by = join_by(x, y)
     ) %>%
     mutate(
       x = as.numeric(x),

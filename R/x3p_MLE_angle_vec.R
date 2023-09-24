@@ -12,10 +12,21 @@
 #' @importFrom raster raster
 #' @importFrom imager as.cimg hough_line nfline
 #' @importFrom stats loess predict
-#' @importFrom rlang .data
 #' @export
-
-x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 2,
+#' @examples
+#' x3p <- x3p_subsamples[[1]]
+#' mask_col <- "#FF0000"
+#' concavity <- 1.5
+#'
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+#' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
+#' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
+#' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+#'
+#' x3p_MLE_angle_vec(x3p_inner_impute, min_score_cut = 0.1)
+#'
+#'
+x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
                                      ifplot = FALSE,
                                      loess_span = 0.2) {
   theta <-
@@ -23,6 +34,7 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 2,
     theta_mod <-
     theta_mod_shift <-
     rho <-
+    . <-
     NULL
 
   ### Change to contrast color
@@ -30,7 +42,7 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 2,
   NA_val <- -(x3p$surface.matrix %>%
     c() %>%
     summary() %>%
-    .data[c("Min.", "Max.")] %>%
+    .[c("Min.", "Max.")] %>%
     abs() %>%
     max() %>%
     ceiling())

@@ -21,3 +21,10 @@ rgl plot, list of tags when \code{ifhtml = TRUE}
 \description{
 Plot x3p object as an image with auto-adjusted size based on \code{x3ptools::x3p_image}.
 }
+\examples{
+x3p <- x3p_subsamples[[1]]
+if (interactive()) {
+  x3p_image_autosize(x3p)
+}
+
+}

@@ -13,7 +13,20 @@
 #' @importFrom purrr map_dbl map set_names
 #' @importFrom tidyr nest unnest
 #' @export
-
+#' @examples
+#' x3p <- x3p_subsamples[[1]]
+#' mask_col <- "#FF0000"
+#' concavity <- 1.5
+#'
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity)
+#' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
+#' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, x3p, mask_col = mask_col,
+#' concavity = concavity, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+#'
+#' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1)
+#' x3p_shift_sig_vec(x3p_bin_rotate) %>%
+#' str()
+#'
 x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
   y <-
     value_nobs <-
@@ -38,7 +51,7 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
     arrange(value_nobs)
 
   ### Sort unique y values
-  y_sort <- inner_join(x3p_df, x3p_df_nobs) %>%
+  y_sort <- inner_join(x3p_df, x3p_df_nobs, by = join_by(y)) %>%
     ### Filter to have at least 2 observations for approx later
     filter(value_nobs >= 2) %>%
     distinct(y) %>%
@@ -119,7 +132,7 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
   )
 
   ### Shift x values
-  x3p_shift_delta_df <- inner_join(x3p_df, x_shift_delta_value_df, by = "y") %>%
+  x3p_shift_delta_df <- inner_join(x3p_df, x_shift_delta_value_df, by = join_by(y)) %>%
     mutate(x_shift_delta = x + x_shift_delta_value)
 
   if (ifplot) {
@@ -188,5 +201,5 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
       print()
   }
 
-  sig
+  return(sig$value_summary)
 }

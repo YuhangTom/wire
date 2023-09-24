@@ -10,7 +10,12 @@
 #' @importFrom rgl rglwidget
 #' @importFrom htmltools tagList
 #' @export
-
+#' @examples
+#' x3p <- x3p_subsamples[[1]]
+#' if (interactive()) {
+#'   x3p_image_autosize(x3p)
+#' }
+#'
 x3p_image_autosize <- function(x3p, ifhtml = FALSE, zoom = 0.6, ...) {
   x3p_image(x3p, size = dim(x3p$surface.matrix), zoom = zoom, ...)
 
