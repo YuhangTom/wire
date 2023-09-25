@@ -74,7 +74,7 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
         arrange(x)
 
       ### Mean squared error for all delta
-      SS <- map_dbl(delta, function(delta_i) {
+      MSE <- map_dbl(delta, function(delta_i) {
         if (delta_i == 0) {
           mean((f1$value - f2$value)^2, na.rm = TRUE)
         } else {
@@ -88,7 +88,7 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
         set_names(delta)
 
       ### Fit parabola
-      para_coef <- lm(SS ~ delta + I(delta^2)) %>%
+      para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
         coef()
 
       ### Get delta with minimum mean squared error
