@@ -178,14 +178,15 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
     x3p_image_autosize(x3p, ifhtml = TRUE)
 
     ### Remove mask and add again, as mask cannot be approx
-    x3p_plot <- x3p_approx_df %>%
+    x3p_approx_df %>%
       df_to_x3p(var = "value_approx") %>%
       x3p_delete_mask() %>%
       x3p_bin_stripes(
         direction = "vertical",
         colors = c("#b12819", "#ffffff", "#134D6B"),
         freqs = c(0, 0.3, 0.7, 1)
-      )
+      ) %>%
+      x3p_image_autosize(ifhtml = TRUE)
   }
 
   if (ifplot) {
