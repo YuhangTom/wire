@@ -42,7 +42,7 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
     .[c("Min.", "Max.")] %>%
     abs() %>%
     max() %>%
-    ceiling())
+    ceiling(.))
   x3p_shift[is.na(x3p$surface.matrix)] <- NA_val
 
   ### Change to raster

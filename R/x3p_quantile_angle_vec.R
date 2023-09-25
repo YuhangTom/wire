@@ -41,7 +41,7 @@ x3p_quantile_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
       .[c("Min.", "Max.")] %>%
       abs() %>%
       max() %>%
-      ceiling())
+      ceiling(.))
 
   ### Change to raster
   x3p_raster <- t(x3p_shift) %>%
