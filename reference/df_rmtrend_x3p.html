@@ -48,7 +48,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>insidepoly_df</dt>
-<dd><p>data frame of inside polygon</p></dd>
+<dd><p>data frame of inside polygon obtained from <code><a href="x3p_insidepoly_df.html">wire::x3p_insidepoly_df</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -61,10 +61,7 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x3p</span> <span class="op">&lt;-</span> <span class="va">x3p_subsamples</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="va">mask_col</span> <span class="op">&lt;-</span> <span class="st">"#FF0000"</span></span></span>
-<span class="r-in"><span><span class="va">concavity</span> <span class="op">&lt;-</span> <span class="fl">1.5</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">insidepoly_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="x3p_insidepoly_df.html">x3p_insidepoly_df</a></span><span class="op">(</span><span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="va">mask_col</span>, concavity <span class="op">=</span> <span class="va">concavity</span>, b <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">insidepoly_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="x3p_insidepoly_df.html">x3p_insidepoly_df</a></span><span class="op">(</span><span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="st">"#FF0000"</span>, concavity <span class="op">=</span> <span class="fl">1.5</span>, b <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `x` argument of `as_tibble.matrix()` must have unique column names if</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> `.name_repair` is omitted as of tibble 2.0.0.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Using compatibility `.name_repair`.</span>
@@ -76,7 +73,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> x3p object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> size (width x height): 231 x 182 in pixel </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> resolution: 6.4500e+00 x 6.4500e+00 </span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="x3p_image_autosize.html">x3p_image_autosize</a></span><span class="op">(</span><span class="va">x3p_inner_nomiss_res</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
