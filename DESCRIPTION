@@ -7,7 +7,7 @@ Authors@R: c(
     person("Heike", "Hofmann", , "hofmann@iastate.edu", role = "aut",
            comment = c(ORCID = "0000-0001-6216-5183"))
   )
-Description: This \code{wire} package allows everyone to conduct reproducible automatic analysis to compare different wire scans. A conclusion for similarity or dissimilarity can be easily drawn.
+Description: This `wire` package allows everyone to conduct reproducible automatic analysis to compare different wire scans. A conclusion for similarity or dissimilarity can be easily drawn.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
