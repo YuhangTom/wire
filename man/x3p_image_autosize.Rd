@@ -11,7 +11,7 @@ x3p_image_autosize(x3p, ifhtml = FALSE, zoom = 0.6, ...)
 
 \item{ifhtml}{logical, whether the image will be put on html}
 
-\item{zoom}{numeric value indicating the amount of zoom}
+\item{zoom}{numeric value indicating the amount of zoom in \code{x3ptools::x3p_image}}
 
 \item{...}{other parameter values except size and zoom used in \code{x3ptools::x3p_image}}
 }

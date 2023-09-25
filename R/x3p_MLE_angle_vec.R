@@ -12,6 +12,7 @@
 #' @importFrom raster raster
 #' @importFrom imager as.cimg hough_line nfline
 #' @importFrom stats loess predict
+#' @importFrom assertthat assert_that is.count is.number is.flag
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -26,6 +27,14 @@
 x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
                                      ifplot = FALSE,
                                      loess_span = 0.2) {
+  assert_that(
+    "x3p" %in% class(x3p),
+    is.count(ntheta),
+    is.number(min_score_cut),
+    is.flag(ifplot),
+    is.number(loess_span), loess_span > 0
+  )
+
   theta <-
     score <-
     theta_mod <-

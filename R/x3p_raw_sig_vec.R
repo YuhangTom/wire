@@ -9,6 +9,7 @@
 #' @importFrom x3ptools x3p_to_df
 #' @importFrom ggplot2 ggplot aes geom_line
 #' @importFrom stats na.omit median
+#' @importFrom assertthat assert_that is.flag
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[2]]
@@ -22,6 +23,12 @@
 #' str()
 #'
 x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
+  assert_that(
+    "x3p" %in% class(x3p),
+    method %in% c("median", "mean"),
+    is.flag(ifplot)
+  )
+
   x <-
     value <-
     value_summary <-

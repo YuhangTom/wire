@@ -12,6 +12,7 @@
 #' @importFrom stats na.omit median lm coef approx
 #' @importFrom purrr map_dbl map set_names
 #' @importFrom tidyr nest unnest
+#' @importFrom assertthat assert_that is.flag
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[2]]
@@ -28,6 +29,13 @@
 #' }
 #'
 x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
+  assert_that(
+    "x3p" %in% class(x3p),
+    method %in% c("median", "mean"),
+    is.flag(ifplot),
+    is.numeric(delta), length(delta) >= 3
+  )
+
   y <-
     value_nobs <-
     x <-

@@ -6,6 +6,7 @@
 #' @import dplyr
 #' @importFrom x3ptools df_to_x3p
 #' @importFrom stats lm predict
+#' @importFrom assertthat assert_that has_name
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -18,6 +19,11 @@
 #' }
 #'
 df_rmtrend_x3p <- function(insidepoly_df) {
+  assert_that(
+    is.data.frame(insidepoly_df),
+    has_name(insidepoly_df, c("x", "y", "value", "mask", "n_neighbor_val_miss", "sd_not_miss"))
+  )
+
   n_neighbor_val_miss <-
     value <-
     x <-

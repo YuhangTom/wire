@@ -11,6 +11,7 @@
 #' @return x3p object after rotation with vertical striations
 #' @import dplyr
 #' @importFrom x3ptools x3p_bin_stripes x3p_extract x3p_rotate
+#' @importFrom assertthat assert_that is.count is.number is.flag is.number
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -27,10 +28,20 @@
 #' }
 #'
 x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
-                               method = "MLE",
-                               ntheta = 720, min_score_cut = 0.1,
-                               ifplot = FALSE,
-                               loess_span = 0.2) {
+                         method = "MLE",
+                         ntheta = 720, min_score_cut = 0.1,
+                         ifplot = FALSE,
+                         loess_span = 0.2) {
+  assert_that(
+    "x3p" %in% class(x3p_inner_impute),
+    is.numeric(freqs), near(length(freqs), 4), near(freqs[1], 0), near(freqs[4], 1),
+    method %in% c("MLE", "quantile"),
+    is.count(ntheta),
+    is.number(min_score_cut),
+    is.flag(ifplot),
+    is.number(loess_span), loess_span > 0
+  )
+
   x3p_bin <- x3p_inner_impute %>%
     x3p_bin_stripes(
       direction = "vertical",

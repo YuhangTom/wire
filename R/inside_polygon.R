@@ -12,9 +12,10 @@
 #' If center is NULL, the half ranges of x and y are used.
 #' @return dataframe of x and y positions describing the inside of the area
 #' described by the input x and y, variable id describes the order of the points
-#' @importFrom dplyr mutate select rename arrange n
+#' @importFrom dplyr mutate select rename arrange n near
 #' @importFrom concaveman concaveman
 #' @importFrom tidyr pivot_longer
+#' @importFrom assertthat assert_that is.number
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -28,13 +29,18 @@
 #'   geom_polygon(data = polygon)
 #'
 inside_polygon <- function(x, y, concavity, center = NULL) {
-  stopifnot(concavity > 0)
-
+  assert_that(
+    is.numeric(x),
+    is.numeric(y),
+    is.number(concavity), concavity > 0
+  )
   if (is.null(center)) {
     center <- c(diff(range(x, na.rm = TRUE)), diff(range(y, na.rm = TRUE))) / 2
   }
   if (length(center) == 1) center <- rep(center, 2)
-  stopifnot(is.numeric(x), is.numeric(y), is.numeric(center), length(center) == 2)
+  assert_that(
+    is.numeric(center), near(length(center), 2)
+  )
 
   points_inside_out <- data.frame(x, y) %>%
     mutate(x = x - center[1], y = y - center[2]) %>%

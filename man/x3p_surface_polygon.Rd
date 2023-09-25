@@ -18,7 +18,7 @@ x3p_surface_polygon(
 \item{colour}{colour for the polygon}
 
 \item{sample}{strictly positive integer value specifying the amount of
-downsampling to be used (see \code{x3p_sample}) to calculate the boundary points
+downsampling to be used (see \code{x3ptools::x3p_sample}) to calculate the boundary points
 of the polygon. Larger values of \code{sample} will result in faster response times
 but results in less accurate polygons.}
 

@@ -11,6 +11,7 @@
 #' @importFrom raster raster
 #' @importFrom imager as.cimg hough_line nfline
 #' @importFrom stats quantile median
+#' @importFrom assertthat assert_that is.count is.number is.flag
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -24,6 +25,13 @@
 #'
 x3p_quantile_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
                                           ifplot = FALSE) {
+  assert_that(
+    "x3p" %in% class(x3p),
+    is.count(ntheta),
+    is.number(min_score_cut),
+    is.flag(ifplot)
+  )
+
   theta <-
     theta_mod <-
     theta_mod_shift <-

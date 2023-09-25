@@ -9,11 +9,11 @@
 #' @import dplyr
 #' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask
 #' @importFrom ggplot2 ggplot aes geom_raster scale_fill_gradient2 labs ggsave
-#' @importFrom assertthat assert_that not_empty
 #' @importFrom raster raster focal as.data.frame as.matrix
 #' @importFrom purrr map
 #' @importFrom magick image_read image_join image_animate image_write
 #' @importFrom stringr str_detect
+#' @importFrom assertthat assert_that is.flag not_empty is.string
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -27,18 +27,24 @@
 #' }
 #'
 x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
+  assert_that(
+    "x3p" %in% class(x3p),
+    is.flag(ifsave),
+    is.flag(ifplot)
+  )
+  if (ifsave) {
+    assert_that(
+      not_empty(dir_name), is.string(dir_name)
+    )
+    dir.create(dir_name, showWarnings = FALSE)
+  }
+
   layer <-
     x <-
     y <-
     value <-
     . <-
     NULL
-
-  if (ifsave) {
-    assert_that(not_empty(dir_name), msg = "dir_name must be non-empty")
-    assert_that(is.character(dir_name), msg = "dir_name must be character")
-    dir.create(dir_name, showWarnings = FALSE)
-  }
 
   ### Convert x3p to raster
   x3p_inner_nomiss_res_raster <- t(x3p$surface.matrix) %>%

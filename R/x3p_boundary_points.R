@@ -8,6 +8,7 @@
 #' @importFrom x3ptools x3p_sample x3p_to_df
 #' @importFrom dplyr `%>%` group_by mutate filter summarize select
 #' @importFrom rlang .data
+#' @importFrom assertthat assert_that is.count
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -20,7 +21,11 @@
 #' geom_point()
 #'
 x3p_boundary_points <- function(x3p, sample) {
-  stopifnot("x3p" %in% class(x3p))
+  assert_that(
+    "x3p" %in% class(x3p),
+    is.count(sample)
+  )
+
   x3p_df <- x3p %>%
     x3p_sample(m = sample) %>%
     x3p_to_df()

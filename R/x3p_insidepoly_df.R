@@ -21,6 +21,7 @@
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell
 #' @importFrom ggplot2 ggplot geom_raster scale_fill_gradient2 labs ggtitle geom_boxplot
+#' @importFrom assertthat assert_that is.string is.number is.count is.flag
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -30,6 +31,14 @@
 #'
 x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10,
                               ifplot = FALSE) {
+  assert_that(
+    "x3p" %in% class(x3p),
+    is.string(mask_col),
+    is.number(concavity), concavity > 0,
+    is.count(b),
+    is.flag(ifplot)
+  )
+
   to <-
     from <-
     neighbor_val <-

@@ -7,7 +7,7 @@
 vec_align_sigs_list(
   sig1,
   sig2,
-  min.overlap = round(0.75 * min(length(sig1), length(sig2))),
+  min.overlap = NULL,
   ifplot = FALSE,
   name1 = "Cut1",
   name2 = "Cut2",
@@ -16,9 +16,9 @@ vec_align_sigs_list(
 )
 }
 \arguments{
-\item{sig1}{first signal vector}
+\item{sig1}{first numeric signal vector}
 
-\item{sig2}{second signal vector}
+\item{sig2}{second numeric signal vector}
 
 \item{min.overlap}{additional parameter passed on to \code{bulletxtrctr::get_ccf}}
 

@@ -1,8 +1,8 @@
 #' Align signals
 #'
 #' Align signals with plot.
-#' @param sig1 first signal vector
-#' @param sig2 second signal vector
+#' @param sig1 first numeric signal vector
+#' @param sig2 second numeric signal vector
 #' @param min.overlap additional parameter passed on to \code{bulletxtrctr::get_ccf}
 #' @param ifplot whether graphs are displayed
 #' @param name1 name for the first cut
@@ -12,6 +12,7 @@
 #' @return list of aligned signals named \code{ccf}, \code{lag} and \code{lands} followed the output format of \code{bulletxtrctr::sig_align}
 #' @importFrom ggplot2 ggplot aes geom_line labs xlab ylab ggtitle
 #' @importFrom bulletxtrctr sig_align
+#' @importFrom assertthat assert_that not_empty is.count is.flag is.string
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -28,12 +29,27 @@
 vec_align_sigs_list <- function(
     sig1,
     sig2,
-    min.overlap = round(0.75 * min(length(sig1), length(sig2))),
+    min.overlap = NULL,
     ifplot = FALSE,
     name1 = "Cut1",
     name2 = "Cut2",
     legendname = "Signal",
     titlename = NULL) {
+  assert_that(
+    is.numeric(sig1),
+    is.numeric(sig2),
+    is.flag(ifplot),
+    is.string(name1),
+    is.string(name2),
+    is.string(legendname)
+  )
+  if (not_empty(min.overlap)) {
+    is.count(min.overlap)
+  }
+  if (not_empty(titlename)) {
+    is.string(titlename)
+  }
+
   x <- NULL
 
   sigalign <- sig_align(sig1, sig2)
