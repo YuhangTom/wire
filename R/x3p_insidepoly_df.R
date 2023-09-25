@@ -73,14 +73,14 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
 
   ### Change it to wide format
   x3p_inner_df_wide_n_neighbor_val_miss <- matrix(x3p_inner_raster_adj_df$n_neighbor_val_miss, nrow = nrow(x3p_inner_raster), ncol = ncol(x3p_inner_raster), byrow = TRUE) %>%
-    as_tibble()
+    as_tibble(.name_repair = "minimal")
   names(x3p_inner_df_wide_n_neighbor_val_miss) <- x3p_inner_df$x %>%
     unique() %>%
     as.character()
 
   ### Change it to wide format
   x3p_inner_df_wide_sd_not_miss <- matrix(x3p_inner_raster_adj_df$sd_not_miss, nrow = nrow(x3p_inner_raster), ncol = ncol(x3p_inner_raster), byrow = TRUE) %>%
-    as_tibble()
+    as_tibble(.name_repair = "minimal")
   names(x3p_inner_df_wide_sd_not_miss) <- x3p_inner_df$x %>%
     unique() %>%
     as.character()
