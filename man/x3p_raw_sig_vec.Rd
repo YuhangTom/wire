@@ -23,8 +23,9 @@ Extract signal by computing summary statistics of values along y for each x with
 x3p <- x3p_subsamples[[2]]
 insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
-x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
-x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1)
+x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
+ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 
 x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE) \%>\%
 str()

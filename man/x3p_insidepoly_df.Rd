@@ -32,7 +32,7 @@ Create the summary data frame for the inner polygon of an x3p object.
 \examples{
 x3p <- x3p_subsamples[[1]]
 
-insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
-str(insidepoly_df)
+x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1) \%>\%
+str()
 
 }
