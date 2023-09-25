@@ -21,7 +21,6 @@ Imports:
     dplyr,
     stats,
     tidyr,
-    wires (>= 0.1.0),
     purrr,
     magick,
     stringr,
@@ -40,7 +39,6 @@ Imports:
     grDevices,
     graphics
 Remotes: 
-    heike/wires,
     heike/bulletxtrctr,
     heike/x3ptools
 Depends: 

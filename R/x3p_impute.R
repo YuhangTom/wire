@@ -14,7 +14,6 @@
 #' @importFrom purrr map
 #' @importFrom magick image_read image_join image_animate image_write
 #' @importFrom stringr str_detect
-#' @importFrom wires x3p_surface_polygon
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]

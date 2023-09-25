@@ -19,7 +19,6 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell
-#' @importFrom wires x3p_surface_polygon
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
