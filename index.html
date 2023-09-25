@@ -62,24 +62,148 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of wire is to …</p>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
+<p>The goal of <code>wire</code> is to implement a systematic reproducible automatic algorithm to analyze similarity between wire cut scans.</p>
+</div>
+<div class="section level1">
+<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h1>
 <p>You can install the development version of wire from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"YuhangTom/wire"</span><span class="op">)</span></span></code></pre></div>
 </div>
+<div class="section level1">
+<h1 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h1>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>The original scans for the wire cuts are stored in <code>x3p</code> format of width around <span class="math inline">2, 300</span> and height around <span class="math inline">1, 800</span>, under a resolution <span class="math inline">0.645<em>μ</em><em>m</em> × 0.645<em>μ</em><em>m</em></span>, with each file being at least 15 MB, which is much larger compared to the file limit of 5 MB for a <code>R</code> package. Therefore, we make available 2 subsampled <code>x3p</code> data set by every 10 observations, saved as entries with its label in a <code>list</code> object, named as <code>x3p_subsamples</code>. The data can be used by:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># library(wire)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yuhangtom.github.io/wire/">wire</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">x3p_subsamples</span></span>
+<span><span class="co">#&gt; $`T2AW-LM-R2-B32`</span></span>
+<span><span class="co">#&gt; x3p object</span></span>
+<span><span class="co">#&gt; size (width x height): 231 x 182 in pixel </span></span>
+<span><span class="co">#&gt; resolution: 6.4500e+00 x 6.4500e+00 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`T2CW-LI-R2-B15`</span></span>
+<span><span class="co">#&gt; x3p object</span></span>
+<span><span class="co">#&gt; size (width x height): 231 x 179 in pixel </span></span>
+<span><span class="co">#&gt; resolution: 6.4500e+00 x 6.4500e+00</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="inner-polygon">Inner polygon<a class="anchor" aria-label="anchor" href="#inner-polygon"></a>
+</h2>
+<p>To remove edge effect, we extract the inner part of the scan, which can be achieved by:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x3p</span> <span class="op">&lt;-</span> <span class="va">x3p_subsamples</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">insidepoly_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_insidepoly_df.html">x3p_insidepoly_df</a></span><span class="op">(</span><span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="st">"#FF0000"</span>, concavity <span class="op">=</span> <span class="fl">1.5</span>, b <span class="op">=</span> <span class="fl">1</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-insidepoly-1.png" width="100%"><img src="reference/figures/README-insidepoly-2.png" width="100%"><img src="reference/figures/README-insidepoly-3.png" width="100%"></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 19502 rows containing non-finite values (`stat_boxplot()`).</span></span></code></pre></div>
+<p><img src="reference/figures/README-insidepoly-4.png" width="100%"></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">insidepoly_df</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'data.frame':    42042 obs. of  6 variables:</span></span>
+<span><span class="co">#&gt;  $ x                  : num  0 6.45 12.9 19.35 25.8 ...</span></span>
+<span><span class="co">#&gt;  $ y                  : num  1167 1167 1167 1167 1167 ...</span></span>
+<span><span class="co">#&gt;  $ value              : num  NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN ...</span></span>
+<span><span class="co">#&gt;  $ mask               : chr  "#FFFFFF" "#FFFFFF" "#FFFFFF" "#FFFFFF" ...</span></span>
+<span><span class="co">#&gt;  $ n_neighbor_val_miss: Factor w/ 10 levels "0","1","2","3",..: 5 7 7 7 7 7 7 7 7 7 ...</span></span>
+<span><span class="co">#&gt;  $ sd_not_miss        : num  NA NA NA NA NA NA NA NA NA NA ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "header.info")=List of 4</span></span>
+<span><span class="co">#&gt;   ..$ sizeX     : int 231</span></span>
+<span><span class="co">#&gt;   ..$ sizeY     : int 182</span></span>
+<span><span class="co">#&gt;   ..$ incrementX: num 6.45</span></span>
+<span><span class="co">#&gt;   ..$ incrementY: num 6.45</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="remove-trend">Remove trend<a class="anchor" aria-label="anchor" href="#remove-trend"></a>
+</h2>
+<p>To remove overall trend on the inner surface, we can use:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x3p_inner_nomiss_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/df_rmtrend_x3p.html">df_rmtrend_x3p</a></span><span class="op">(</span><span class="va">insidepoly_df</span><span class="op">)</span></span>
+<span><span class="va">x3p_inner_nomiss_res</span></span>
+<span><span class="co">#&gt; x3p object</span></span>
+<span><span class="co">#&gt; size (width x height): 231 x 182 in pixel </span></span>
+<span><span class="co">#&gt; resolution: 6.4500e+00 x 6.4500e+00</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="imputation">Imputation<a class="anchor" aria-label="anchor" href="#imputation"></a>
+</h2>
+<p>We can impute the missing values inside the surface by:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x3p_inner_impute</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_impute.html">x3p_impute</a></span><span class="op">(</span><span class="va">x3p_inner_nomiss_res</span>, ifsave <span class="op">=</span> <span class="cn">FALSE</span>, dir_name <span class="op">=</span> <span class="cn">NULL</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-impute-1.png" width="100%"><img src="reference/figures/README-impute-2.png" width="100%"><img src="reference/figures/README-impute-3.png" width="100%"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x3p_inner_impute</span></span>
+<span><span class="co">#&gt; x3p object</span></span>
+<span><span class="co">#&gt; size (width x height): 231 x 182 in pixel </span></span>
+<span><span class="co">#&gt; resolution: 6.4500e+00 x 6.4500e+00</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="rotation">Rotation<a class="anchor" aria-label="anchor" href="#rotation"></a>
+</h2>
+<p>We can rotate the surface to the correct angle by:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x3p_bin_rotate</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_vertical.html">x3p_vertical</a></span><span class="op">(</span><span class="va">x3p_inner_impute</span>, min_score_cut <span class="op">=</span> <span class="fl">0.1</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-rotate-1.png" width="100%"><img src="reference/figures/README-rotate-2.png" width="100%"><img src="reference/figures/README-rotate-3.png" width="100%"><img src="reference/figures/README-rotate-4.png" width="100%"><img src="reference/figures/README-rotate-5.png" width="100%"><img src="reference/figures/README-rotate-6.png" width="100%"><img src="reference/figures/README-rotate-7.png" width="100%"><img src="reference/figures/README-rotate-8.png" width="100%"><img src="reference/figures/README-rotate-9.png" width="100%"><img src="reference/figures/README-rotate-10.png" width="100%"><img src="reference/figures/README-rotate-11.png" width="100%"><img src="reference/figures/README-rotate-12.png" width="100%"><img src="reference/figures/README-rotate-13.png" width="100%"><img src="reference/figures/README-rotate-14.png" width="100%"></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x3p_bin_rotate</span></span>
+<span><span class="co">#&gt; x3p object</span></span>
+<span><span class="co">#&gt; size (width x height): 200 x 149 in pixel </span></span>
+<span><span class="co">#&gt; resolution: 6.4500e+00 x 6.4500e+00</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="signal-extraction">Signal extraction<a class="anchor" aria-label="anchor" href="#signal-extraction"></a>
+</h2>
+<p>To extract signals from the rotated surface, two methods are provided, implemented by <code><a href="reference/x3p_raw_sig_vec.html">wire::x3p_raw_sig_vec</a></code> and <code><a href="reference/x3p_shift_sig_vec.html">wire::x3p_shift_sig_vec</a></code>, respectively:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">raw_sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_raw_sig_vec.html">x3p_raw_sig_vec</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-signal-1.png" width="100%"></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">raw_sig</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  num [1:200] 1.852 1.916 1.759 1.572 0.794 ...</span></span>
+<span></span>
+<span><span class="va">shift_sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_shift_sig_vec.html">x3p_shift_sig_vec</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Removed 1 row containing missing values (`geom_line()`).</span></span></code></pre></div>
+<p><img src="reference/figures/README-signal-2.png" width="100%"><img src="reference/figures/README-signal-3.png" width="100%"><img src="reference/figures/README-signal-4.png" width="100%"><img src="reference/figures/README-signal-5.png" width="100%"></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in snapshot3d(scene = x, width = width, height = height): webshot =</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; instead</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in snapshot3d(scene = x, width = width, height = height): webshot =</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; instead</span></span></code></pre></div>
+<p><img src="reference/figures/README-signal-6.png" width="100%"></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 7447 rows containing missing values (`geom_line()`).</span></span></code></pre></div>
+<p><img src="reference/figures/README-signal-7.png" width="100%"></p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">shift_sig</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  num [1:197] 0.8362 0.8927 0.0303 -0.1065 -0.287 ...</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="signal-alignment">Signal alignment<a class="anchor" aria-label="anchor" href="#signal-alignment"></a>
+</h2>
+<p>Extracted signals can be aligned and cross correlation can be computed:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/vec_align_sigs_list.html">vec_align_sigs_list</a></span><span class="op">(</span><span class="va">raw_sig</span>, <span class="va">shift_sig</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Removed 3 rows containing missing values (`geom_line()`).</span></span></code></pre></div>
+<p><img src="reference/figures/README-align-1.png" width="100%"></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; List of 3</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ ccf  : num 0.987</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ lag  : num -3</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ lands:'data.frame':   200 obs. of  3 variables:</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ x   : int [1:200] 1 2 3 4 5 6 7 8 9 10 ...</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ sig1: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ sig2: num [1:200] NA NA NA 0.836 0.893 ...</span></span></code></pre></div>
 </div>
 </div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
