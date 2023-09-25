@@ -7,12 +7,12 @@
 #' @param b positive integer value, block size, used in \code{x3ptools::x3p_average}
 #' @return data frame of inside polygon
 #' \itemize{
-#'  \item{x}{x value from input x3p object}
-#'  \item{y}{y value from input x3p object}
-#'  \item{value}{height value from input x3p object}
-#'  \item{mask}{mask value from input x3p object}
-#'  \item{n_neighbor_val_miss}{number of missing immediate neighbor, self included}
-#'  \item{sd_not_miss}{standard deviation for immediate neighbor}
+#'  \item x: x value from input x3p object
+#'  \item y: y value from input x3p object
+#'  \item value: height value from input x3p object
+#'  \item mask: mask value from input x3p object
+#'  \item n_neighbor_val_miss: number of missing immediate neighbor, self included
+#'  \item sd_not_miss: standard deviation for immediate neighbor
 #' }
 #' @import dplyr
 #' @importFrom x3ptools x3p_extract x3p_average x3p_to_df

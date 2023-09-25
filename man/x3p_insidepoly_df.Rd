@@ -18,12 +18,12 @@ x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10)
 \value{
 data frame of inside polygon
 \itemize{
-\item{x}{x value from input x3p object}
-\item{y}{y value from input x3p object}
-\item{value}{height value from input x3p object}
-\item{mask}{mask value from input x3p object}
-\item{n_neighbor_val_miss}{number of missing immediate neighbor, self included}
-\item{sd_not_miss}{standard deviation for immediate neighbor}
+\item x: x value from input x3p object
+\item y: y value from input x3p object
+\item value: height value from input x3p object
+\item mask: mask value from input x3p object
+\item n_neighbor_val_miss: number of missing immediate neighbor, self included
+\item sd_not_miss: standard deviation for immediate neighbor
 }
 }
 \description{
