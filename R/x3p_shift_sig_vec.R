@@ -1,8 +1,8 @@
-#' Extract signal with transformed x3p object by minimizing MSE
+#' Extract signal with transformed `x3p` object by minimizing MSE
 #'
-#' Extract signal by computing summary statistics of values along y for each x with transformed x3p object by minimizing MSE.
-#' @param x3p x3p object
-#' @param method choice of \code{median} or \code{mean} when computing the summary statistics
+#' Extract signal by computing summary statistics of values along `y` for each `x` with transformed `x3p` object by minimizing MSE.
+#' @param x3p `x3p` object
+#' @param method choice of `median` or `mean` when computing the summary statistics
 #' @param ifplot whether graphs are displayed
 #' @param delta shifting range when minimizing MSE
 #' @return vector of shifted signals

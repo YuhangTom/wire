@@ -1,11 +1,11 @@
-#' Plot x3p object as an image with auto-adjusted size
+#' Plot `x3p` object as an image with auto-adjusted size
 #'
-#' Plot x3p object as an image with auto-adjusted size based on \code{x3ptools::x3p_image}.
-#' @param x3p x3p object
+#' Plot `x3p` object as an image with auto-adjusted size based on `x3ptools::x3p_image`.
+#' @param x3p `x3p` object
 #' @param ifhtml logical, whether the image will be put on html
-#' @param zoom numeric value indicating the amount of zoom in \code{x3ptools::x3p_image}
-#' @param ... other parameter values except size and zoom used in \code{x3ptools::x3p_image}
-#' @return rgl plot, list of tags when \code{ifhtml = TRUE}
+#' @param zoom numeric value indicating the amount of `zoom` in `x3ptools::x3p_image`
+#' @param ... other parameter values except `size` and `zoom` used in `x3ptools::x3p_image`
+#' @return `rgl` plot, list of tags when `ifhtml = TRUE`
 #' @importFrom x3ptools x3p_image
 #' @importFrom rgl rglwidget
 #' @importFrom htmltools tagList

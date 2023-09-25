@@ -1,8 +1,8 @@
-#' Extract signal with raw x3p object
+#' Extract signal with raw `x3p` object
 #'
-#' Extract signal by computing summary statistics of values along y for each x with raw x3p object.
-#' @param x3p x3p object
-#' @param method choice of \code{median} or \code{mean} when computing the summary statistics
+#' Extract signal by computing summary statistics of values along `y` for each `x` with raw `x3p` object.
+#' @param x3p `x3p` object
+#' @param method choice of `median` or `mean` when computing the summary statistics
 #' @param ifplot whether graphs are displayed
 #' @return vector of raw signal extracted
 #' @import dplyr

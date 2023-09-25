@@ -1,8 +1,8 @@
 #' Compute the rotation angle using quantile
 #'
 #' Compute the rotation angle using quantile with hough transformation.
-#' @param x3p x3p object
-#' @param ntheta number of bins along theta used in \code{imager::hough_line}
+#' @param x3p `x3p` object
+#' @param ntheta number of bins along theta used in `imager::hough_line`
 #' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
 #' @param ifplot whether graphs are displayed
 #' @return vector of rotation angles computed by quantile procedure

@@ -1,8 +1,8 @@
 #' Removing missing values and the quadratic trend from inner polygon
 #'
-#' Obtained x3p object after removing missing values and the quadratic trend from the inner polygon.
-#' @param insidepoly_df data frame of inside polygon obtained from \code{wire::x3p_insidepoly_df}
-#' @return x3p object of residuals after removing trend
+#' Obtained `x3p` object after removing missing values and the quadratic trend from the inner polygon.
+#' @param insidepoly_df data frame of inside polygon obtained from `wire::x3p_insidepoly_df`
+#' @return `x3p` object of residuals after removing trend
 #' @import dplyr
 #' @importFrom x3ptools df_to_x3p
 #' @importFrom stats lm predict

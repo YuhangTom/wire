@@ -3,13 +3,13 @@
 #' Align signals with plot.
 #' @param sig1 first numeric signal vector
 #' @param sig2 second numeric signal vector
-#' @param min.overlap additional parameter passed on to \code{bulletxtrctr::get_ccf}
+#' @param min.overlap additional parameter passed on to `bulletxtrctr::get_ccf`
 #' @param ifplot whether graphs are displayed
 #' @param name1 name for the first cut
 #' @param name2 name for the second cut
 #' @param legendname legend name
 #' @param titlename title name
-#' @return list of aligned signals named \code{ccf}, \code{lag} and \code{lands} followed the output format of \code{bulletxtrctr::sig_align}
+#' @return list of aligned signals named `ccf`, `lag` and `lands` followed the output format of `bulletxtrctr::sig_align`
 #' @importFrom ggplot2 ggplot aes geom_line labs xlab ylab ggtitle
 #' @importFrom bulletxtrctr sig_align
 #' @importFrom assertthat assert_that not_empty is.count is.flag is.string

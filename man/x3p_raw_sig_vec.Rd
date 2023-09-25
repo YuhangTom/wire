@@ -2,12 +2,12 @@
 % Please edit documentation in R/x3p_raw_sig_vec.R
 \name{x3p_raw_sig_vec}
 \alias{x3p_raw_sig_vec}
-\title{Extract signal with raw x3p object}
+\title{Extract signal with raw \code{x3p} object}
 \usage{
 x3p_raw_sig_vec(x3p, method = "median", ifplot = FALSE)
 }
 \arguments{
-\item{x3p}{x3p object}
+\item{x3p}{\code{x3p} object}
 
 \item{method}{choice of \code{median} or \code{mean} when computing the summary statistics}
 
@@ -17,7 +17,7 @@ x3p_raw_sig_vec(x3p, method = "median", ifplot = FALSE)
 vector of raw signal extracted
 }
 \description{
-Extract signal by computing summary statistics of values along y for each x with raw x3p object.
+Extract signal by computing summary statistics of values along \code{y} for each \code{x} with raw \code{x3p} object.
 }
 \examples{
 x3p <- x3p_subsamples[[2]]

@@ -7,7 +7,7 @@
 x3p_impute(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 }
 \arguments{
-\item{x3p}{x3p object}
+\item{x3p}{\code{x3p} object}
 
 \item{ifsave}{whether the imputation procedure gif is going to be saved}
 
@@ -16,10 +16,10 @@ x3p_impute(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 \item{ifplot}{whether graphs are displayed}
 }
 \value{
-x3p object after imputation
+\code{x3p} object after imputation
 }
 \description{
-Obtained x3p object after imputing the inner polygon.
+Obtained \code{x3p} object after imputing the inner polygon.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

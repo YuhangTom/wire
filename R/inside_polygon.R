@@ -2,16 +2,16 @@
 #'
 #' Uses concentric mirroring onto a radius around the center point, applies an
 #' alpha hull to that shape, and mirrors the result back.
-#' @param x numeric vector of x positions
-#' @param y numeric vector of y positions
+#' @param x numeric vector of `x` positions
+#' @param y numeric vector of `y` positions
 #' @param concavity strictly positive parameter. Smaller values approach the
 #' inside of the boundary
 #' more closely. Large values concentrate on the inner center of the area
-#' @param center numeric vector of length 2, consisting of (x,y) coordinate for
-#' centering x and y values.
-#' If center is NULL, the half ranges of x and y are used.
-#' @return dataframe of x and y positions describing the inside of the area
-#' described by the input x and y, variable id describes the order of the points
+#' @param center numeric vector of length 2, consisting of `(x,y)` coordinate for
+#' centering `x` and `y` values.
+#' If center is `NULL`, the half ranges of `x` and `y` are used.
+#' @return data frame of `x` and `y` positions describing the inside of the area
+#' described by the input `x` and `y`, variable id describes the order of the points
 #' @importFrom dplyr mutate select rename arrange n near
 #' @importFrom concaveman concaveman
 #' @importFrom tidyr pivot_longer

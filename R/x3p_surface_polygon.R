@@ -1,15 +1,15 @@
 #' Add a polygon of the scan shape as mask
 #'
-#' @param x3p x3p file
+#' @param x3p `x3p` file
 #' @param colour colour for the polygon
 #' @param sample strictly positive integer value specifying the amount of
 #' downsampling to be used (see `x3ptools::x3p_sample`) to calculate the boundary points
 #' of the polygon. Larger values of `sample` will result in faster response times
 #' but results in less accurate polygons.
-#' @param center point on the center of the scan. If NULL, a center will be
+#' @param center point on the center of the scan. If `NULL`, a center will be
 #' derived from the boundary points
 #' @param concavity strictly positive value used in `concaveman::concaveman`
-#' @return x3p object with mask
+#' @return `x3p` object with mask
 #' @importFrom Cairo CairoPNG
 #' @importFrom x3ptools x3p_get_scale x3p_add_mask
 #' @importFrom png readPNG

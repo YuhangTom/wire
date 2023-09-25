@@ -7,7 +7,7 @@
 x3p_quantile_angle_vec(x3p, ntheta = 720, min_score_cut = 0.1, ifplot = FALSE)
 }
 \arguments{
-\item{x3p}{x3p object}
+\item{x3p}{\code{x3p} object}
 
 \item{ntheta}{number of bins along theta used in \code{imager::hough_line}}
 

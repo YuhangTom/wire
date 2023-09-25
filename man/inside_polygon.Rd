@@ -7,21 +7,21 @@
 inside_polygon(x, y, concavity, center = NULL)
 }
 \arguments{
-\item{x}{numeric vector of x positions}
+\item{x}{numeric vector of \code{x} positions}
 
-\item{y}{numeric vector of y positions}
+\item{y}{numeric vector of \code{y} positions}
 
 \item{concavity}{strictly positive parameter. Smaller values approach the
 inside of the boundary
 more closely. Large values concentrate on the inner center of the area}
 
-\item{center}{numeric vector of length 2, consisting of (x,y) coordinate for
-centering x and y values.
-If center is NULL, the half ranges of x and y are used.}
+\item{center}{numeric vector of length 2, consisting of \verb{(x,y)} coordinate for
+centering \code{x} and \code{y} values.
+If center is \code{NULL}, the half ranges of \code{x} and \code{y} are used.}
 }
 \value{
-dataframe of x and y positions describing the inside of the area
-described by the input x and y, variable id describes the order of the points
+data frame of \code{x} and \code{y} positions describing the inside of the area
+described by the input \code{x} and \code{y}, variable id describes the order of the points
 }
 \description{
 Uses concentric mirroring onto a radius around the center point, applies an

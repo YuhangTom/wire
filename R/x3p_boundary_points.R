@@ -1,8 +1,8 @@
-#' Identify boundary of a 3d topographic scan in x3p format
+#' Identify boundary of a 3d topographic scan in `x3p` format
 #'
-#' @param x3p topographic scan in x3p format
+#' @param x3p topographic scan in `x3p `format
 #' @param sample positive integer value specifying the sampling ratio:
-#' every `sample` value in x and y direction will be included.
+#' every `sample` value in `x` and `y` direction will be included.
 #' Higher values result in faster results but cruder assessments of the boundary.
 #' @return data frame of boundary points, variables are named `x` and `y`
 #' @importFrom x3ptools x3p_sample x3p_to_df

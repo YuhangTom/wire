@@ -1,20 +1,18 @@
 #' Summary data frame for the inner polygon
 #'
-#' Create the summary data frame for the inner polygon of an x3p object.
-#' @param x3p x3p object
+#' Create the summary data frame for the inner polygon of an `x3p` object.
+#' @param x3p `x3p` object
 #' @param mask_col colour for the polygon
-#' @param concavity strictly positive value used in \code{concaveman::concaveman}
-#' @param b positive integer value, block size, used in \code{x3ptools::x3p_average}
+#' @param concavity strictly positive value used in `concaveman::concaveman`
+#' @param b positive integer value, block size, used in `x3ptools::x3p_average`
 #' @param ifplot whether graphs are displayed
 #' @return data frame of inside polygon
-#' \itemize{
-#'  \item x: x value from input x3p object
-#'  \item y: y value from input x3p object
-#'  \item value: height value from input x3p object
-#'  \item mask: mask value from input x3p object
-#'  \item n_neighbor_val_miss: number of missing immediate neighbor, self included
-#'  \item sd_not_miss: standard deviation for immediate neighbor
-#' }
+#' * x: `x` value from input `x3p` object
+#' * y: `y` value from input `x3p` object
+#' * value: height value from input `x3p` object
+#' * mask: mask value from input `x3p` object
+#' * n_neighbor_val_miss: number of missing immediate neighbor, self included
+#' * sd_not_miss: standard deviation for immediate neighbor
 #' @import dplyr
 #' @importFrom x3ptools x3p_extract x3p_average x3p_to_df
 #' @importFrom tidyr pivot_longer

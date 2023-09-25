@@ -13,7 +13,7 @@ x3p_insidepoly_df(
 )
 }
 \arguments{
-\item{x3p}{x3p object}
+\item{x3p}{\code{x3p} object}
 
 \item{mask_col}{colour for the polygon}
 
@@ -26,16 +26,16 @@ x3p_insidepoly_df(
 \value{
 data frame of inside polygon
 \itemize{
-\item x: x value from input x3p object
-\item y: y value from input x3p object
-\item value: height value from input x3p object
-\item mask: mask value from input x3p object
+\item x: \code{x} value from input \code{x3p} object
+\item y: \code{y} value from input \code{x3p} object
+\item value: height value from input \code{x3p} object
+\item mask: mask value from input \code{x3p} object
 \item n_neighbor_val_miss: number of missing immediate neighbor, self included
 \item sd_not_miss: standard deviation for immediate neighbor
 }
 }
 \description{
-Create the summary data frame for the inner polygon of an x3p object.
+Create the summary data frame for the inner polygon of an \code{x3p} object.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

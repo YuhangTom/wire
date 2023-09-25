@@ -10,10 +10,10 @@ df_rmtrend_x3p(insidepoly_df)
 \item{insidepoly_df}{data frame of inside polygon obtained from \code{wire::x3p_insidepoly_df}}
 }
 \value{
-x3p object of residuals after removing trend
+\code{x3p} object of residuals after removing trend
 }
 \description{
-Obtained x3p object after removing missing values and the quadratic trend from the inner polygon.
+Obtained \code{x3p} object after removing missing values and the quadratic trend from the inner polygon.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

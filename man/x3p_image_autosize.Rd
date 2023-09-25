@@ -2,24 +2,24 @@
 % Please edit documentation in R/x3p_image_autosize.R
 \name{x3p_image_autosize}
 \alias{x3p_image_autosize}
-\title{Plot x3p object as an image with auto-adjusted size}
+\title{Plot \code{x3p} object as an image with auto-adjusted size}
 \usage{
 x3p_image_autosize(x3p, ifhtml = FALSE, zoom = 0.6, ...)
 }
 \arguments{
-\item{x3p}{x3p object}
+\item{x3p}{\code{x3p} object}
 
 \item{ifhtml}{logical, whether the image will be put on html}
 
-\item{zoom}{numeric value indicating the amount of zoom in \code{x3ptools::x3p_image}}
+\item{zoom}{numeric value indicating the amount of \code{zoom} in \code{x3ptools::x3p_image}}
 
-\item{...}{other parameter values except size and zoom used in \code{x3ptools::x3p_image}}
+\item{...}{other parameter values except \code{size} and \code{zoom} used in \code{x3ptools::x3p_image}}
 }
 \value{
-rgl plot, list of tags when \code{ifhtml = TRUE}
+\code{rgl} plot, list of tags when \code{ifhtml = TRUE}
 }
 \description{
-Plot x3p object as an image with auto-adjusted size based on \code{x3ptools::x3p_image}.
+Plot \code{x3p} object as an image with auto-adjusted size based on \code{x3ptools::x3p_image}.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

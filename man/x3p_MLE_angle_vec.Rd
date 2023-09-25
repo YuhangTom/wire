@@ -13,7 +13,7 @@ x3p_MLE_angle_vec(
 )
 }
 \arguments{
-\item{x3p}{x3p object}
+\item{x3p}{\code{x3p} object}
 
 \item{ntheta}{number of bins along theta used in \code{imager::hough_line}}
 

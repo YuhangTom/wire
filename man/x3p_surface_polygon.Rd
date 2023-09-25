@@ -13,7 +13,7 @@ x3p_surface_polygon(
 )
 }
 \arguments{
-\item{x3p}{x3p file}
+\item{x3p}{\code{x3p} file}
 
 \item{colour}{colour for the polygon}
 
@@ -22,13 +22,13 @@ downsampling to be used (see \code{x3ptools::x3p_sample}) to calculate the bound
 of the polygon. Larger values of \code{sample} will result in faster response times
 but results in less accurate polygons.}
 
-\item{center}{point on the center of the scan. If NULL, a center will be
+\item{center}{point on the center of the scan. If \code{NULL}, a center will be
 derived from the boundary points}
 
 \item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
 }
 \value{
-x3p object with mask
+\code{x3p} object with mask
 }
 \description{
 Add a polygon of the scan shape as mask

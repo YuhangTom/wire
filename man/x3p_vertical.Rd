@@ -2,7 +2,7 @@
 % Please edit documentation in R/x3p_vertical.R
 \name{x3p_vertical}
 \alias{x3p_vertical}
-\title{Rotate imputed x3p object to vertical direction}
+\title{Rotate imputed \code{x3p} object to vertical direction}
 \usage{
 x3p_vertical(
   x3p_inner_impute,
@@ -15,7 +15,7 @@ x3p_vertical(
 )
 }
 \arguments{
-\item{x3p_inner_impute}{x3p object after imputation}
+\item{x3p_inner_impute}{\code{x3p} object after imputation}
 
 \item{freqs}{length 4 vector of values corresponding to color frequency (turned into quantiles of the differenced values) used in \code{x3ptools::x3p_bin_stripes}}
 
@@ -30,10 +30,10 @@ x3p_vertical(
 \item{loess_span}{the parameter which controls the degree of smoothing, only available when \code{method = MLE}}
 }
 \value{
-x3p object after rotation with vertical striations
+\code{x3p} object after rotation with vertical striations
 }
 \description{
-Rotate imputed x3p object with striations to the vertical direction.
+Rotate imputed \code{x3p} object with striations to the vertical direction.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

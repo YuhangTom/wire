@@ -2,12 +2,12 @@
 % Please edit documentation in R/x3p_shift_sig_vec.R
 \name{x3p_shift_sig_vec}
 \alias{x3p_shift_sig_vec}
-\title{Extract signal with transformed x3p object by minimizing MSE}
+\title{Extract signal with transformed \code{x3p} object by minimizing MSE}
 \usage{
 x3p_shift_sig_vec(x3p, method = "median", ifplot = FALSE, delta = -5:5)
 }
 \arguments{
-\item{x3p}{x3p object}
+\item{x3p}{\code{x3p} object}
 
 \item{method}{choice of \code{median} or \code{mean} when computing the summary statistics}
 
@@ -19,7 +19,7 @@ x3p_shift_sig_vec(x3p, method = "median", ifplot = FALSE, delta = -5:5)
 vector of shifted signals
 }
 \description{
-Extract signal by computing summary statistics of values along y for each x with transformed x3p object by minimizing MSE.
+Extract signal by computing summary statistics of values along \code{y} for each \code{x} with transformed \code{x3p} object by minimizing MSE.
 }
 \examples{
 x3p <- x3p_subsamples[[2]]
