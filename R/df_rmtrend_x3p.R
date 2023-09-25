@@ -1,7 +1,7 @@
 #' Removing missing values and the quadratic trend from inner polygon
 #'
 #' Obtained x3p object after removing missing values and the quadratic trend from the inner polygon.
-#' @param insidepoly_df data frame of inside polygon
+#' @param insidepoly_df data frame of inside polygon obtained from \code{wire::x3p_insidepoly_df}
 #' @return x3p object of residuals after removing trend
 #' @import dplyr
 #' @importFrom x3ptools df_to_x3p
@@ -9,14 +9,10 @@
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
-#' mask_col <- "#FF0000"
-#' concavity <- 1.5
-#'
-#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity, b = 1)
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 #'
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #' x3p_inner_nomiss_res
-#'
 #' if (interactive()) {
 #'   x3p_image_autosize(x3p_inner_nomiss_res)
 #' }

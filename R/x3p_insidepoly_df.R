@@ -6,6 +6,14 @@
 #' @param concavity strictly positive value used in \code{concaveman::concaveman}
 #' @param b positive integer value, block size, used in \code{x3ptools::x3p_average}
 #' @return data frame of inside polygon
+#' \itemize{
+#'  \item{x}{x value from input x3p object}
+#'  \item{y}{y value from input x3p object}
+#'  \item{value}{height value from input x3p object}
+#'  \item{mask}{mask value from input x3p object}
+#'  \item{n_neighbor_val_miss}{number of missing immediate neighbor, self included}
+#'  \item{sd_not_miss}{standard deviation for immediate neighbor}
+#' }
 #' @import dplyr
 #' @importFrom x3ptools x3p_extract x3p_average x3p_to_df
 #' @importFrom tidyr pivot_longer
@@ -15,10 +23,8 @@
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
-#' mask_col <- "#FF0000"
-#' concavity <- 1.5
 #'
-#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity, b = 1)
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 #' str(insidepoly_df)
 #'
 x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10) {

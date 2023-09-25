@@ -23,14 +23,10 @@ Compute the rotation angle using quantile with hough transformation.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]
-mask_col <- "#FF0000"
-concavity <- 1.5
-
-insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = mask_col, concavity = concavity, b = 1)
+insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
 
 x3p_quantile_angle_vec(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE)
-
 
 }

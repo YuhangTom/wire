@@ -39,4 +39,5 @@ if (interactive()) {
   x3p <- x3p \%>\% x3p_surface_polygon(sample=1)
   x3p_image(x3p, size = dim(x3p$surface.matrix), zoom=.6)
 }
+
 }
