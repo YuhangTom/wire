@@ -1,5 +1,5 @@
 Package: wire
-Title: What the Package Does (One Line, Title Case)
+Title: Tools for Analyzing Similarity Between Wires
 Version: 0.0.0.9000
 Authors@R: c(
     person("Yuhang", "Lin", , "yhlin@iastate.edu", role = c("aut", "cre"),
@@ -7,7 +7,7 @@ Authors@R: c(
     person("Heike", "Hofmann", , "hofmann@iastate.edu", role = "aut",
            comment = c(ORCID = "0000-0001-6216-5183"))
   )
-Description: What the package does (one paragraph).
+Description: This \code{wire} package allows everyone to conduct reproducible automatic analysis to compare different wire scans. A conclusion for similarity or dissimilarity can be easily drawn.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
