@@ -5,6 +5,7 @@
 #' @param mask_col colour for the polygon
 #' @param concavity strictly positive value used in \code{concaveman::concaveman}
 #' @param b positive integer value, block size, used in \code{x3ptools::x3p_average}
+#' @param ifplot whether graphs are displayed
 #' @return data frame of inside polygon
 #' \itemize{
 #'  \item x: x value from input x3p object
@@ -19,20 +20,24 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell
+#' @importFrom ggplot2 ggplot geom_raster scale_fill_gradient2 labs ggtitle geom_boxplot
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
 #'
-#' x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1) %>%
+#' x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE) %>%
 #' str()
 #'
-x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10) {
+x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10,
+                              ifplot = FALSE) {
   to <-
     from <-
     neighbor_val <-
     x <-
     y <-
     n_neighbor_val_miss <-
+    value <-
+    sd_not_miss <-
     . <-
     NULL
 
@@ -126,6 +131,39 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       ### Discrete legend
       n_neighbor_val_miss = as.factor(n_neighbor_val_miss)
     )
+
+  if (ifplot) {
+    (x3p_inner_df %>%
+      ggplot(aes(x = x, y = y, fill = value)) +
+      geom_raster() +
+      scale_fill_gradient2(midpoint = 4e-7)) %>%
+      print()
+
+    ### ggplot
+    (x3p_inner_df %>%
+      ggplot(aes(x = x, y = y, fill = n_neighbor_val_miss)) +
+      geom_raster() +
+      labs(fill = "number") +
+      ggtitle("Number of missing immediate neighbors (including self)")) %>%
+      print()
+
+    ### ggplot
+    (x3p_inner_df %>%
+      ggplot(aes(x = x, y = y, fill = sd_not_miss)) +
+      geom_raster() +
+      labs(fill = "sd") +
+      ggtitle("Standard deviation of non-missing immediate neighbors (including self)")) %>%
+      print()
+
+    (x3p_inner_df %>%
+      ggplot(aes(x = n_neighbor_val_miss, y = log(sd_not_miss))) +
+      geom_boxplot() +
+      labs(
+        x = "Number of missing immediate neighbors (including self)",
+        y = "log(standard deviation)"
+      )) %>%
+      print()
+  }
 
   return(x3p_inner_df)
 }
