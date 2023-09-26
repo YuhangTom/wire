@@ -16,11 +16,12 @@
 #' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
-#' ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+#'   ifsave = FALSE, dir_name = NULL, ifplot = FALSE
+#' )
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 #'
 #' x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE) %>%
-#' str()
+#'   str()
 #'
 x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
   assert_that(
@@ -41,9 +42,7 @@ x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
     na.omit() %>%
     group_by(x) %>%
     summarise(value_summary = ifelse(method == "median", median(value, na.rm = TRUE),
-      ifelse(method == "mean", mean(value, na.rm = TRUE),
-        stop('Not an applicable method, choose from "method = median" or "method = mean"')
-      )
+      mean(value, na.rm = TRUE)
     ))
 
   if (ifplot) {

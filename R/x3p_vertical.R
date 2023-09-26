@@ -19,7 +19,8 @@
 #' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
-#' ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+#'   ifsave = FALSE, dir_name = NULL, ifplot = FALSE
+#' )
 #'
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE)
 #' x3p_bin_rotate
@@ -38,10 +39,14 @@ x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
     method %in% c("MLE", "quantile"),
     is.count(ntheta),
     is.number(min_score_cut),
-    is.flag(ifplot),
-    is.number(loess_span), loess_span > 0
+    is.flag(ifplot)
   )
 
+  if (method == "MLE") {
+    assert_that(
+      is.number(loess_span), loess_span > 0
+    )
+  }
   x3p_bin <- x3p_inner_impute %>%
     x3p_bin_stripes(
       direction = "vertical",
@@ -60,8 +65,6 @@ x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
     if (method == "quantile") {
       angle_red <- x3p_quantile_angle_vec(x3p_bin_red, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot)
       angle_blue <- x3p_quantile_angle_vec(x3p_bin_blue, ntheta = ntheta, min_score_cut = min_score_cut, ifplot = ifplot)
-    } else {
-      stop('Not an applicable method, choose from "method = MLE" or "method = quantile"')
     }
   }
 
