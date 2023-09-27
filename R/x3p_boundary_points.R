@@ -17,8 +17,8 @@
 #' library(ggplot2)
 #' library(dplyr)
 #' bounds %>%
-#' ggplot(aes(x = x, y = y)) +
-#' geom_point()
+#'   ggplot(aes(x = x, y = y)) +
+#'   geom_point()
 #'
 x3p_boundary_points <- function(x3p, sample) {
   assert_that(
@@ -57,4 +57,6 @@ x3p_boundary_points <- function(x3p, sample) {
   ) %>%
     filter(!is.infinite(.data$x), !is.infinite(.data$y)) %>%
     select(-.data$whatever)
+
+  return(points)
 }

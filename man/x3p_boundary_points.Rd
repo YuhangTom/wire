@@ -26,7 +26,7 @@ bounds <- x3p_boundary_points(x3p, 2)
 library(ggplot2)
 library(dplyr)
 bounds \%>\%
-ggplot(aes(x = x, y = y)) +
-geom_point()
+  ggplot(aes(x = x, y = y)) +
+  geom_point()
 
 }
