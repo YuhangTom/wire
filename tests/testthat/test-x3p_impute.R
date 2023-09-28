@@ -47,7 +47,7 @@ test_that("output plot works", {
 })
 
 test_that("output save works", {
-  dir_name <- tempdir()
+  dir_name <- tempdir(check = TRUE)
   x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = dir_name, ifplot = TRUE)
   expect_true(
     file.exists(
