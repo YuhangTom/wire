@@ -69,8 +69,9 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>vector of raw signal extracted</p>
-    </div>
+<p>data frame of 2 columns</p><ul><li><p>x: x value</p></li>
+<li><p>sig: signal extracted</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -85,7 +86,9 @@
 <span class="r-in"><span><span class="fu">x3p_raw_sig_vec</span><span class="op">(</span><span class="va">x3p_bin_rotate</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="x3p_raw_sig_vec-1.png" alt="" width="700" height="433"></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  num [1:193] -4.27 -4.15 -3.48 -3.2 -2.86 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> tibble [193 × 2] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ x  : num [1:193] 0 6.45 12.9 19.35 25.8 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ sig: num [1:193] -4.27 -4.15 -3.48 -3.2 -2.86 ...</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -166,7 +166,9 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">raw_sig</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  num [1:200] 1.852 1.916 1.759 1.572 0.794 ...</span></span>
+<span><span class="co">#&gt; tibble [200 × 2] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;  $ x  : num [1:200] 0 6.45 12.9 19.35 25.8 ...</span></span>
+<span><span class="co">#&gt;  $ sig: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...</span></span>
 <span></span>
 <span><span class="va">shift_sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_shift_sig_vec.html">x3p_shift_sig_vec</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Removed 1 row containing missing values (`geom_line()`).</span></span></code></pre></div>
@@ -183,14 +185,16 @@
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">shift_sig</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  num [1:197] 0.8362 0.8927 0.0303 -0.1065 -0.287 ...</span></span></code></pre></div>
+<span><span class="co">#&gt; tibble [197 × 2] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;  $ x  : num [1:197] 0 6.45 12.9 19.35 25.8 ...</span></span>
+<span><span class="co">#&gt;  $ sig: num [1:197] 0.8362 0.8927 0.0303 -0.1065 -0.287 ...</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="signal-alignment">Signal alignment<a class="anchor" aria-label="anchor" href="#signal-alignment"></a>
 </h2>
 <p>Extracted signals can be aligned and cross correlation can be computed:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vec_align_sigs_list.html">vec_align_sigs_list</a></span><span class="op">(</span><span class="va">raw_sig</span>, <span class="va">shift_sig</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/vec_align_sigs_list.html">vec_align_sigs_list</a></span><span class="op">(</span><span class="va">raw_sig</span><span class="op">$</span><span class="va">sig</span>, <span class="va">shift_sig</span><span class="op">$</span><span class="va">sig</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Removed 3 rows containing missing values (`geom_line()`).</span></span></code></pre></div>
 <p><img src="reference/figures/README-align-1.png" width="100%"></p>
@@ -240,7 +244,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://github.com/YuhangTom/wire/commits/main" class="external-link"><img src="https://img.shields.io/badge/last%20change-2023--09--26-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="https://github.com/YuhangTom/wire/commits/main" class="external-link"><img src="https://img.shields.io/badge/last%20change-2023--09--27-yellowgreen.svg" alt="Last-changedate"></a></li>
 <li><a href="https://app.codecov.io/gh/YuhangTom/wire?branch=main" class="external-link"><img src="https://codecov.io/gh/YuhangTom/wire/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
