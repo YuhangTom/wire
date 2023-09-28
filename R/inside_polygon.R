@@ -25,7 +25,8 @@
 #' library(ggplot2)
 #' library(dplyr)
 #' bounds %>%
-#' ggplot(aes(x = x, y = y)) + geom_point() +
+#'   ggplot(aes(x = x, y = y)) +
+#'   geom_point() +
 #'   geom_polygon(data = polygon)
 #'
 inside_polygon <- function(x, y, concavity, center = NULL) {
@@ -34,6 +35,16 @@ inside_polygon <- function(x, y, concavity, center = NULL) {
     is.numeric(y),
     is.number(concavity), concavity > 0
   )
+
+  theta <-
+    r <-
+    xout <-
+    yout <-
+    V1 <-
+    V2 <-
+    rout <-
+    NULL
+
   if (is.null(center)) {
     center <- c(diff(range(x, na.rm = TRUE)), diff(range(y, na.rm = TRUE))) / 2
   }
@@ -47,50 +58,49 @@ inside_polygon <- function(x, y, concavity, center = NULL) {
     mutate(
       r = sqrt(x^2 + y^2),
       theta = atan(y / x),
-      theta = ifelse(x < 0, atan(y / x) + pi, ifelse(y < 0, .data$theta + 2 * pi, .data$theta))
+      theta = ifelse(x < 0, atan(y / x) + pi, ifelse(y < 0, theta + 2 * pi, theta))
     ) %>%
     mutate(
-      xout = 1 / .data$r * cos(.data$theta),
-      yout = 1 / .data$r * sin(.data$theta)
+      xout = 1 / r * cos(theta),
+      yout = 1 / r * sin(theta)
     )
 
   points_mat_left <- points_inside_out %>%
-    select(.data$xout, .data$yout) %>%
+    select(xout, yout) %>%
     as.matrix()
   polygons_left <- concaveman(points_mat_left, concavity = concavity)
 
   points_mat_right <- points_inside_out %>%
-    select(.data$xout, .data$yout) %>%
-    mutate(xout = -.data$xout) %>%
+    select(xout, yout) %>%
+    mutate(xout = -xout) %>%
     as.matrix()
   polygons_right <- concaveman(points_mat_right, concavity = concavity)
 
   polygon_inside_out <- rbind(
-    data.frame(polygons_left) %>% filter(.data$V1 < 0),
-    data.frame(polygons_right) %>% filter(.data$V1 < 0) %>% mutate(V1 = -.data$V1)
+    data.frame(polygons_left) %>% filter(V1 < 0),
+    data.frame(polygons_right) %>% filter(V1 < 0) %>% mutate(V1 = -V1)
   )
 
   polygon_inside_out <- polygon_inside_out %>%
-    rename(xout = .data$V1, yout = .data$V2)
+    rename(xout = V1, yout = V2)
 
   polygon_inside_out <- polygon_inside_out %>%
     mutate(
-      rout = sqrt(.data$xout^2 + .data$yout^2),
-      theta = atan(.data$yout / .data$xout),
-      theta = ifelse(.data$xout < 0, .data$theta + pi,
-        ifelse(.data$yout < 0, .data$theta + 2 * pi, .data$theta)
+      rout = sqrt(xout^2 + yout^2),
+      theta = atan(yout / xout),
+      theta = ifelse(xout < 0, theta + pi,
+        ifelse(yout < 0, theta + 2 * pi, theta)
       )
     ) %>%
     mutate(
-      x = 1 / .data$rout * cos(.data$theta),
-      y = 1 / .data$rout * sin(.data$theta)
+      x = 1 / rout * cos(theta),
+      y = 1 / rout * sin(theta)
     )
   polygon_inside_out <- polygon_inside_out %>%
-    arrange(.data$theta) %>%
+    arrange(theta) %>%
     mutate(id = 1:n())
   polygon_inside_out %>% mutate(
-    x = .data$x + center[1],
-    y = .data$y + center[2]
+    x = x + center[1],
+    y = y + center[2]
   )
 }
-

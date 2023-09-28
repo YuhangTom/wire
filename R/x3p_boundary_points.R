@@ -7,7 +7,6 @@
 #' @return data frame of boundary points, variables are named `x` and `y`
 #' @importFrom x3ptools x3p_sample x3p_to_df
 #' @importFrom dplyr `%>%` group_by mutate filter summarize select
-#' @importFrom rlang .data
 #' @importFrom assertthat assert_that is.count
 #' @export
 #' @examples
@@ -26,37 +25,47 @@ x3p_boundary_points <- function(x3p, sample) {
     is.count(sample)
   )
 
+  y <-
+    value <-
+    x <-
+    minx <-
+    maxx <-
+    miny <-
+    maxy <-
+    whatever <-
+    NULL
+
   x3p_df <- x3p %>%
     x3p_sample(m = sample) %>%
     x3p_to_df()
   x_ranges <- x3p_df %>%
-    group_by(.data$y) %>%
+    group_by(y) %>%
     mutate(
-      n = sum(!is.na(.data$value))
+      n = sum(!is.na(value))
     ) %>%
-    filter(.data$n > 0) %>%
+    filter(n > 0) %>%
     summarize(
-      minx = min(.data$x[!is.na(.data$value)], na.rm = TRUE),
-      maxx = max(.data$x[!is.na(.data$value)], na.rm = TRUE)
+      minx = min(x[!is.na(value)], na.rm = TRUE),
+      maxx = max(x[!is.na(value)], na.rm = TRUE)
     )
 
   y_ranges <- x3p_df %>%
-    group_by(.data$x) %>%
+    group_by(x) %>%
     mutate(
-      n = sum(!is.na(.data$value))
+      n = sum(!is.na(value))
     ) %>%
-    filter(.data$n > 0) %>%
+    filter(n > 0) %>%
     summarize(
-      miny = min(.data$y[!is.na(.data$value)], na.rm = TRUE),
-      maxy = max(.data$y[!is.na(.data$value)], na.rm = TRUE)
+      miny = min(y[!is.na(value)], na.rm = TRUE),
+      maxy = max(y[!is.na(value)], na.rm = TRUE)
     )
 
   points <- rbind(
-    x_ranges %>% pivot_longer(.data$minx:.data$maxx, values_to = "x", names_to = "whatever"),
-    y_ranges %>% pivot_longer(.data$miny:.data$maxy, values_to = "y", names_to = "whatever")
+    x_ranges %>% pivot_longer(minx:maxx, values_to = "x", names_to = "whatever"),
+    y_ranges %>% pivot_longer(miny:maxy, values_to = "y", names_to = "whatever")
   ) %>%
-    filter(!is.infinite(.data$x), !is.infinite(.data$y)) %>%
-    select(-.data$whatever)
+    filter(!is.infinite(x), !is.infinite(y)) %>%
+    select(-whatever)
 
   return(points)
 }

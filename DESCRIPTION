@@ -35,7 +35,6 @@ Imports:
     bulletxtrctr (>= 0.2.0.9000),
     x3ptools (>= 0.0.3.9000),
     concaveman,
-    rlang,
     Cairo,
     png,
     grDevices,
