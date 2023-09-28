@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--09--26-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--09--27-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![Codecov test
 coverage](https://codecov.io/gh/YuhangTom/wire/branch/main/graph/badge.svg)](https://app.codecov.io/gh/YuhangTom/wire?branch=main)
 [![R-CMD-check](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml)
@@ -147,7 +147,9 @@ raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 ``` r
 raw_sig %>%
   str()
-#>  num [1:200] 1.852 1.916 1.759 1.572 0.794 ...
+#> tibble [200 × 2] (S3: tbl_df/tbl/data.frame)
+#>  $ x  : num [1:200] 0 6.45 12.9 19.35 25.8 ...
+#>  $ sig: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...
 
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 #> Warning: Removed 1 row containing missing values (`geom_line()`).
@@ -171,7 +173,9 @@ shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 ``` r
 shift_sig %>%
   str()
-#>  num [1:197] 0.8362 0.8927 0.0303 -0.1065 -0.287 ...
+#> tibble [197 × 2] (S3: tbl_df/tbl/data.frame)
+#>  $ x  : num [1:197] 0 6.45 12.9 19.35 25.8 ...
+#>  $ sig: num [1:197] 0.8362 0.8927 0.0303 -0.1065 -0.287 ...
 ```
 
 ## Signal alignment
@@ -179,7 +183,7 @@ shift_sig %>%
 Extracted signals can be aligned and cross correlation can be computed:
 
 ``` r
-vec_align_sigs_list(raw_sig, shift_sig, ifplot = TRUE) %>%
+vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
   str()
 #> Warning: Removed 3 rows containing missing values (`geom_line()`).
 ```

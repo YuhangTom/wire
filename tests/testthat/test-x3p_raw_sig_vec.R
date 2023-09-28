@@ -44,9 +44,9 @@ test_that("output plot works", {
 
 test_that("output return works", {
   expect_type(
-    raw_sig, "double"
+    raw_sig, "list"
   )
   expect_equal(
-    x3p_bin_rotate$matrix.info$MatrixDimension$SizeX[[1]], length(raw_sig)
+    x3p_bin_rotate$matrix.info$MatrixDimension$SizeX[[1]], nrow(raw_sig)
   )
 })

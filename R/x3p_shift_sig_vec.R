@@ -5,7 +5,9 @@
 #' @param method choice of `median` or `mean` when computing the summary statistics
 #' @param ifplot whether graphs are displayed
 #' @param delta shifting range when minimizing MSE
-#' @return vector of shifted signals
+#' @return data frame of 2 columns
+#' * x: x value
+#' * sig: signal extracted
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
 #' @importFrom ggplot2 ggplot aes geom_line geom_point
@@ -45,7 +47,7 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
     Dat <-
     value_approx <-
     mask <-
-    value_summary <-
+    sig <-
     NULL
 
   x3p_df <- x3p %>%
@@ -195,10 +197,10 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
       geom_line(aes(group = y), alpha = 0.1)
   }
 
-  sig <- x3p_approx_df %>%
+  shift_sig <- x3p_approx_df %>%
     na.omit() %>%
     group_by(x) %>%
-    summarise(value_summary = ifelse(method == "median", median(value_approx, na.rm = TRUE),
+    summarise(sig = ifelse(method == "median", median(value_approx, na.rm = TRUE),
       ifelse(method == "mean", mean(value_approx, na.rm = TRUE),
         stop('Not an applicable method, choose from "method = median" or "method = mean"')
       )
@@ -206,9 +208,9 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
 
   if (ifplot) {
     (p_all +
-      geom_line(aes(x = x, y = value_summary), data = sig, color = "red")) %>%
+      geom_line(aes(x = x, y = sig), data = shift_sig, color = "red")) %>%
       print()
   }
 
-  return(sig$value_summary)
+  return(shift_sig)
 }

@@ -56,6 +56,6 @@ test_that("output plot works", {
 
 test_that("output return works", {
   expect_type(
-    shift_sig, "double"
+    shift_sig, "list"
   )
 })
