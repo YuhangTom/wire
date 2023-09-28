@@ -47,13 +47,15 @@ test_that("output plot works", {
 })
 
 test_that("output save works", {
-  dir_name <- tempdir(check = TRUE)
-  x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = dir_name, ifplot = TRUE)
-  expect_true(
-    file.exists(
-      paste0(dir_name, "/focal_impute.gif")
+  withr::with_tempdir({
+    dir_name <- "."
+    x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = dir_name, ifplot = TRUE)
+    expect_true(
+      file.exists(
+        paste0(dir_name, "/focal_impute.gif")
+      )
     )
-  )
+  })
 })
 
 test_that("output return works", {

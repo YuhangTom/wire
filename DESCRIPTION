@@ -16,7 +16,8 @@ URL: https://yuhangtom.github.io/wire/, https://github.com/YuhangTom/wire
 Suggests: 
     sf,
     spelling,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr
 Language: en-US
 Imports: 
     raster,
