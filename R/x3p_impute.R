@@ -151,7 +151,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
       path = dir_name,
       full.names = TRUE
     ) %>%
-      .[str_detect(., pattern = ".png")] %>%
+      .[str_detect(., pattern = "gif_p[:digit:]+.png")] %>%
       file.remove() %>%
       invisible()
   }
