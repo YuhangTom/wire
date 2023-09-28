@@ -46,6 +46,14 @@ test_that("output plot works", {
   )
 })
 
+test_that("output save works", {
+  expect_true(
+    file.exists(
+      paste0(dir_name, "/focal_impute.gif")
+    )
+  )
+})
+
 test_that("output return works", {
   expect_type(
     x3p_inner_impute, "list"
