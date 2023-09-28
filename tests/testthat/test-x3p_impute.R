@@ -21,9 +21,6 @@ test_that("input check works", {
     x3p_impute(x3p_inner_nomiss_res, ifsave = data.frame(1:3, 2:4), dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = NULL, ifplot = FALSE)
-  )
-  expect_error(
     x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = 1:3, ifplot = FALSE)
   )
   expect_error(
