@@ -51,6 +51,7 @@ test_that("output save works", {
       paste0(dir_name, "/focal_impute.gif")
     )
   )
+  unlink(dir_name, recursive = T, force = T)
 })
 
 test_that("output return works", {
