@@ -52,14 +52,20 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
     x3p_surface_polygon(colour = mask_col, concavity = concavity)
 
   ### Extract inner part as x3p based on mask
-  x3p_inner <- x3p_extract(x3p, mask_vals = mask_col) %>%
-    x3p_average(b = b, na.rm = TRUE)
+  x3p_inner <- x3p_extract(x3p, mask_vals = mask_col)
+  if (b > 1) {
+    # only need to average when the block size is greater than 1
+     x3p_inner <- x3p_inner %>% x3p_average(b = b, na.rm = TRUE)
+  }
 
   x3p_inner_df <- x3p_inner %>%
     x3p_to_df()
 
+
+
   x3p_inner_raster <- t(x3p_inner$surface.matrix) %>%
     raster(xmx = (x3p_inner$header.info$sizeX - 1) * x3p_inner$header.info$incrementX, ymx = (x3p_inner$header.info$sizeY - 1) * x3p_inner$header.info$incrementY)
+
 
   ### Compute the adjacent (neighbor) cells with queen's case directions, including self
   x3p_inner_raster_adj <- adjacent(x3p_inner_raster, cells = 1:ncell(x3p_inner_raster), directions = 8, pairs = TRUE, sorted = TRUE, include = TRUE)
