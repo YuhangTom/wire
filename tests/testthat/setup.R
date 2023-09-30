@@ -7,7 +7,7 @@ quantile_angle <- x3p_quantile_angle_vec(x3p_inner_impute, ntheta = 720, min_sco
 x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, method = "median", ifplot = FALSE)
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, method = "median", ifplot = FALSE, delta = -5:5)
-alignedsigs <- vec_align_sigs_list(raw_sig, shift_sig,
+alignedsigs <- vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
   min.overlap = NULL, ifplot = FALSE,
   name1 = "Cut1", name2 = "Cut2", legendname = "Signal",
   titlename = NULL

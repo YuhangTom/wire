@@ -33,9 +33,14 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
     is.flag(ifplot)
   )
   if (ifsave) {
-    assert_that(
-      not_empty(dir_name), is.string(dir_name)
-    )
+    if (not_empty(dir_name)) {
+      assert_that(
+        is.string(dir_name)
+      )
+    } else {
+      dir_name <- tempdir(check = TRUE)
+    }
+
     dir.create(dir_name, showWarnings = FALSE)
   }
 
@@ -151,7 +156,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
       path = dir_name,
       full.names = TRUE
     ) %>%
-      .[str_detect(., pattern = ".png")] %>%
+      .[str_detect(., pattern = "gif_p[:digit:]+.png")] %>%
       file.remove() %>%
       invisible()
   }

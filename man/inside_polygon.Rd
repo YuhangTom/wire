@@ -35,7 +35,8 @@ polygon <- inside_polygon(bounds$x, bounds$y, 1)
 library(ggplot2)
 library(dplyr)
 bounds \%>\%
-ggplot(aes(x = x, y = y)) + geom_point() +
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
   geom_polygon(data = polygon)
 
 }

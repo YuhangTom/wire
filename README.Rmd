@@ -143,8 +143,7 @@ shift_sig %>%
 Extracted signals can be aligned and cross correlation can be computed:
 
 ```{r align}
-vec_align_sigs_list(raw_sig, shift_sig, ifplot = TRUE) %>%
+vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
   str()
 ```
-
 

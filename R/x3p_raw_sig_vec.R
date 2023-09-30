@@ -4,7 +4,9 @@
 #' @param x3p `x3p` object
 #' @param method choice of `median` or `mean` when computing the summary statistics
 #' @param ifplot whether graphs are displayed
-#' @return vector of raw signal extracted
+#' @return data frame of 2 columns
+#' * x: x value
+#' * sig: signal extracted
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df
 #' @importFrom ggplot2 ggplot aes geom_line
@@ -32,25 +34,25 @@ x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
 
   x <-
     value <-
-    value_summary <-
+    sig <-
     NULL
 
   x3p_df <- x3p %>%
     x3p_to_df()
 
-  sig <- x3p_df %>%
+  raw_sig <- x3p_df %>%
     na.omit() %>%
     group_by(x) %>%
-    summarise(value_summary = ifelse(method == "median", median(value, na.rm = TRUE),
+    summarise(sig = ifelse(method == "median", median(value, na.rm = TRUE),
       mean(value, na.rm = TRUE)
     ))
 
   if (ifplot) {
-    (sig %>%
-      ggplot(aes(x = x, y = value_summary)) +
+    (raw_sig %>%
+      ggplot(aes(x = x, y = sig)) +
       geom_line()) %>%
       print()
   }
 
-  return(sig$value_summary)
+  return(raw_sig)
 }

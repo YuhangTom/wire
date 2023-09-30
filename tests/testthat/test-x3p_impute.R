@@ -21,9 +21,6 @@ test_that("input check works", {
     x3p_impute(x3p_inner_nomiss_res, ifsave = data.frame(1:3, 2:4), dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = NULL, ifplot = FALSE)
-  )
-  expect_error(
     x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = 1:3, ifplot = FALSE)
   )
   expect_error(
@@ -44,6 +41,17 @@ test_that("output plot works", {
   expect_visible(
     x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
   )
+})
+
+test_that("output save works", {
+  dir_name <- "temptest"
+  x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = dir_name, ifplot = TRUE)
+  expect_true(
+    file.exists(
+      paste0(dir_name, "/focal_impute.gif")
+    )
+  )
+  unlink(dir_name, recursive = T, force = T)
 })
 
 test_that("output return works", {
