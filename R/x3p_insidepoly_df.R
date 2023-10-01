@@ -17,7 +17,7 @@
 #' @importFrom x3ptools x3p_extract x3p_average x3p_to_df
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
-#' @importFrom raster raster adjacent ncell
+#' @importFrom raster raster adjacent ncell focal
 #' @importFrom ggplot2 ggplot geom_raster scale_fill_gradient2 labs ggtitle geom_boxplot
 #' @importFrom assertthat assert_that is.string is.number is.count is.flag
 #' @export
@@ -76,18 +76,18 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
   # x3p_inner_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
 
   # counts the number of non-missing values:
-  n_neighbor_val_miss <- focal(is.na(x3p_inner_raster), w=matrix(1, nc=3, nr=3), fun=sum)
+  n_neighbor_val_miss <- focal(is.na(x3p_inner_raster), w=matrix(1, ncol=3, nrow=3), fun=sum)
 # n_neighbor_val_miss %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=factor(layer))) + geom_raster()
 
-  n_neighbor_val_mean <- focal(x3p_inner_raster, w=matrix(1/9, nc=3, nr=3), fun=sum, na.rm=TRUE)
-  n_neighbor_val_var <- focal((x3p_inner_raster-n_neighbor_val_mean)^2, w=matrix(1/9, nc=3, nr=3), fun=sum, na.rm=TRUE)
+  n_neighbor_val_mean <- focal(x3p_inner_raster, w=matrix(1/9, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
+  n_neighbor_val_var <- focal((x3p_inner_raster-n_neighbor_val_mean)^2, w=matrix(1/9, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
   n_neighbor_val_sd <- sqrt(n_neighbor_val_var)
 #  n_neighbor_val_sd %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
 
 # # lines above are faster
 #  n_neighbor_val_sd <- focal(x3p_inner_raster, w=matrix(1/9, nc=3, nr=3), fun=sd, na.rm=TRUE)
 
-
+  layer <- NULL
   n_neighbor_df <- n_neighbor_val_miss %>% as.data.frame(xy=TRUE)  %>%
     rename(n_neighbor_val_miss=layer) %>%
     mutate(x = round(x), y = round(y))
@@ -121,7 +121,9 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
     left_join(n_neighbor_df, by=c("x", "y")) %>%
     left_join(n_neighbor_sd_df, by=c("x", "y")) %>%
     mutate(
-      n_neighbor_val_miss = factor(n_neighbor_val_miss)
+      n_neighbor_val_miss = factor(n_neighbor_val_miss),
+      x = x * resolution,
+      y = y * resolution
     )
 
   # ### Change it to wide format
