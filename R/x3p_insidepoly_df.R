@@ -154,11 +154,11 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       print()
 
     (x3p_inner_df %>%
-      ggplot(aes(x = n_neighbor_val_miss, y = sd_not_miss)) +
+      ggplot(aes(x = n_neighbor_val_miss, y = log(sd_not_miss))) +
       geom_boxplot() +
       labs(
         x = "Number of missing immediate neighbors (including self)",
-        y = "standard deviation"
+        y = "log(standard deviation)"
       )) %>%
       print()
   }
