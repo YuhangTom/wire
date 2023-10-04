@@ -38,7 +38,9 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
         is.string(dir_name)
       )
     } else {
-      dir_name <- tempdir(check = TRUE)
+    #  dir_name <- tempdir(check = TRUE)
+      tmpfile <- tempfile(fileext = "txt")
+      dir_name <- dirname(tmpfile)
     }
 
     dir.create(dir_name, showWarnings = FALSE)
@@ -55,17 +57,17 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   x3p_inner_nomiss_res_raster <- t(x3p$surface.matrix) %>%
     raster(xmx = (x3p$header.info$sizeX - 1) * x3p$header.info$incrementX, ymx = (x3p$header.info$sizeY - 1) * x3p$header.info$incrementY)
 
-  ### Plot raster
-  p0 <- x3p_inner_nomiss_res_raster %>%
-    as.data.frame(xy = TRUE) %>%
-    as_tibble() %>%
-    rename(value = layer) %>%
-    ggplot(aes(x = x, y = y, fill = value)) +
-    geom_raster() +
-    scale_fill_gradient2(midpoint = 4e-7) +
-    labs(title = "Number of imputation: 0")
-
   if (ifplot) {
+    ### Plot raster
+    p0 <- x3p_inner_nomiss_res_raster %>%
+      as.data.frame(xy = TRUE) %>%
+      as_tibble() %>%
+      rename(value = layer) %>%
+      ggplot(aes(x = x, y = y, fill = value)) +
+      geom_raster() +
+      scale_fill_gradient2(midpoint = 4e-7) +
+      labs(title = "Number of imputation: 0")
+
     print(p0)
   }
 
@@ -80,18 +82,20 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   x3p_inner_nomiss_res_focal_raster <- focal(x3p_inner_nomiss_res_raster, fun = function(x, na.rm) {
     mean(x, na.rm = TRUE)
   }, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE)
+  # x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
 
-  ### First focal raster plot
-  p1 <- x3p_inner_nomiss_res_focal_raster %>%
-    as.data.frame(xy = TRUE) %>%
-    as_tibble() %>%
-    rename(value = layer) %>%
-    ggplot(aes(x = x, y = y, fill = value)) +
-    geom_raster() +
-    scale_fill_gradient2(midpoint = 4e-7) +
-    labs(title = "Number of imputation: 1")
 
   if (ifplot) {
+    ### First focal raster plot
+    p1 <- x3p_inner_nomiss_res_focal_raster %>%
+      as.data.frame(xy = TRUE) %>%
+      as_tibble() %>%
+      rename(value = layer) %>%
+      ggplot(aes(x = x, y = y, fill = value)) +
+      geom_raster() +
+      scale_fill_gradient2(midpoint = 4e-7) +
+      labs(title = "Number of imputation: 1")
+
     print(p1)
   }
 

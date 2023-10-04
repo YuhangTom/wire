@@ -24,7 +24,7 @@
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
 #'
-#' x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE) %>%
+#' x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10, ifplot = TRUE) %>%
 #' str()
 #'
 x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10,
@@ -79,13 +79,16 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
   n_neighbor_val_miss <- focal(is.na(x3p_inner_raster), w=matrix(1, ncol=3, nrow=3), fun=sum)
 # n_neighbor_val_miss %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=factor(layer))) + geom_raster()
 
-  n_neighbor_val_mean <- focal(x3p_inner_raster, w=matrix(1/9, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
-  n_neighbor_val_var <- focal((x3p_inner_raster-n_neighbor_val_mean)^2, w=matrix(1/9, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
-  n_neighbor_val_sd <- sqrt(n_neighbor_val_var)
+#  neighbors <- 9-n_neighbor_val_miss
+#  n_neighbor_val_mean <- focal(x3p_inner_raster, w=matrix(1, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
+#  n_neighbor_val_mean <- n_neighbor_val_mean/neighbors
+#  n_neighbor_val_var <- focal((x3p_inner_raster-n_neighbor_val_mean)^2, w=matrix(1, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
+# #neighbors[] <- pmax(0,neighbors[]-1)
+#  n_neighbor_val_sd <- sqrt(n_neighbor_val_var/9)
 #  n_neighbor_val_sd %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
 
-# # lines above are faster
-#  n_neighbor_val_sd <- focal(x3p_inner_raster, w=matrix(1/9, nc=3, nr=3), fun=sd, na.rm=TRUE)
+# # lines above are faster - but we need to adjust the denominator :(
+  n_neighbor_val_sd <- focal(x3p_inner_raster, w=matrix(1, nc=3, nr=3), fun=sd, na.rm=TRUE)
 
   layer <- NULL
   n_neighbor_df <- n_neighbor_val_miss %>% as.data.frame(xy=TRUE)  %>%
@@ -126,68 +129,12 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       y = y * resolution
     )
 
-  # ### Change it to wide format
-  # x3p_inner_df_wide_n_neighbor_val_miss <- matrix(x3p_inner_raster_adj_df$n_neighbor_val_miss, nrow = nrow(x3p_inner_raster), ncol = ncol(x3p_inner_raster), byrow = TRUE) %>%
-  #   as_tibble(.name_repair = "minimal")
-  # names(x3p_inner_df_wide_n_neighbor_val_miss) <- x3p_inner_df$x %>%
-  #   unique() %>%
-  #   as.character()
-  #
-  # ### Change it to wide format
-  # x3p_inner_df_wide_sd_not_miss <- matrix(x3p_inner_raster_adj_df$sd_not_miss, nrow = nrow(x3p_inner_raster), ncol = ncol(x3p_inner_raster), byrow = TRUE) %>%
-  #   as_tibble(.name_repair = "minimal")
-  # names(x3p_inner_df_wide_sd_not_miss) <- x3p_inner_df$x %>%
-  #   unique() %>%
-  #   as.character()
-  #
-  # ### Change them to long format and append back
-  # x3p_inner_df <-
-  #   full_join(
-  #     x3p_inner_df %>%
-  #       mutate(
-  #         x = as.character(x),
-  #         y = as.character(y)
-  #       ),
-  #     x3p_inner_df_wide_n_neighbor_val_miss %>%
-  #       pivot_longer(
-  #         cols = everything(),
-  #         names_to = "x",
-  #         values_to = "n_neighbor_val_miss"
-  #       ) %>%
-  #       mutate(
-  #         y = x3p_inner_df$y,
-  #         x = as.character(x),
-  #         y = as.character(y)
-  #       ),
-  #     by = join_by(x, y)
-  #   ) %>%
-  #   full_join(
-  #     x = .,
-  #     x3p_inner_df_wide_sd_not_miss %>%
-  #       pivot_longer(
-  #         cols = everything(),
-  #         names_to = "x",
-  #         values_to = "sd_not_miss"
-  #       ) %>%
-  #       mutate(
-  #         y = x3p_inner_df$y,
-  #         x = as.character(x),
-  #         y = as.character(y)
-  #       ),
-  #     by = join_by(x, y)
-  #   ) %>%
-  #   mutate(
-  #     x = as.numeric(x),
-  #     y = as.numeric(y),
-  #     ### Discrete legend
-  #     n_neighbor_val_miss = as.factor(n_neighbor_val_miss)
-  #   )
-
   if (ifplot) {
+
     (x3p_inner_df %>%
       ggplot(aes(x = x, y = y, fill = value)) +
       geom_raster() +
-      scale_fill_gradient2(midpoint = 4e-7)) %>%
+      scale_fill_gradient2(midpoint = 0)) %>%
       print()
 
     ### ggplot
@@ -207,11 +154,11 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       print()
 
     (x3p_inner_df %>%
-      ggplot(aes(x = n_neighbor_val_miss, y = log(sd_not_miss))) +
+      ggplot(aes(x = n_neighbor_val_miss, y = sd_not_miss)) +
       geom_boxplot() +
       labs(
         x = "Number of missing immediate neighbors (including self)",
-        y = "log(standard deviation)"
+        y = "standard deviation"
       )) %>%
       print()
   }
