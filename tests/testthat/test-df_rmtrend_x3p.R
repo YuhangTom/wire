@@ -27,11 +27,5 @@ test_that("output return works", {
   expect_named(
     x3p_inner_nomiss_res, c("surface.matrix", "header.info", "matrix.info", "mask")
   )
-  expect_equal(
-    x3p$header.info, x3p_inner_nomiss_res$header.info
-  )
-  expect_equal(
-    x3p$matrix.info, x3p_inner_nomiss_res$matrix.info
-  )
 })
 

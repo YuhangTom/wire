@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--09--28-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--10--03-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![Codecov test
 coverage](https://codecov.io/gh/YuhangTom/wire/branch/main/graph/badge.svg)](https://app.codecov.io/gh/YuhangTom/wire?branch=main)
 [![R-CMD-check](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml)
@@ -65,7 +65,7 @@ insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b
 
 <img src="man/figures/README-insidepoly-1.png" width="100%" /><img src="man/figures/README-insidepoly-2.png" width="100%" /><img src="man/figures/README-insidepoly-3.png" width="100%" />
 
-    #> Warning: Removed 19502 rows containing non-finite values (`stat_boxplot()`).
+    #> Warning: Removed 19239 rows containing non-finite values (`stat_boxplot()`).
 
 <img src="man/figures/README-insidepoly-4.png" width="100%" />
 
@@ -75,10 +75,10 @@ insidepoly_df %>%
 #> 'data.frame':    42042 obs. of  6 variables:
 #>  $ x                  : num  0 6.45 12.9 19.35 25.8 ...
 #>  $ y                  : num  1167 1167 1167 1167 1167 ...
-#>  $ value              : num  NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN ...
+#>  $ value              : num  NA NA NA NA NA NA NA NA NA NA ...
 #>  $ mask               : chr  "#FFFFFF" "#FFFFFF" "#FFFFFF" "#FFFFFF" ...
-#>  $ n_neighbor_val_miss: Factor w/ 10 levels "0","1","2","3",..: 5 7 7 7 7 7 7 7 7 7 ...
-#>  $ sd_not_miss        : num  NA NA NA NA NA NA NA NA NA NA ...
+#>  $ n_neighbor_val_miss: Factor w/ 11 levels "0","1","2","3",..: 11 11 11 11 11 11 11 11 11 11 ...
+#>  $ sd_not_miss        : num  NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN ...
 #>  - attr(*, "header.info")=List of 4
 #>   ..$ sizeX     : int 231
 #>   ..$ sizeY     : int 182
