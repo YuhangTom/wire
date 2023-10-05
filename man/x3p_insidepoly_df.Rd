@@ -41,6 +41,6 @@ Create the summary data frame for the inner polygon of an \code{x3p} object.
 x3p <- x3p_subsamples[[1]]
 
 x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10, ifplot = TRUE) \%>\%
-str()
+  str()
 
 }
