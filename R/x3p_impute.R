@@ -2,6 +2,7 @@
 #'
 #' Obtained `x3p` object after imputing the inner polygon.
 #' @param x3p `x3p` object
+#' @param ifout whether the imputation procedure will extrapolate, extrapolate for ifout = TRUE
 #' @param ifsave whether the imputation procedure gif is going to be saved
 #' @param dir_name required when `ifsave` is `TRUE`
 #' @param ifplot whether graphs are displayed
@@ -20,13 +21,13 @@
 #' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #'
-#' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
+#' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
 #' x3p_inner_impute
 #' if (interactive()) {
 #'   x3p_image_autosize(x3p_inner_impute)
 #' }
 #'
-x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
+x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   assert_that(
     "x3p" %in% class(x3p),
     is.flag(ifsave),
@@ -122,6 +123,15 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
 
   nimp <- 1
 
+  ### For saving result
+  x3p_inner_focal_impute <- x3p %>%
+    x3p_delete_mask()
+  mask_col <- table(x3p$mask) %>%
+    .[names(.) != "#FFFFFF"] %>%
+    which.max() %>%
+    names()
+  in_mask <- t(x3p$mask == mask_col)
+
   while (do) {
     ### Get number of missing value
     nNA <- table(is.na(x3p_inner_nomiss_res_focal_raster[]))["TRUE"]
@@ -153,7 +163,24 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
     }
 
     ### Check condition
-    do <- table(is.na(x3p_inner_nomiss_res_focal_raster[]))["TRUE"] != nNA
+    if (ifout) {
+      if (table(is.na(x3p_inner_nomiss_res_focal_raster[]))["TRUE"] %>%
+        near(nNA)
+      ) {
+        do <- FALSE
+      }
+    } else {
+      x3p_inner_focal_impute$surface.matrix <- x3p_inner_nomiss_res_focal_raster %>%
+        as.matrix()
+
+      if (x3p_inner_focal_impute$surface.matrix[in_mask] %>%
+        is.na() %>%
+        sum() %>%
+        near(0)
+      ) {
+        do <- FALSE
+      }
+    }
   }
 
   ### Plot final raster
@@ -185,16 +212,10 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
       invisible()
   }
 
-  x3p_inner_focal_impute <- x3p %>%
-    x3p_delete_mask()
   x3p_inner_focal_impute$surface.matrix <- x3p_inner_nomiss_res_focal_raster %>%
     as.matrix()
 
   x3p_inner_focal_impute <- x3p_add_mask(x3p_inner_focal_impute, x3p$mask)
-  mask_col <- table(x3p$mask) %>%
-    .[names(.) != "#FFFFFF"] %>%
-    which.max() %>%
-    names()
 
   x3p_inner_impute <- x3p_inner_focal_impute %>%
     x3p_extract(mask_vals = mask_col)
