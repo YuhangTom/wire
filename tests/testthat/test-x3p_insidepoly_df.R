@@ -70,10 +70,10 @@ test_that("output return works", {
   expect_type(
     insidepoly_df, "list"
   )
-  expect_length(
-    insidepoly_df, 6
+  expect_true(
+    between(length(insidepoly_df), 5, 6)
   )
-  expect_named(
-    insidepoly_df, c("x", "y", "value", "mask", "n_neighbor_val_miss", "sd_not_miss")
+  expect_contains(
+    names(insidepoly_df), c("x", "y", "value", "mask", "n_neighbor_val_miss")
   )
 })

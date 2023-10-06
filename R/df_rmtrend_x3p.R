@@ -21,7 +21,7 @@
 df_rmtrend_x3p <- function(insidepoly_df) {
   assert_that(
     is.data.frame(insidepoly_df),
-    has_name(insidepoly_df, c("x", "y", "value", "mask", "n_neighbor_val_miss", "sd_not_miss"))
+    has_name(insidepoly_df, c("x", "y", "value", "mask", "n_neighbor_val_miss"))
   )
 
   n_neighbor_val_miss <-
