@@ -86,7 +86,7 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
 
   # # lines above are faster - but we need to adjust the denominator :(
   if (ifplot) {
-    n_neighbor_val_sd <- focal(x3p_inner_raster, w = matrix(1, nc = 3, nr = 3), fun = sd, na.rm = TRUE)
+    n_neighbor_val_sd <- focal(x3p_inner_raster, w = matrix(1, ncol = 3, nrow = 3), fun = sd, na.rm = TRUE)
   }
 
   layer <- NULL
