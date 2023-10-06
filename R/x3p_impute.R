@@ -76,7 +76,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   }
 
   ### Get number of missing values
-  nNA <- table(is.na(x3p_inner_nomiss_res_raster[]))[2]
+  nNA <- table(is.na(x3p_inner_nomiss_res_raster[]))["TRUE"]
 
   ### Initialize focal raster
   x3p_inner_nomiss_res_focal_raster <- focal(x3p_inner_nomiss_res_raster, fun = function(x, na.rm) {
@@ -110,7 +110,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
 
   while (do) {
     ### Get number of missing value
-    nNA <- table(is.na(x3p_inner_nomiss_res_focal_raster[]))[2]
+    nNA <- table(is.na(x3p_inner_nomiss_res_focal_raster[]))["TRUE"]
 
     ### Focal raster
     x3p_inner_nomiss_res_focal_raster <- focal(x3p_inner_nomiss_res_focal_raster, fun = function(x, na.rm) {
@@ -133,7 +133,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
     }
 
     ### Check condition
-    do <- table(is.na(x3p_inner_nomiss_res_focal_raster[]))[2] != nNA
+    do <- table(is.na(x3p_inner_nomiss_res_focal_raster[]))["TRUE"] != nNA
   }
 
   ### Plot final raster
