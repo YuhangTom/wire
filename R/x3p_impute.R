@@ -38,7 +38,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
         is.string(dir_name)
       )
     } else {
-    #  dir_name <- tempdir(check = TRUE)
+      #  dir_name <- tempdir(check = TRUE)
       tmpfile <- tempfile(fileext = "txt")
       dir_name <- dirname(tmpfile)
     }
@@ -54,8 +54,8 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
     NULL
 
   ### Convert x3p to raster
-  x3p_inner_nomiss_res_raster <- t(x3p$surface.matrix) %>%
-    raster(xmx = (x3p$header.info$sizeX - 1) * x3p$header.info$incrementX, ymx = (x3p$header.info$sizeY - 1) * x3p$header.info$incrementY)
+  x3p_inner_nomiss_res_raster <- x3p$surface.matrix %>%
+    raster(ymx = (x3p$header.info$sizeX - 1) * x3p$header.info$incrementX, xmx = (x3p$header.info$sizeY - 1) * x3p$header.info$incrementY)
 
   if (ifplot) {
     ### Plot raster
@@ -63,7 +63,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
       rename(value = layer) %>%
-      ggplot(aes(x = x, y = y, fill = value)) +
+      ggplot(aes(x = y, y = -x, fill = value)) +
       geom_raster() +
       scale_fill_gradient2(midpoint = 4e-7) +
       labs(title = "Number of imputation: 0")
@@ -91,7 +91,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
       rename(value = layer) %>%
-      ggplot(aes(x = x, y = y, fill = value)) +
+      ggplot(aes(x = y, y = -x, fill = value)) +
       geom_raster() +
       scale_fill_gradient2(midpoint = 4e-7) +
       labs(title = "Number of imputation: 1")
@@ -123,7 +123,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
       rename(value = layer) %>%
-      ggplot(aes(x = x, y = y, fill = value)) +
+      ggplot(aes(x = y, y = -x, fill = value)) +
       geom_raster() +
       scale_fill_gradient2(midpoint = 4e-7) +
       labs(title = paste0("Number of imputation: ", nimp))
@@ -168,8 +168,7 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   x3p_inner_focal_impute <- x3p %>%
     x3p_delete_mask()
   x3p_inner_focal_impute$surface.matrix <- x3p_inner_nomiss_res_focal_raster %>%
-    as.matrix() %>%
-    t()
+    as.matrix()
 
   x3p_inner_focal_impute <- x3p_add_mask(x3p_inner_focal_impute, x3p$mask)
   mask_col <- table(x3p$mask) %>%
