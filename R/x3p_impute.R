@@ -49,6 +49,8 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   layer <-
     x <-
     y <-
+    x_plot <-
+    y_plot <-
     value <-
     . <-
     NULL
@@ -62,11 +64,17 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
     p0 <- x3p_inner_nomiss_res_raster %>%
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
+      mutate(
+        x_plot = -y + max(y),
+        y_plot = -x + max(x)
+      ) %>%
       rename(value = layer) %>%
-      ggplot(aes(x = y, y = -x, fill = value)) +
+      ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
       geom_raster() +
       scale_fill_gradient2(midpoint = 4e-7) +
-      labs(title = "Number of imputation: 0")
+      labs(title = "Number of imputation: 0") +
+      xlab("x") +
+      ylab("y")
 
     print(p0)
   }
@@ -90,11 +98,17 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
     p1 <- x3p_inner_nomiss_res_focal_raster %>%
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
+      mutate(
+        x_plot = -y + max(y),
+        y_plot = -x + max(x)
+      ) %>%
       rename(value = layer) %>%
-      ggplot(aes(x = y, y = -x, fill = value)) +
+      ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
       geom_raster() +
       scale_fill_gradient2(midpoint = 4e-7) +
-      labs(title = "Number of imputation: 1")
+      labs(title = "Number of imputation: 1") +
+      xlab("x") +
+      ylab("y")
 
     print(p1)
   }
@@ -122,11 +136,17 @@ x3p_impute <- function(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
     p <- x3p_inner_nomiss_res_focal_raster %>%
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
+      mutate(
+        x_plot = -y + max(y),
+        y_plot = -x + max(x)
+      ) %>%
       rename(value = layer) %>%
-      ggplot(aes(x = y, y = -x, fill = value)) +
+      ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
       geom_raster() +
       scale_fill_gradient2(midpoint = 4e-7) +
-      labs(title = paste0("Number of imputation: ", nimp))
+      labs(title = paste0("Number of imputation: ", nimp)) +
+      xlab("x") +
+      ylab("y")
 
     if (ifsave) {
       ggsave(paste0(dir_name, "/gif_p", nimp, ".png"), p, width = 5, height = 3)
