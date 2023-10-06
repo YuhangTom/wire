@@ -21,7 +21,9 @@
 #' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #'
-#' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
+#' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
+#'   ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE
+#' )
 #' x3p_inner_impute
 #' if (interactive()) {
 #'   x3p_image_autosize(x3p_inner_impute)
@@ -30,10 +32,13 @@
 x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
   assert_that(
     "x3p" %in% class(x3p),
+    is.flag(ifout),
     is.flag(ifsave),
     is.flag(ifplot)
   )
   if (ifsave) {
+    ifplot <- TRUE
+
     if (not_empty(dir_name)) {
       assert_that(
         is.string(dir_name)
@@ -143,20 +148,22 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
 
     nimp <- nimp + 1
 
-    p <- x3p_inner_nomiss_res_focal_raster %>%
-      as.data.frame(xy = TRUE) %>%
-      as_tibble() %>%
-      mutate(
-        x_plot = -y + max(y),
-        y_plot = -x + max(x)
-      ) %>%
-      rename(value = layer) %>%
-      ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
-      geom_raster() +
-      scale_fill_gradient2(midpoint = 4e-7) +
-      labs(title = paste0("Number of imputation: ", nimp)) +
-      xlab("x") +
-      ylab("y")
+    if (ifplot) {
+      p <- x3p_inner_nomiss_res_focal_raster %>%
+        as.data.frame(xy = TRUE) %>%
+        as_tibble() %>%
+        mutate(
+          x_plot = -y + max(y),
+          y_plot = -x + max(x)
+        ) %>%
+        rename(value = layer) %>%
+        ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
+        geom_raster() +
+        scale_fill_gradient2(midpoint = 4e-7) +
+        labs(title = paste0("Number of imputation: ", nimp)) +
+        xlab("x") +
+        ylab("y")
+    }
 
     if (ifsave) {
       ggsave(paste0(dir_name, "/gif_p", nimp, ".png"), p, width = 5, height = 3)

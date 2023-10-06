@@ -103,7 +103,7 @@ x3p_inner_nomiss_res
 We can impute the missing values inside the surface by:
 
 ``` r
-x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
+x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
 ```
 
 <img src="man/figures/README-impute-1.png" width="100%" /><img src="man/figures/README-impute-2.png" width="100%" /><img src="man/figures/README-impute-3.png" width="100%" />

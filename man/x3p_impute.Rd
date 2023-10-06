@@ -4,10 +4,12 @@
 \alias{x3p_impute}
 \title{Impute the inner polygon}
 \usage{
-x3p_impute(x3p, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+x3p_impute(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 }
 \arguments{
 \item{x3p}{\code{x3p} object}
+
+\item{ifout}{whether the imputation procedure will extrapolate, extrapolate for ifout = TRUE}
 
 \item{ifsave}{whether the imputation procedure gif is going to be saved}
 
@@ -26,7 +28,9 @@ x3p <- x3p_subsamples[[1]]
 insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 
-x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
+x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
+  ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE
+)
 x3p_inner_impute
 if (interactive()) {
   x3p_image_autosize(x3p_inner_impute)

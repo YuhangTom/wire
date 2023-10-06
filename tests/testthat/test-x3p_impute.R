@@ -1,45 +1,54 @@
 test_that("input check works", {
   expect_error(
-    x3p_impute(1:3, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+    x3p_impute(1:3, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute("abc", ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+    x3p_impute("abc", ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(TRUE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+    x3p_impute(TRUE, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(data.frame(1:3, 2:4), ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+    x3p_impute(data.frame(1:3, 2:4), ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = 1, dir_name = NULL, ifplot = FALSE)
+    x3p_impute(x3p_inner_nomiss_res, ifout = 1, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = "abc", dir_name = NULL, ifplot = FALSE)
+    x3p_impute(x3p_inner_nomiss_res, ifout = "abc", ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = data.frame(1:3, 2:4), dir_name = NULL, ifplot = FALSE)
+    x3p_impute(x3p_inner_nomiss_res, ifout = data.frame(1:3, 2:4), ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = 1:3, ifplot = FALSE)
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = 1, dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = TRUE, dir_name = data.frame(1:3, 2:4), ifplot = FALSE)
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = "abc", dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = 1)
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = data.frame(1:3, 2:4), dir_name = NULL, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = "abc")
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = TRUE, dir_name = 1:3, ifplot = FALSE)
   )
   expect_error(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = data.frame(1:3, 2:4))
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = TRUE, dir_name = data.frame(1:3, 2:4), ifplot = FALSE)
+  )
+  expect_error(
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = 1)
+  )
+  expect_error(
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = "abc")
+  )
+  expect_error(
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = data.frame(1:3, 2:4))
   )
 })
 
 test_that("output plot works", {
   expect_visible(
-    x3p_impute(x3p_inner_nomiss_res, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
+    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
   )
 })
 
