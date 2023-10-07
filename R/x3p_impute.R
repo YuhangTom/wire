@@ -77,7 +77,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       rename(value = layer) %>%
       ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
       geom_raster() +
-      scale_fill_gradient2(midpoint = 4e-7) +
+      scale_fill_gradient2(midpoint = 0) +
       labs(title = "Number of imputation: 0") +
       xlab("x") +
       ylab("y")
@@ -111,7 +111,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       rename(value = layer) %>%
       ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
       geom_raster() +
-      scale_fill_gradient2(midpoint = 4e-7) +
+      scale_fill_gradient2(midpoint = 0) +
       labs(title = "Number of imputation: 1") +
       xlab("x") +
       ylab("y")
@@ -159,7 +159,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
         rename(value = layer) %>%
         ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
         geom_raster() +
-        scale_fill_gradient2(midpoint = 4e-7) +
+        scale_fill_gradient2(midpoint = 0) +
         labs(title = paste0("Number of imputation: ", nimp)) +
         xlab("x") +
         ylab("y")
