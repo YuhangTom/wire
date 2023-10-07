@@ -53,10 +53,11 @@ x3p_quantile_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
 
   ### Change to raster
   x3p_raster <- t(x3p_shift) %>%
-    raster(xmx = (x3p$header.info$sizeX - 1) * x3p$header.info$incrementX, ymx = (x3p$header.info$sizeY - 1) * x3p$header.info$incrementY)
+    raster(xmx = x3p$header.info$sizeX - 1, ymx = x3p$header.info$sizeY - 1)
 
   ### Change to cimg
   x3p_cimg <- as.cimg(x3p_raster)
+
   if (ifplot) {
     plot(x3p_cimg)
   }
