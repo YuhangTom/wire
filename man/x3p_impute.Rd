@@ -9,13 +9,13 @@ x3p_impute(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 \arguments{
 \item{x3p}{\code{x3p} object}
 
-\item{ifout}{whether the imputation procedure will extrapolate, extrapolate for ifout = TRUE}
+\item{ifout}{whether the imputation procedure will extrapolate, extrapolate for \code{ifout = TRUE}}
 
 \item{ifsave}{whether the imputation procedure gif is going to be saved}
 
-\item{dir_name}{required when \code{ifsave} is \code{TRUE}}
+\item{dir_name}{required when \code{ifsave = TRUE}}
 
-\item{ifplot}{whether graphs are displayed}
+\item{ifplot}{whether graphs are displayed, automatically set to \code{TRUE} when \code{ifsave = TRUE}}
 }
 \value{
 \code{x3p} object after imputation

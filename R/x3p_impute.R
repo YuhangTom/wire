@@ -2,10 +2,10 @@
 #'
 #' Obtained `x3p` object after imputing the inner polygon.
 #' @param x3p `x3p` object
-#' @param ifout whether the imputation procedure will extrapolate, extrapolate for ifout = TRUE
+#' @param ifout whether the imputation procedure will extrapolate, extrapolate for `ifout = TRUE`
 #' @param ifsave whether the imputation procedure gif is going to be saved
-#' @param dir_name required when `ifsave` is `TRUE`
-#' @param ifplot whether graphs are displayed
+#' @param dir_name required when `ifsave = TRUE`
+#' @param ifplot whether graphs are displayed, automatically set to `TRUE` when `ifsave = TRUE`
 #' @return `x3p` object after imputation
 #' @import dplyr
 #' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask
