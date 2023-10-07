@@ -8,7 +8,7 @@
 #' @param ifplot whether graphs are displayed, automatically set to `TRUE` when `ifsave = TRUE`
 #' @return `x3p` object after imputation
 #' @import dplyr
-#' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask
+#' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask x3p_get_scale
 #' @importFrom ggplot2 ggplot aes geom_raster scale_fill_gradient2 labs ggsave
 #' @importFrom raster raster focal as.data.frame as.matrix
 #' @importFrom purrr map
@@ -63,7 +63,13 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
 
   ### Convert x3p to raster
   x3p_inner_nomiss_res_raster <- x3p$surface.matrix %>%
-    raster(ymx = (x3p$header.info$sizeX - 1) * x3p$header.info$incrementX, xmx = (x3p$header.info$sizeY - 1) * x3p$header.info$incrementY)
+    raster(
+      ymx = x3p$header.info$sizeX - 1,
+      xmx = x3p$header.info$sizeY - 1
+    )
+
+  resolution <- x3p %>%
+    x3p_get_scale()
 
   if (ifplot) {
     ### Plot raster
@@ -71,8 +77,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
       mutate(
-        x_plot = -y + max(y),
-        y_plot = -x + max(x)
+        x_plot = (-y + max(y)) * resolution,
+        y_plot = (-x + max(x)) * resolution
       ) %>%
       rename(value = layer) %>%
       ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
@@ -105,8 +111,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
       mutate(
-        x_plot = -y + max(y),
-        y_plot = -x + max(x)
+        x_plot = (-y + max(y)) * resolution,
+        y_plot = (-x + max(x)) * resolution
       ) %>%
       rename(value = layer) %>%
       ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
@@ -153,8 +159,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
         as.data.frame(xy = TRUE) %>%
         as_tibble() %>%
         mutate(
-          x_plot = -y + max(y),
-          y_plot = -x + max(x)
+          x_plot = (-y + max(y)) * resolution,
+          y_plot = (-x + max(x)) * resolution
         ) %>%
         rename(value = layer) %>%
         ggplot(aes(x = x_plot, y = y_plot, fill = value)) +

@@ -14,7 +14,7 @@
 #' * n_neighbor_val_miss: number of missing immediate neighbor, self included
 #' * sd_not_miss: standard deviation for immediate neighbor
 #' @import dplyr
-#' @importFrom x3ptools x3p_extract x3p_average x3p_to_df
+#' @importFrom x3ptools x3p_extract x3p_average x3p_to_df x3p_get_scale
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell focal
@@ -58,7 +58,8 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
     x3p_inner <- x3p_inner %>% x3p_average(b = b, na.rm = TRUE)
   }
 
-  resolution <- x3p_inner %>% x3p_get_scale()
+  resolution <- x3p_inner %>%
+    x3p_get_scale()
 
   x3p_inner_df <- x3p_inner %>%
     x3p_to_df() %>%
@@ -68,7 +69,10 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
     )
 
   x3p_inner_raster <- t(x3p_inner$surface.matrix) %>%
-    raster(xmx = (x3p_inner$header.info$sizeX - 1), ymx = (x3p_inner$header.info$sizeY - 1))
+    raster(
+      xmx = x3p_inner$header.info$sizeX - 1,
+      ymx = x3p_inner$header.info$sizeY - 1
+    )
 
   # x3p_inner_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
 
