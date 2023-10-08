@@ -12,7 +12,7 @@ meta <- data.frame(source=source)
 
 i <- 1
 
-bsample <- 5
+bsample <- 3
 
 x3p <- x3p_read(meta$source[i])
 res <- replicate(10, {
@@ -58,5 +58,6 @@ dframe$b <- bsample
 write_csv(dframe, "speed-evaluation.csv",
           append = file.exists("speed-evaluation.csv"))
 
-dframe %>% filter(functions != "start") %>% ggplot(aes(x = functions, y = elapsed)) + geom_point()
+dframe <- read_csv("speed-evaluation.csv")
+dframe %>% filter(functions != "start") %>% ggplot(aes(x = functions, y = elapsed, colour = factor(b))) + geom_point()
 
