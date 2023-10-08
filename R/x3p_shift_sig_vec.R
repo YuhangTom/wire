@@ -223,7 +223,9 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
     group_by(y) %>%
     nest(.key = "Dat") %>%
     mutate(Dat = Dat %>% map(.f = function(dat) {
-      dat$value_approx <- approx(x = dat$x_shift_delta, y = dat$value, xout = dat$x)$y
+    #  browser()
+      if (sum(!is.na(dat$value)) < 2) dat$value_approx <- NA # can't do anything
+      else dat$value_approx <- approx(x = dat$x_shift_delta, y = dat$value, xout = dat$x)$y
       dat
     })) %>%
     unnest(Dat) %>%
