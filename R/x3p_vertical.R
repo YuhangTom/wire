@@ -79,8 +79,8 @@ x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
   angle_blue <- mean(angle_blue)
   angle_blue <- ifelse(angle_blue > 90, -(180 - angle_blue), angle_blue)
 
-  x3p_bin_red_rotate <- x3p_rotate(x3p_bin_red, angle = angle_red)
-  x3p_bin_blue_rotate <- x3p_rotate(x3p_bin_blue, angle = angle_blue)
+#  x3p_bin_red_rotate <- x3p_rotate(x3p_bin_red, angle = angle_red)
+#  x3p_bin_blue_rotate <- x3p_rotate(x3p_bin_blue, angle = angle_blue)
   x3p_bin_rotate <- x3p_rotate(x3p_bin, angle = angle)
 
   return(x3p_bin_rotate)
