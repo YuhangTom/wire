@@ -49,49 +49,107 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
     mask <-
     sig <-
     NULL
-
   x3p_df <- x3p %>%
     x3p_to_df()
 
-  ### Number of non-missing values for each y
-  x3p_df_nobs <- x3p_df %>%
-    na.omit() %>%
-    group_by(y) %>%
-    summarise(value_nobs = n()) %>%
-    arrange(value_nobs)
+  p1 <- proc.time()
 
-  ### Sort unique y values
-  y_sort <- inner_join(x3p_df, x3p_df_nobs, by = join_by(y)) %>%
-    ### Filter to have at least 2 observations for approx later
-    filter(value_nobs >= 2) %>%
-    distinct(y) %>%
-    arrange(y) %>%
-    unlist()
 
-  ### delta values for minimum mean squared error
-  delta_min <- (1:(length(y_sort) - 1)) %>%
+  # ### Number of non-missing values for each y
+  # x3p_df_nobs <- x3p_df %>%
+  #   na.omit() %>%
+  #   group_by(y) %>%
+  #   summarise(value_nobs = n()) %>%
+  #   arrange(value_nobs)
+  #
+  # ### Sort unique y values
+  # y_sort <- inner_join(x3p_df, x3p_df_nobs, by = join_by(y)) %>%
+  #   ### Filter to have at least 2 observations for approx later
+  #   filter(value_nobs >= 2) %>%
+  #   distinct(y) %>%
+  #   arrange(y) %>%
+  #   unlist()
+  #
+  # p2 <- proc.time()
+  #
+
+  # p3 <- proc.time()
+  #
+  scale <- x3p_get_scale(x3p)
+  yidx <- rev(which(colSums(!is.na(x3p$surface.matrix)) >= 2))
+  y_sort <- x3p_df$y %>% unique() %>% sort()
+  y_sort <- y_sort[rev(yidx)]
+
+  # p4 <- proc.time()
+
+
+# p1 <- proc.time()
+#   ### delta values for minimum mean squared error
+#   delta_min <- (1:(length(y_sort) - 1)) %>%
+#     map_dbl(function(j) {
+#       ### f1 values
+#       f1 <- x3p_df %>%
+#         filter(y == y_sort[j]) %>%
+#         select(x, value) %>%
+#         arrange(x)
+#
+#       ### f2 values
+#       f2 <- x3p_df %>%
+#         filter(y == y_sort[j + 1]) %>%
+#         select(x, value) %>%
+#         arrange(x)
+#
+#       ### Mean squared error for all delta
+#       MSE <- map_dbl(delta, function(delta_i) {
+#         if (delta_i == 0) {
+#           mean((f1$value - f2$value)^2, na.rm = TRUE)
+#         } else {
+#           if (delta_i > 0) {
+#             mean((f1[-(1:delta_i), ]$value - f2[1:(nrow(f2) - delta_i), ]$value)^2, na.rm = TRUE)
+#           } else {
+#             mean((f1[1:(nrow(f1) - abs(delta_i)), ]$value - f2[-(1:abs(delta_i)), ]$value)^2, na.rm = TRUE)
+#           }
+#         }
+#       }) %>%
+#         set_names(delta)
+#
+#       ### Fit parabola
+#       para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
+#         coef()
+#
+#       ### Get delta with minimum mean squared error
+#       (-para_coef[2] / (2 * para_coef[3])) %>%
+#         unname()
+#     })
+#   p2 <- proc.time()
+
+#  p3 <- proc.time()
+
+  delta_min <- (1:(length(yidx) - 1)) %>%
     map_dbl(function(j) {
       ### f1 values
-      f1 <- x3p_df %>%
-        filter(y == y_sort[j]) %>%
-        select(x, value) %>%
-        arrange(x)
-
-      ### f2 values
-      f2 <- x3p_df %>%
-        filter(y == y_sort[j + 1]) %>%
-        select(x, value) %>%
-        arrange(x)
+      f1 <- x3p$surface.matrix[,yidx[j]]
+      f2 <- x3p$surface.matrix[,yidx[j+1]]
+      # f1b <- x3p_df %>%
+      #   filter(y == y_sort[j]) %>%
+      #   select(x, value) %>%
+      #   arrange(x)
+      #
+      # ### f2 values
+      # f2b <- x3p_df %>%
+      #   filter(y == y_sort[j + 1]) %>%
+      #   select(x, value) %>%
+      #   arrange(x)
 
       ### Mean squared error for all delta
       MSE <- map_dbl(delta, function(delta_i) {
         if (delta_i == 0) {
-          mean((f1$value - f2$value)^2, na.rm = TRUE)
+          mean((f1 - f2)^2, na.rm = TRUE)
         } else {
           if (delta_i > 0) {
-            mean((f1[-(1:delta_i), ]$value - f2[1:(nrow(f2) - delta_i), ]$value)^2, na.rm = TRUE)
+            mean((f1[-(1:delta_i)] - f2[1:(length(f2) - delta_i)])^2, na.rm = TRUE)
           } else {
-            mean((f1[1:(nrow(f1) - abs(delta_i)), ]$value - f2[-(1:abs(delta_i)), ]$value)^2, na.rm = TRUE)
+            mean((f1[1:(length(f1) - abs(delta_i))] - f2[-(1:abs(delta_i))])^2, na.rm = TRUE)
           }
         }
       }) %>%
@@ -105,6 +163,8 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
       (-para_coef[2] / (2 * para_coef[3])) %>%
         unname()
     })
+
+#  p4 <- proc.time()
 
   if (ifplot) {
     p_delta <- data.frame(
