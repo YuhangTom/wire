@@ -51,7 +51,7 @@ res_list <- res %>% apply(MARGIN=3, FUN = function(d) {
 
 dframe <- data.frame(rep = 1:dim(res)[3], sim_data=I(res_list)) %>% unnest(col=sim_data)
 
-dframe$test_name <- "baseline-Oct-05"
+dframe$test_name <- "rotate-no-colors-Oct-05"
 dframe$x3p_source <-basename(meta$source[i])
 dframe$b <- bsample
 
@@ -59,5 +59,8 @@ write_csv(dframe, "speed-evaluation.csv",
           append = file.exists("speed-evaluation.csv"))
 
 dframe <- read_csv("speed-evaluation.csv")
-dframe %>% filter(functions != "start") %>% ggplot(aes(x = functions, y = elapsed, colour = factor(b))) + geom_point()
+dframe %>% filter(functions != "start") %>%
+  ggplot(aes(x = functions, y = elapsed, colour = test_name)) +
+  geom_jitter() +
+  facet_wrap(~b)
 

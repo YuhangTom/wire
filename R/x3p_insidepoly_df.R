@@ -79,8 +79,7 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
   # counts the number of non-missing values:
   n_neighbor_val_miss <- focal(is.na(x3p_inner_raster), w = matrix(1, ncol = 3, nrow = 3), fun = sum)
   # n_neighbor_val_miss %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=factor(layer))) + geom_raster()
-
-  #  neighbors <- 9-n_neighbor_val_miss
+  # neighbors <- 9-n_neighbor_val_miss
   #  n_neighbor_val_mean <- focal(x3p_inner_raster, w=matrix(1, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
   #  n_neighbor_val_mean <- n_neighbor_val_mean/neighbors
   #  n_neighbor_val_var <- focal((x3p_inner_raster-n_neighbor_val_mean)^2, w=matrix(1, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
