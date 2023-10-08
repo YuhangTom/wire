@@ -42,12 +42,14 @@ res <- replicate(10, {
   rbind(start=p1, x3p_insidepoly_df=p2-p1, detrend=p3-p2, impute=p4-p3, rotate=p5-p4, shift=p6-p5, overall=p6-p1)
 })
 
-dframe <- data.frame(rep = 1:dim(res)[3], sim_data=I(list(res)))
-dframe <- dframe %>% mutate(
-  sim_data = sim_data %>% purrr::map(.f = function(d) {
-    d <- as.tibble(d[,,1])
-  })
-) %>% unnest(col=sim_data)
+res_list <- res %>% apply(MARGIN=3, FUN = function(d) {
+  functions <- dimnames(d)[[1]]
+  d <- as.tibble(d)
+  d$functions <- functions
+  d
+})
+
+dframe <- data.frame(rep = 1:dim(res)[3], sim_data=I(res_list)) %>% unnest(col=sim_data)
 
 dframe$test_name <- "baseline-Oct-05"
 dframe$x3p_source <-basename(meta$source[i])
@@ -55,3 +57,6 @@ dframe$b <- bsample
 
 write_csv(dframe, "speed-evaluation.csv",
           append = file.exists("speed-evaluation.csv"))
+
+dframe %>% filter(functions != "start") %>% ggplot(aes(x = functions, y = elapsed)) + geom_point()
+

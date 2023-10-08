@@ -8,3 +8,5 @@
 ^LICENSE\.md$
 ^data-raw$
 ^codecov\.yml$
+
+^speed-evaluation.csv$
