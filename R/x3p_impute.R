@@ -99,10 +99,27 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
   nNA <- table(is.na(x3p_inner_nomiss_res_raster[]))["TRUE"]
 
   ### Initialize focal raster
-  x3p_inner_nomiss_res_focal_raster <- focal(x3p_inner_nomiss_res_raster, fun = function(x, na.rm) {
-    mean(x, na.rm = TRUE)
-  }, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE)
+#  browser()
+#  p1 <- proc.time()
+  ns <- focal(!is.na(x3p_inner_nomiss_res_raster),
+                fun = sum, w = matrix(1, nrow = 3, ncol = 3))
+  sums <- focal(x3p_inner_nomiss_res_raster,
+                   fun = sum, w = matrix(1, nrow = 3, ncol = 3), na.rm=TRUE, NAonly = TRUE)
+  ns[!(is.na(x3p_inner_nomiss_res_raster[]))] <- 1
+  x3p_inner_nomiss_res_focal_raster <- sums/ns
+#  p2 <- proc.time()
+
+  # p3 <- proc.time()
+  # x3p_inner_nomiss_res_focal_raster <-
+  #   focal(x3p_inner_nomiss_res_raster,
+  #     fun = function(x, na.rm) {
+  #       mean(x, na.rm = TRUE)
+  #     }, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE)
+  # p4 <- proc.time()
+
   # x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
+#  x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
+
 
 
   if (ifplot) {
@@ -148,9 +165,18 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
     nNA <- table(is.na(x3p_inner_nomiss_res_focal_raster[]))["TRUE"]
 
     ### Focal raster
-    x3p_inner_nomiss_res_focal_raster <- focal(x3p_inner_nomiss_res_focal_raster, fun = function(x, na.rm) {
-      mean(x, na.rm = TRUE)
-    }, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE)
+#    x3p_inner_nomiss_res_focal_raster <- focal(x3p_inner_nomiss_res_focal_raster, fun = function(x, na.rm) {
+#      mean(x, na.rm = TRUE)
+#   }, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE)
+    ns <- focal(!is.na(x3p_inner_nomiss_res_focal_raster),
+                fun = sum, w = matrix(1, nrow = 3, ncol = 3))
+    sums <- focal(x3p_inner_nomiss_res_focal_raster,
+                  fun = sum, w = matrix(1, nrow = 3, ncol = 3), na.rm=TRUE, NAonly = TRUE)
+    ns[!(is.na(x3p_inner_nomiss_res_focal_raster[]))] <- 1
+    x3p_inner_nomiss_res_focal_raster <- sums/ns
+
+
+
 
     nimp <- nimp + 1
 
