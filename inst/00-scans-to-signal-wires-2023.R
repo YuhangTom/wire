@@ -2,6 +2,7 @@ library(tidyverse)
 library(x3ptools)
 library(wire)
 
+# data_path <- "~/Documents/GitHub/Wirecuts/scans"
 data_path <- "~/Documents/Data/Wire Cutting Project Summer 2023/Wirecuts/scans/"
 source = dir(data_path, full.names = TRUE, recursive = TRUE, pattern = "x3p")
 
