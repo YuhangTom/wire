@@ -10,9 +10,9 @@ source = dir(data_path, full.names = TRUE, recursive = TRUE, pattern = "x3p")
 meta <- data.frame(source=source)
 
 
-i <- 2
+i <- 1
 
-bsample <- 5
+bsample <- 1
 
 x3p <- x3p_read(meta$source[i])
 res <- replicate(10, {
