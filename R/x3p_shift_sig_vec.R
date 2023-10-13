@@ -164,6 +164,11 @@ x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5
         unname()
     })
 
+  # ynonmis <- (!is.na(x3p$surface.matrix)) %>% colSums()
+  #
+  # delta_min <- (ynonmis[-1] / nrow(x3p$surface.matrix)) * delta_min
+  # delta_min <- (ynonmis[-1] / nrow(x3p$surface.matrix))^2 * delta_min
+
 #  p4 <- proc.time()
 
   if (ifplot) {
