@@ -1,0 +1,15 @@
+citHeader("To cite wire in publications use:")
+
+bibentry(
+  key      = "wire",
+  bibtype  = "Manual",
+  title    = "Tools for Analyzing Similarity Between Wires",
+  author   = c(
+    person("Yuhang", "Lin", , "yhlin@iastate.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-3600-9889")),
+    person("Heike", "Hofmann", , "hofmann@iastate.edu", role = "aut",
+           comment = c(ORCID = "0000-0001-6216-5183"))
+  ),
+  year     = "2023",
+  url      = "https://github.com/YuhangTom/wire"
+)
