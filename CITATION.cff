@@ -1,0 +1,443 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.5.0
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "wire" in publications use:'
+type: software
+license: MIT
+title: 'wire: Tools for Analyzing Similarity Between Wires'
+version: 0.0.0.9000
+abstract: This `wire` package allows everyone to conduct reproducible automatic analysis
+  to compare different wire scans. A conclusion for similarity or dissimilarity can
+  be easily drawn.
+authors:
+- family-names: Lin
+  given-names: Yuhang
+  email: yhlin@iastate.edu
+  orcid: https://orcid.org/0000-0002-3600-9889
+- family-names: Hofmann
+  given-names: Heike
+  email: hofmann@iastate.edu
+  orcid: https://orcid.org/0000-0001-6216-5183
+preferred-citation:
+  type: manual
+  title: Tools for Analyzing Similarity Between Wires
+  authors:
+  - family-names: Lin
+    given-names: Yuhang
+    email: yhlin@iastate.edu
+    orcid: https://orcid.org/0000-0002-3600-9889
+  - family-names: Hofmann
+    given-names: Heike
+    email: hofmann@iastate.edu
+    orcid: https://orcid.org/0000-0001-6216-5183
+  year: '2023'
+  url: https://github.com/YuhangTom/wire
+repository-code: https://github.com/YuhangTom/wire
+url: https://yuhangtom.github.io/wire/
+contact:
+- family-names: Lin
+  given-names: Yuhang
+  email: yhlin@iastate.edu
+  orcid: https://orcid.org/0000-0002-3600-9889
+references:
+- type: software
+  title: sf
+  abstract: 'sf: Simple Features for R'
+  notes: Suggests
+  url: https://r-spatial.github.io/sf/
+  repository: https://CRAN.R-project.org/package=sf
+  authors:
+  - family-names: Pebesma
+    given-names: Edzer
+    email: edzer.pebesma@uni-muenster.de
+    orcid: https://orcid.org/0000-0001-8049-7069
+  year: '2023'
+- type: software
+  title: spelling
+  abstract: 'spelling: Tools for Spell Checking in R'
+  notes: Suggests
+  url: https://docs.ropensci.org/spelling/
+  repository: https://CRAN.R-project.org/package=spelling
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  - family-names: Hester
+    given-names: Jim
+    email: james.hester@rstudio.com
+  year: '2023'
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2023'
+  version: '>= 3.0.0'
+- type: software
+  title: withr
+  abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
+  notes: Suggests
+  url: https://withr.r-lib.org
+  repository: https://CRAN.R-project.org/package=withr
+  authors:
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Müller
+    given-names: Kirill
+    email: krlmlr+r@mailbox.org
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevinushey@gmail.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+  year: '2023'
+- type: software
+  title: raster
+  abstract: 'raster: Geographic Data Analysis and Modeling'
+  notes: Imports
+  url: https://rspatial.org/raster
+  repository: https://CRAN.R-project.org/package=raster
+  authors:
+  - family-names: Hijmans
+    given-names: Robert J.
+    email: r.hijmans@gmail.com
+    orcid: https://orcid.org/0000-0001-5872-2872
+  year: '2023'
+- type: software
+  title: dplyr
+  abstract: 'dplyr: A Grammar of Data Manipulation'
+  notes: Imports
+  url: https://dplyr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=dplyr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: François
+    given-names: Romain
+    orcid: https://orcid.org/0000-0002-2444-4226
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Müller
+    given-names: Kirill
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+    orcid: https://orcid.org/0000-0003-4777-038X
+  year: '2023'
+- type: software
+  title: stats
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
+- type: software
+  title: tidyr
+  abstract: 'tidyr: Tidy Messy Data'
+  notes: Imports
+  url: https://tidyr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=tidyr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+  - family-names: Girlich
+    given-names: Maximilian
+  year: '2023'
+- type: software
+  title: purrr
+  abstract: 'purrr: Functional Programming Tools'
+  notes: Imports
+  url: https://purrr.tidyverse.org/
+  repository: https://CRAN.R-project.org/package=purrr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  year: '2023'
+- type: software
+  title: magick
+  abstract: 'magick: Advanced Graphics and Image-Processing in R'
+  notes: Imports
+  url: https://docs.ropensci.org/magick/
+  repository: https://CRAN.R-project.org/package=magick
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2023'
+- type: software
+  title: stringr
+  abstract: 'stringr: Simple, Consistent Wrappers for Common String Operations'
+  notes: Imports
+  url: https://stringr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=stringr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2023'
+- type: software
+  title: assertthat
+  abstract: 'assertthat: Easy Pre and Post Assertions'
+  notes: Imports
+  repository: https://CRAN.R-project.org/package=assertthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2023'
+- type: software
+  title: ggplot2
+  abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
+  notes: Imports
+  url: https://ggplot2.tidyverse.org
+  repository: https://CRAN.R-project.org/package=ggplot2
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Chang
+    given-names: Winston
+    orcid: https://orcid.org/0000-0002-1576-2126
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@posit.co
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Takahashi
+    given-names: Kohske
+  - family-names: Wilke
+    given-names: Claus
+    orcid: https://orcid.org/0000-0002-7470-9261
+  - family-names: Woo
+    given-names: Kara
+    orcid: https://orcid.org/0000-0002-5125-4188
+  - family-names: Yutani
+    given-names: Hiroaki
+    orcid: https://orcid.org/0000-0002-3385-7233
+  - family-names: Dunnington
+    given-names: Dewey
+    orcid: https://orcid.org/0000-0002-9415-4582
+  year: '2023'
+- type: software
+  title: imager
+  abstract: 'imager: Image Processing Library Based on ''CImg'''
+  notes: Imports
+  url: https://asgr.github.io/imager/
+  repository: https://CRAN.R-project.org/package=imager
+  authors:
+  - family-names: Barthelme
+    given-names: Simon
+    email: simon.barthelme@gipsa-lab.fr
+  year: '2023'
+- type: software
+  title: rgl
+  abstract: 'rgl: 3D Visualization Using OpenGL'
+  notes: Imports
+  url: https://dmurdoch.github.io/rgl/
+  repository: https://CRAN.R-project.org/package=rgl
+  authors:
+  - family-names: Murdoch
+    given-names: Duncan
+    email: murdoch.duncan@gmail.com
+  - family-names: Adler
+    given-names: Daniel
+    email: dadler@dyncall.org
+  year: '2023'
+- type: software
+  title: htmltools
+  abstract: 'htmltools: Tools for HTML'
+  notes: Imports
+  url: https://rstudio.github.io/htmltools/
+  repository: https://CRAN.R-project.org/package=htmltools
+  authors:
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@posit.co
+  - family-names: Sievert
+    given-names: Carson
+    email: carson@posit.co
+    orcid: https://orcid.org/0000-0002-4958-2844
+  - family-names: Schloerke
+    given-names: Barret
+    email: barret@posit.co
+    orcid: https://orcid.org/0000-0001-9986-114X
+  - family-names: Chang
+    given-names: Winston
+    email: winston@posit.co
+    orcid: https://orcid.org/0000-0002-1576-2126
+  - family-names: Xie
+    given-names: Yihui
+    email: yihui@posit.co
+  - family-names: Allen
+    given-names: Jeff
+  year: '2023'
+- type: software
+  title: magrittr
+  abstract: 'magrittr: A Forward-Pipe Operator for R'
+  notes: Imports
+  url: https://magrittr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=magrittr
+  authors:
+  - family-names: Bache
+    given-names: Stefan Milton
+    email: stefan@stefanbache.dk
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2023'
+- type: software
+  title: bulletxtrctr
+  abstract: 'bulletxtrctr: Automatic Matching of Bullet Striae'
+  notes: Imports
+  url: https://heike.github.io/bulletxtrctr/
+  authors:
+  - family-names: Hofmann
+    given-names: Heike
+    email: hofmann@iastate.edu
+    orcid: https://orcid.org/0000-0001-6216-5183
+  - family-names: Vanderplas
+    given-names: Susan
+    email: susan.vanderplas@unl.edu
+    orcid: https://orcid.org/0000-0001-6216-5183
+  - family-names: Ju
+    given-names: Will
+    email: wju@iastate.edu
+  - family-names: Krishnan
+    given-names: Ganesh
+    email: ganeshk@iastate.edu
+  year: '2023'
+  version: '>= 0.2.0.9000'
+- type: software
+  title: x3ptools
+  abstract: 'x3ptools: Tools for Working with 3D Surface Measurements'
+  notes: Imports
+  url: https://heike.github.io/x3ptools/
+  repository: https://CRAN.R-project.org/package=x3ptools
+  authors:
+  - family-names: Hofmann
+    given-names: Heike
+    email: hofmann@iastate.edu
+    orcid: https://orcid.org/0000-0001-6216-5183
+  - family-names: Vanderplas
+    given-names: Susan
+    email: srvander@iastate.edu
+    orcid: https://orcid.org/0000-0002-3803-0972
+  - family-names: Krishnan
+    given-names: Ganesh
+    email: ganeshk@iastate.edu
+  - family-names: Hare
+    given-names: Eric
+    email: eric@oaiti.org
+    orcid: https://orcid.org/0000-0002-4277-3146
+  year: '2023'
+  version: '>= 0.0.3.9000'
+- type: software
+  title: concaveman
+  abstract: 'concaveman: A Very Fast 2D Concave Hull Algorithm'
+  notes: Imports
+  url: https://joelgombin.github.io/concaveman/
+  repository: https://CRAN.R-project.org/package=concaveman
+  authors:
+  - family-names: Gombin
+    given-names: Joël
+    email: joel.gombin@gmail.com
+  - family-names: Vaidyanathan
+    given-names: Ramnath
+  - family-names: Agafonkin
+    given-names: Vladimir
+  year: '2023'
+- type: software
+  title: Cairo
+  abstract: 'Cairo: R Graphics Device using Cairo Graphics Library for Creating High-Quality
+    Bitmap (PNG, JPEG, TIFF), Vector (PDF, SVG, PostScript) and Display (X11 and Win32)
+    Output'
+  notes: Imports
+  url: http://www.rforge.net/Cairo/
+  repository: https://CRAN.R-project.org/package=Cairo
+  authors:
+  - family-names: Urbanek
+    given-names: Simon
+    email: Simon.Urbanek@r-project.org
+  - family-names: Horner
+    given-names: Jeffrey
+    email: jeff.horner@vanderbilt.edu
+  year: '2023'
+- type: software
+  title: png
+  abstract: 'png: Read and write PNG images'
+  notes: Imports
+  url: http://www.rforge.net/png/
+  repository: https://CRAN.R-project.org/package=png
+  authors:
+  - family-names: Urbanek
+    given-names: Simon
+    email: Simon.Urbanek@r-project.org
+  year: '2023'
+- type: software
+  title: grDevices
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
+- type: software
+  title: graphics
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
+  version: '>= 2.10'

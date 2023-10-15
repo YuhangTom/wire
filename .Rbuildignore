@@ -10,3 +10,4 @@
 ^codecov\.yml$
 
 ^speed-evaluation.csv$
+^CITATION\.cff$
