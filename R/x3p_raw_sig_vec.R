@@ -35,6 +35,7 @@ x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
   x <-
     value <-
     sig <-
+    y <-
     NULL
 
   x3p_df <- x3p %>%
