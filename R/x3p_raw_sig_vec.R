@@ -41,7 +41,6 @@ x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
     x3p_to_df()
 
   raw_sig <- x3p_df %>%
-    na.omit() %>%
     group_by(x) %>%
     summarise(sig = ifelse(method == "median", median(value, na.rm = TRUE),
       mean(value, na.rm = TRUE)
