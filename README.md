@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--10--17-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--10--18-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![Codecov test
 coverage](https://codecov.io/gh/YuhangTom/wire/branch/main/graph/badge.svg)](https://app.codecov.io/gh/YuhangTom/wire?branch=main)
 [![R-CMD-check](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml)
@@ -140,6 +140,7 @@ respectively:
 
 ``` r
 raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
+#> Warning: Removed 7215 rows containing missing values (`geom_line()`).
 ```
 
 <img src="man/figures/README-signal-1.png" width="100%" />
@@ -167,15 +168,16 @@ shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 <img src="man/figures/README-signal-6.png" width="100%" />
 
     #> Warning: Removed 7447 rows containing missing values (`geom_line()`).
+    #> Warning: Removed 3 rows containing missing values (`geom_line()`).
 
 <img src="man/figures/README-signal-7.png" width="100%" />
 
 ``` r
 shift_sig %>%
   str()
-#> tibble [197 × 2] (S3: tbl_df/tbl/data.frame)
-#>  $ x  : num [1:197] 0 6.45 12.9 19.35 25.8 ...
-#>  $ sig: num [1:197] 0.8362 0.8927 0.0303 -0.1065 -0.287 ...
+#> tibble [200 × 2] (S3: tbl_df/tbl/data.frame)
+#>  $ x  : num [1:200] 0 6.45 12.9 19.35 25.8 ...
+#>  $ sig: num [1:200] 1.4423 0.66 -0.0458 -0.1864 -0.3596 ...
 ```
 
 ## Signal alignment
@@ -191,9 +193,9 @@ vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
 <img src="man/figures/README-align-1.png" width="100%" />
 
     #> List of 3
-    #>  $ ccf  : num 0.987
+    #>  $ ccf  : num 0.99
     #>  $ lag  : num -3
     #>  $ lands:'data.frame':   200 obs. of  3 variables:
     #>   ..$ x   : int [1:200] 1 2 3 4 5 6 7 8 9 10 ...
     #>   ..$ sig1: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...
-    #>   ..$ sig2: num [1:200] NA NA NA 0.836 0.893 ...
+    #>   ..$ sig2: num [1:200] NA NA NA 1.44 0.66 ...
