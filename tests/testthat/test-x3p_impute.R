@@ -68,10 +68,10 @@ test_that("output return works", {
     x3p_inner_impute, "list"
   )
   expect_length(
-    x3p_inner_impute, 4
+    x3p_inner_impute, 3
   )
   expect_named(
-    x3p_inner_impute, c("surface.matrix", "header.info", "matrix.info", "mask")
+    x3p_inner_impute, c("surface.matrix", "header.info", "matrix.info")
   )
   expect_equal(
     x3p_inner_nomiss_res$header.info, x3p_inner_impute$header.info

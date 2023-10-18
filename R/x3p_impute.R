@@ -257,7 +257,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
   x3p_inner_focal_impute <- x3p_add_mask(x3p_inner_focal_impute, x3p$mask)
 
   x3p_inner_impute <- x3p_inner_focal_impute %>%
-    x3p_extract(mask_vals = mask_col)
+    x3p_extract(mask_vals = mask_col) %>%
+    x3p_delete_mask()
 
   return(x3p_inner_impute)
 }
