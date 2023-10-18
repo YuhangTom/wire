@@ -24,7 +24,7 @@
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
 #'
-#' x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10, ifplot = TRUE) %>%
+#' x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE) %>%
 #'   str()
 #'
 x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10,
