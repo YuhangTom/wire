@@ -47,9 +47,12 @@ x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
     ))
 
   if (ifplot) {
-    (raw_sig %>%
-      ggplot(aes(x = x, y = sig)) +
-      geom_line()) %>%
+    p_all <- x3p_df %>%
+      ggplot(aes(x = x, y = value)) +
+      geom_line(aes(group = y), alpha = 0.1)
+
+    (p_all +
+      geom_line(aes(x = x, y = sig), data = raw_sig, color = "red")) %>%
       print()
   }
 
