@@ -70,17 +70,24 @@ x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
 
   ### Rotation angle theta
   ### Average red and blue angle
-  angle <- mean(c(angle_red, angle_blue))
-  angle <- ifelse(angle > 90, -(180 - angle), angle)
+  angles <- c(angle_red, angle_blue)
+  angles <- ifelse(angles > 90, -(180 - angles), angles)
+  angle <- mean(angles)
+  if (sd(angles) > 10) {
+    warning("more than 10 degrees of variation in angles. cause for concern???")
+  }
+  if (abs(diff(range(angles))) >= 90) {
+    warning("more than 90 degrees of range in angles. cause for concern???")
+  }
 
-  angle_red <- mean(angle_red)
-  angle_red <- ifelse(angle_red > 90, -(180 - angle_red), angle_red)
+  # angle_red <- mean(angle_red)
+  # angle_red <- ifelse(angle_red > 90, -(180 - angle_red), angle_red)
 
-  angle_blue <- mean(angle_blue)
-  angle_blue <- ifelse(angle_blue > 90, -(180 - angle_blue), angle_blue)
+  # angle_blue <- mean(angle_blue)
+  # angle_blue <- ifelse(angle_blue > 90, -(180 - angle_blue), angle_blue)
 
-#  x3p_bin_red_rotate <- x3p_rotate(x3p_bin_red, angle = angle_red)
-#  x3p_bin_blue_rotate <- x3p_rotate(x3p_bin_blue, angle = angle_blue)
+  #  x3p_bin_red_rotate <- x3p_rotate(x3p_bin_red, angle = angle_red)
+  #  x3p_bin_blue_rotate <- x3p_rotate(x3p_bin_blue, angle = angle_blue)
   x3p_bin_rotate <- x3p_rotate(x3p_bin, angle = angle)
 
   return(x3p_bin_rotate)
