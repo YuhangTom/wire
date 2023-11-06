@@ -42,7 +42,7 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
     x_shift_delta <-
     Dat <-
     value_approx <-
-    mask <-
+    . <-
     NULL
 
   x3p_df <- x3p %>%
@@ -137,6 +137,12 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
       print()
   }
 
+  scale_range <- (x3p_shift_delta_df %>%
+    na.omit() %>%
+    .$x_shift_delta %>%
+    range()) %/% (scale)
+  approx_range <- seq(from = scale_range[1] * scale, to = (scale_range[2] + 1) * scale, by = scale)
+
   x3p_approx_df <- x3p_shift_delta_df %>%
     group_by(y) %>%
     nest(.key = "Dat") %>%
@@ -146,12 +152,14 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
         dat$value_approx <- NA
       } # can't do anything
       else {
-        dat$value_approx <- approx(x = dat$x_shift_delta, y = dat$value, xout = dat$x)$y
+        dat <- approx(x = dat$x_shift_delta, y = dat$value, xout = approx_range) %>%
+          as.data.frame() %>%
+          rename(x = x, value_approx = y)
       }
       dat
     })) %>%
     unnest(Dat) %>%
-    select(x, y, value, value_approx, mask)
+    select(x, y, value_approx)
 
   if (ifplot) {
     (x3p_approx_df %>%
@@ -162,7 +170,6 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
 
   x3p_approx <- x3p_approx_df %>%
     df_to_x3p(var = "value_approx") %>%
-    x3p_delete_mask() %>%
     x3p_bin_stripes(
       direction = "vertical",
       colors = c("#b12819", "#ffffff", "#134D6B"),
