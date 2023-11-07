@@ -76,12 +76,16 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
         set_names(delta)
 
       ### Fit parabola
-      para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
-        coef()
+      if (near(sum(is.na(MSE)), length(MSE))) {
+        NA
+      } else {
+        para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
+          coef()
 
-      ### Get delta with minimum mean squared error
-      (-para_coef[2] / (2 * para_coef[3])) %>%
-        unname()
+        ### Get delta with minimum mean squared error
+        (-para_coef[2] / (2 * para_coef[3])) %>%
+          unname()
+      }
     })
 
   if (ifplot) {
