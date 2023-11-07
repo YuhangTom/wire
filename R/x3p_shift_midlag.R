@@ -49,45 +49,52 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5) {
     x3p_to_df()
 
   scale <- x3p_get_scale(x3p)
+  ### reverse column id for surface matrix with more than 1 observed value
   yidx <- rev(which(colSums(!is.na(x3p$surface.matrix)) >= 2))
+  ### all possible y
   y_sort <- x3p_df$y %>%
     unique() %>%
     sort()
   y_sort <- y_sort[rev(yidx)]
 
-  yidx_mid <- median(yidx) %>%
-    floor()
+  ### middle column id for surface matrix with more than 1 observed value
+  yidx_mid <- yidx[floor(length(yidx) / 2)]
+  y_sort_mid <- y_sort[floor(length(yidx) / 2)]
 
   delta_min <- (1:length(yidx)) %>%
     map_dbl(function(j) {
-      ### f1 values
-      f1 <- x3p$surface.matrix[, yidx_mid]
-      f2 <- x3p$surface.matrix[, yidx[j]]
-
-      ### Mean squared error for all delta
-      MSE <- map_dbl(delta, function(delta_i) {
-        if (delta_i == 0) {
-          mean((f1 - f2)^2, na.rm = TRUE)
-        } else {
-          if (delta_i > 0) {
-            mean((f1[-(1:delta_i)] - f2[1:(length(f2) - delta_i)])^2, na.rm = TRUE)
-          } else {
-            mean((f1[1:(length(f1) - abs(delta_i))] - f2[-(1:abs(delta_i))])^2, na.rm = TRUE)
-          }
-        }
-      }) %>%
-        set_names(delta)
-
-      ### Fit parabola
-      if (near(sum(is.na(MSE)), length(MSE))) {
-        NA
+      if (near(j, floor(length(yidx) / 2))) {
+        0
       } else {
-        para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
-          coef()
+        ### f1 values
+        f1 <- x3p$surface.matrix[, yidx_mid]
+        f2 <- x3p$surface.matrix[, yidx[j]]
 
-        ### Get delta with minimum mean squared error
-        (-para_coef[2] / (2 * para_coef[3])) %>%
-          unname()
+        ### Mean squared error for all delta
+        MSE <- map_dbl(delta, function(delta_i) {
+          if (delta_i == 0) {
+            mean((f1 - f2)^2, na.rm = TRUE)
+          } else {
+            if (delta_i > 0) {
+              mean((f1[-(1:delta_i)] - f2[1:(length(f2) - delta_i)])^2, na.rm = TRUE)
+            } else {
+              mean((f1[1:(length(f1) - abs(delta_i))] - f2[-(1:abs(delta_i))])^2, na.rm = TRUE)
+            }
+          }
+        }) %>%
+          set_names(delta)
+
+        ### Fit parabola
+        if (near(sum(is.na(MSE)), length(MSE))) {
+          NA
+        } else {
+          para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
+            coef()
+
+          ### Get delta with minimum mean squared error
+          (-para_coef[2] / (2 * para_coef[3])) %>%
+            unname()
+        }
       }
     })
 
@@ -101,8 +108,19 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5) {
     print(p_delta)
   }
 
-  delta_min_IQR <- delta_min %>%
-    quantile(c(0.25, 0.75), na.rm = TRUE)
+  ### Tuning parameter
+  delta_min_quantile <- delta_min %>%
+    quantile(c(0.1, 0.9), na.rm = TRUE)
+
+  if (delta_min_quantile[1] > 0) {
+    warning(paste0("0 is smaller than Q1 = ", round(delta_min_quantile[1], 4), " in shifting values. The lower bound is set to 0."))
+    delta_min_quantile[1] <- 0
+  } else {
+    if (delta_min_quantile[2] < 0) {
+      warning(paste0("0 is larger than Q3 = ", round(delta_min_quantile[2], 4), " in shifting values. The upper bound is set to 0"))
+      delta_min_quantile[2] <- 0
+    }
+  }
 
   ### Combine with y values
   x_shift_delta_value_df <- data.frame(
@@ -112,9 +130,8 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5) {
     ### Shift x by increment in x
     x_shift_delta_value = delta_min * x3p$header.info$incrementX
   ) %>%
-    filter(between(delta_min, delta_min_IQR[1], delta_min_IQR[2]))
+    filter(between(delta_min, delta_min_quantile[1], delta_min_quantile[2]))
 
-  y_sort_mid <- y_sort[yidx_mid]
   length_bigger <- which(y_sort_mid <= x_shift_delta_value_df$y) %>%
     length()
   length_smaller <- which(y_sort_mid > x_shift_delta_value_df$y) %>%
