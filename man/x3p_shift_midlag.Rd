@@ -4,7 +4,12 @@
 \alias{x3p_shift_midlag}
 \title{Shift striations by minimizing MSE}
 \usage{
-x3p_shift_midlag(x3p, ifplot = FALSE, delta = -5:5)
+x3p_shift_midlag(
+  x3p,
+  ifplot = FALSE,
+  delta = -5:5,
+  delta_q_range = c(0.25, 0.75)
+)
 }
 \arguments{
 \item{x3p}{\code{x3p} object}
@@ -12,6 +17,8 @@ x3p_shift_midlag(x3p, ifplot = FALSE, delta = -5:5)
 \item{ifplot}{whether graphs are displayed}
 
 \item{delta}{shifting range when minimizing MSE}
+
+\item{delta_q_range}{lower and upper bound for quantile taken}
 }
 \value{
 \code{x3p} object after transformation

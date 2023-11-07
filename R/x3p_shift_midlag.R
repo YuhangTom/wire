@@ -4,6 +4,7 @@
 #' @param x3p `x3p` object
 #' @param ifplot whether graphs are displayed
 #' @param delta shifting range when minimizing MSE
+#' @param delta_q_range lower and upper bound for quantile taken
 #' @return `x3p` object after transformation
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
@@ -27,7 +28,8 @@
 #'   x3p_shift_midlag(x3p_bin_rotate, ifplot = TRUE)
 #' }
 #'
-x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5) {
+x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
+                             delta_q_range = c(0.25, 0.75)) {
   assert_that(
     "x3p" %in% class(x3p),
     is.flag(ifplot),
@@ -110,7 +112,7 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5) {
 
   ### Tuning parameter
   delta_min_quantile <- delta_min %>%
-    quantile(c(0.1, 0.9), na.rm = TRUE)
+    quantile(delta_q_range, na.rm = TRUE)
 
   if (delta_min_quantile[1] > 0) {
     warning(paste0("0 is smaller than Q1 = ", round(delta_min_quantile[1], 4), " in shifting values. The lower bound is set to 0."))
