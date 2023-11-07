@@ -79,12 +79,16 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5) {
         set_names(delta)
 
       ### Fit parabola
-      para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
-        coef()
+      if (near(sum(is.na(MSE)), length(MSE))) {
+        NA
+      } else {
+        para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
+          coef()
 
-      ### Get delta with minimum mean squared error
-      (-para_coef[2] / (2 * para_coef[3])) %>%
-        unname()
+        ### Get delta with minimum mean squared error
+        (-para_coef[2] / (2 * para_coef[3])) %>%
+          unname()
+      }
     })
 
   if (ifplot) {
@@ -98,7 +102,7 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5) {
   }
 
   delta_min_IQR <- delta_min %>%
-    quantile(c(0.25, 0.75))
+    quantile(c(0.25, 0.75), na.rm = TRUE)
 
   ### Combine with y values
   x_shift_delta_value_df <- data.frame(
