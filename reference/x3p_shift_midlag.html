@@ -48,7 +48,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">x3p_shift_midlag</span><span class="op">(</span><span class="va">x3p</span>, ifplot <span class="op">=</span> <span class="cn">FALSE</span>, delta <span class="op">=</span> <span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">x3p_shift_midlag</span><span class="op">(</span></span>
+<span>  <span class="va">x3p</span>,</span>
+<span>  ifplot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  delta <span class="op">=</span> <span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="fl">5</span>,</span>
+<span>  delta_q_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.75</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -63,6 +68,10 @@
 
 <dt>delta</dt>
 <dd><p>shifting range when minimizing MSE</p></dd>
+
+
+<dt>delta_q_range</dt>
+<dd><p>lower and upper bound for quantile taken</p></dd>
 
 </dl></div>
     <div class="section level2">
