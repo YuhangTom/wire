@@ -42,7 +42,6 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
     x_shift_delta <-
     Dat <-
     value_approx <-
-    . <-
     NULL
 
   x3p_df <- x3p %>%
@@ -141,12 +140,22 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
       print()
   }
 
-  scale_range <- (x3p_shift_delta_df %>%
-    na.omit() %>%
-    .$x_shift_delta %>%
-    range()) %/% (scale)
-  approx_range <- seq(from = scale_range[1] * scale, to = (scale_range[2] + 1) * scale, by = scale)
+  # shift scan horizontally to let it start in 0
+  x3p_shift_delta_df <- x3p_shift_delta_df %>%
+    filter(!is.na(value)) %>%
+    mutate(
+      x_shift_delta = x_shift_delta - min(x_shift_delta)
+    )
 
+  # switch from scale resolution to (approximate) integer resolution
+  x3p_shift_delta_df <- x3p_shift_delta_df %>%
+    mutate(
+      x_shift_delta = x_shift_delta / scale
+    )
+
+  approx_range <- seq(0, ceiling(max(x3p_shift_delta_df$x_shift_delta)))
+
+  # approximate on integer resolution
   x3p_approx_df <- x3p_shift_delta_df %>%
     group_by(y) %>%
     nest(.key = "Dat") %>%
@@ -164,6 +173,12 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
     })) %>%
     unnest(Dat) %>%
     select(x, y, value_approx)
+
+  # scale back to resolution <scale>
+  x3p_approx_df <- x3p_approx_df %>%
+    mutate(
+      x = x * scale
+    )
 
   if (ifplot) {
     (x3p_approx_df %>%
