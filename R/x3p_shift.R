@@ -196,7 +196,8 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
     )
 
   if (ifplot) {
-    x3p_image_autosize(x3p, ifhtml = TRUE)
+    x3p %>%
+      x3p_image_autosize(ifhtml = TRUE)
 
     x3p_approx %>%
       x3p_image_autosize(ifhtml = TRUE)
