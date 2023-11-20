@@ -8,7 +8,7 @@ x3p_shift_midlag(
   x3p,
   ifplot = FALSE,
   delta = -5:5,
-  delta_q_range = c(0.25, 0.75)
+  delta_q_range = c(0.1, 0.9)
 )
 }
 \arguments{
