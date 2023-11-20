@@ -169,7 +169,7 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
   x3p_shift_delta_df <- x3p_shift_delta_df %>%
     filter(!is.na(value)) %>%
     mutate(
-      x_shift_delta = x_shift_delta - min(x_shift_delta)
+      x_shift_delta = x_shift_delta - min(x_shift_delta, na.rm = TRUE)
     )
 
   # switch from scale resolution to (approximate) integer resolution
@@ -178,7 +178,7 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
       x_shift_delta = x_shift_delta / scale
     )
 
-  approx_range <- seq(0, ceiling(max(x3p_shift_delta_df$x_shift_delta)))
+  approx_range <- seq(0, ceiling(max(x3p_shift_delta_df$x_shift_delta, na.rm = TRUE)))
 
   # approximate on integer resolution
   x3p_approx_df <- x3p_shift_delta_df %>%
@@ -186,7 +186,7 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
     nest(.key = "Dat") %>%
     mutate(Dat = Dat %>% map(.f = function(dat) {
       #  browser()
-      if (sum(!is.na(dat$value)) < 2) {
+      if ((sum(!is.na(dat$x_shift_delta)) < 2) || (sum(!is.na(dat$value)) < 2)) {
         dat$value_approx <- NA
       } # can't do anything
       else {
