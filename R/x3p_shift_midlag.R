@@ -73,6 +73,11 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
 
         ### Mean squared error for all delta
         MSE <- map_dbl(delta, function(delta_i) {
+          ### Too few non-missing values, cannot do anything
+          if (sum(!is.na(f2)) < 30) {
+            return(NA)
+          }
+
           if (delta_i == 0) {
             mean((f1 - f2)^2, na.rm = TRUE)
           } else {
