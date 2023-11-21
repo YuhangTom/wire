@@ -4,12 +4,7 @@
 \alias{x3p_shift_midlag}
 \title{Shift striations by minimizing MSE}
 \usage{
-x3p_shift_midlag(
-  x3p,
-  ifplot = FALSE,
-  delta = -5:5,
-  delta_q_range = c(0.1, 0.9)
-)
+x3p_shift_midlag(x3p, ifplot = FALSE, delta = -5:5, delta_q_range = c(0, 1))
 }
 \arguments{
 \item{x3p}{\code{x3p} object}

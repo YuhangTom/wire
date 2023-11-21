@@ -29,7 +29,7 @@
 #' }
 #'
 x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
-                             delta_q_range = c(0.1, 0.9)) {
+                             delta_q_range = c(0, 1)) {
   assert_that(
     "x3p" %in% class(x3p),
     is.flag(ifplot),
