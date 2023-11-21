@@ -29,7 +29,7 @@
 #' }
 #'
 x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
-                             delta_q_range = c(0, 1)) {
+                      delta_q_range = c(0, 1)) {
   assert_that(
     "x3p" %in% class(x3p),
     is.flag(ifplot),
@@ -91,8 +91,10 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
           set_names(delta)
 
         ### Fit parabola
-        if (near(sum(is.na(MSE)), length(MSE))) {
-          NA
+        if (length(MSE) - sum(is.na(MSE)) < 3) {
+          warning("No enough non-NA MSE values to fit parabola.")
+
+          return(NA)
         } else {
           para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
             coef()
@@ -128,9 +130,8 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
             # out <- pmin(out, max(delta))
             # out <- pmax(out, min(delta))
           }
-
-          out
         }
+        out
       }
     })
 
