@@ -202,10 +202,9 @@ shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 
 #> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
 #> delta range. Use 0 shifting.
-#> Warning: Removed 8 rows containing missing values (`geom_line()`).
 ```
 
-<img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" /><img src="man/figures/README-signal-4.png" width="100%" />
+<img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" />
 
     #> Warning in snapshot3d(scene = x, width = width, height = height): webshot =
     #> TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()
@@ -214,12 +213,12 @@ shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
     #> TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()
     #> instead
 
-<img src="man/figures/README-signal-5.png" width="100%" />
+<img src="man/figures/README-signal-4.png" width="100%" />
 
     #> Warning: Removed 6081 rows containing missing values (`geom_line()`).
     #> Warning: Removed 1 row containing missing values (`geom_line()`).
 
-<img src="man/figures/README-signal-6.png" width="100%" />
+<img src="man/figures/README-signal-5.png" width="100%" />
 
 ``` r
 shift_sig %>%

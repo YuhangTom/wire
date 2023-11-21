@@ -134,16 +134,6 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
       }
     })
 
-  if (ifplot) {
-    p_delta <- data.frame(
-      y_sort = y_sort,
-      delta_min = delta_min
-    ) %>%
-      ggplot(aes(x = y_sort, y = delta_min)) +
-      geom_line()
-    print(p_delta)
-  }
-
   ### Tuning parameter
   delta_min_quantile <- delta_min %>%
     quantile(delta_q_range, na.rm = TRUE)
