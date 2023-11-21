@@ -62,6 +62,11 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
 
       ### Mean squared error for all delta
       MSE <- map_dbl(delta, function(delta_i) {
+        ### Too few non-missing values, cannot do anything
+        if (sum(!is.na(f2)) < 30) {
+          return(NA)
+        }
+
         if (delta_i == 0) {
           mean((f1 - f2)^2, na.rm = TRUE)
         } else {
@@ -82,8 +87,38 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
           coef()
 
         ### Get delta with minimum mean squared error
-        (-para_coef[2] / (2 * para_coef[3])) %>%
+        out <- (-para_coef["delta"] / (2 * para_coef["I(delta^2)"])) %>%
           unname()
+
+        ### Consider different a values
+        if (para_coef["I(delta^2)"] < 0) {
+          if (out >= 0) {
+            out <- (-para_coef["delta"] + sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
+              unname()
+          } else {
+            out <- (-para_coef["delta"] - sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
+              unname()
+          }
+        } else {
+          if (near(para_coef["I(delta^2)"], 0)) {
+            warning("Coefficient for quadratic term is 0. Use 0 shifting.")
+
+            out <- 0
+          }
+        }
+
+        ### Minimum value of parabola is far from delta with minmimum MSE
+        ### Bad fit
+        if (!between(out, min(delta), max(delta))) {
+          warning("Minimum value of the parabola is out of preset delta range. Use 0 shifting.")
+
+          out <- 0
+
+          # out <- pmin(out, max(delta))
+          # out <- pmax(out, min(delta))
+        }
+
+        out
       }
     })
 
@@ -160,7 +195,7 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
     group_by(y) %>%
     nest(.key = "Dat") %>%
     mutate(Dat = Dat %>% map(.f = function(dat) {
-      #  browser()
+      # browser()
       if ((sum(!is.na(dat$x_shift_delta)) < 2) || (sum(!is.na(dat$value)) < 2)) {
         dat$value_approx <- NA
       } # can't do anything
