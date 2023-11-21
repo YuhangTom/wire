@@ -98,8 +98,21 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
             coef()
 
           ### Get delta with minimum mean squared error
-          (-para_coef[2] / (2 * para_coef[3])) %>%
+          out <- (-para_coef[2] / (2 * para_coef[3])) %>%
             unname()
+
+          ### Minimum value of parabola is far from delta with minmimum MSE
+          ### Bad fit
+          if (abs(delta[which.min(MSE)] - out) > max(delta) - min(delta)) {
+            warning("Minimum value of the parabola is too far away from the delta with minimum MSE. Use 0 shifting.")
+
+            out <- 0
+
+            # out <- pmin(out, max(delta))
+            # out <- pmax(out, min(delta))
+          }
+
+          out
         }
       }
     })
@@ -190,7 +203,6 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
     group_by(y) %>%
     nest(.key = "Dat") %>%
     mutate(Dat = Dat %>% map(.f = function(dat) {
-      #  browser()
       if ((sum(!is.na(dat$x_shift_delta)) < 2) || (sum(!is.na(dat$value)) < 2)) {
         dat$value_approx <- NA
       } # can't do anything
