@@ -120,8 +120,8 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
 
           ### Minimum value of parabola is far from delta with minmimum MSE
           ### Bad fit
-          if (abs(delta[which.min(MSE)] - out) > max(delta) - min(delta)) {
-            warning("Minimum value of the parabola is too far away from the delta with minimum MSE. Use 0 shifting.")
+          if (!between(out, min(delta), max(delta))) {
+            warning("Minimum value of the parabola is out of preset delta range. Use 0 shifting.")
 
             out <- 0
 
