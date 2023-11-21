@@ -98,8 +98,25 @@ x3p_shift_midlag <- function(x3p, ifplot = FALSE, delta = -5:5,
             coef()
 
           ### Get delta with minimum mean squared error
-          out <- (-para_coef[2] / (2 * para_coef[3])) %>%
+          out <- (-para_coef["delta"] / (2 * para_coef["I(delta^2)"])) %>%
             unname()
+
+          ### Consider different a values
+          if (para_coef["I(delta^2)"] < 0) {
+            if (out >= 0) {
+              out <- (-para_coef["delta"] + sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
+                unname()
+            } else {
+              out <- (-para_coef["delta"] - sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
+                unname()
+            }
+          } else {
+            if (near(para_coef["I(delta^2)"], 0)) {
+              warning("Coefficient for quadratic term is 0. Use 0 shifting.")
+
+              out <- 0
+            }
+          }
 
           ### Minimum value of parabola is far from delta with minmimum MSE
           ### Bad fit
