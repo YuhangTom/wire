@@ -4,6 +4,7 @@
 #' @param x3p `x3p` object
 #' @param ifplot whether graphs are displayed
 #' @param delta shifting range when minimizing MSE
+#' @param delta_q_range lower and upper bound for quantile taken
 #' @return `x3p` object after transformation
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
@@ -24,10 +25,11 @@
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 #'
 #' if (interactive()) {
-#'   x3p_shift(x3p_bin_rotate, ifplot = TRUE)
+#'   x3p_shift_midlag(x3p_bin_rotate, ifplot = TRUE)
 #' }
 #'
-x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
+x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
+                             delta_q_range = c(0, 1)) {
   assert_that(
     "x3p" %in% class(x3p),
     is.flag(ifplot),
@@ -48,114 +50,137 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
     x3p_to_df()
 
   scale <- x3p_get_scale(x3p)
+  ### reverse column id for surface matrix with more than 1 observed value
   yidx <- rev(which(colSums(!is.na(x3p$surface.matrix)) >= 2))
+  ### all possible y
   y_sort <- x3p_df$y %>%
     unique() %>%
     sort()
   y_sort <- y_sort[rev(yidx)]
 
-  delta_min <- (1:(length(yidx) - 1)) %>%
+  ### middle column id for surface matrix with more than 1 observed value
+  yidx_mid <- yidx[floor(length(yidx) / 2)]
+  y_sort_mid <- y_sort[floor(length(yidx) / 2)]
+
+  delta_min <- (1:length(yidx)) %>%
     map_dbl(function(j) {
-      ### f1 values
-      f1 <- x3p$surface.matrix[, yidx[j]]
-      f2 <- x3p$surface.matrix[, yidx[j + 1]]
-
-      ### Mean squared error for all delta
-      MSE <- map_dbl(delta, function(delta_i) {
-        ### Too few non-missing values, cannot do anything
-        if (sum(!is.na(f2)) < 30) {
-          return(NA)
-        }
-
-        if (delta_i == 0) {
-          mean((f1 - f2)^2, na.rm = TRUE)
-        } else {
-          if (delta_i > 0) {
-            mean((f1[-(1:delta_i)] - f2[1:(length(f2) - delta_i)])^2, na.rm = TRUE)
-          } else {
-            mean((f1[1:(length(f1) - abs(delta_i))] - f2[-(1:abs(delta_i))])^2, na.rm = TRUE)
-          }
-        }
-      }) %>%
-        set_names(delta)
-
-      ### Fit parabola
-      if (near(sum(is.na(MSE)), length(MSE))) {
-        NA
+      if (near(j, floor(length(yidx) / 2))) {
+        0
       } else {
-        para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
-          coef()
+        ### f1 values
+        f1 <- x3p$surface.matrix[, yidx_mid]
+        f2 <- x3p$surface.matrix[, yidx[j]]
 
-        ### Get delta with minimum mean squared error
-        out <- (-para_coef["delta"] / (2 * para_coef["I(delta^2)"])) %>%
-          unname()
-
-        ### Consider different a values
-        if (para_coef["I(delta^2)"] < 0) {
-          if (out >= 0) {
-            out <- (-para_coef["delta"] + sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
-              unname()
-          } else {
-            out <- (-para_coef["delta"] - sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
-              unname()
+        ### Mean squared error for all delta
+        MSE <- map_dbl(delta, function(delta_i) {
+          ### Too few non-missing values, cannot do anything
+          if (sum(!is.na(f2)) < 30) {
+            return(NA)
           }
+
+          if (delta_i == 0) {
+            mean((f1 - f2)^2, na.rm = TRUE)
+          } else {
+            if (delta_i > 0) {
+              mean((f1[-(1:delta_i)] - f2[1:(length(f2) - delta_i)])^2, na.rm = TRUE)
+            } else {
+              mean((f1[1:(length(f1) - abs(delta_i))] - f2[-(1:abs(delta_i))])^2, na.rm = TRUE)
+            }
+          }
+        }) %>%
+          set_names(delta)
+
+        ### Fit parabola
+        if (near(sum(is.na(MSE)), length(MSE))) {
+          NA
         } else {
-          if (near(para_coef["I(delta^2)"], 0)) {
-            warning("Coefficient for quadratic term is 0. Use 0 shifting.")
+          para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
+            coef()
+
+          ### Get delta with minimum mean squared error
+          out <- (-para_coef["delta"] / (2 * para_coef["I(delta^2)"])) %>%
+            unname()
+
+          ### Consider different a values
+          if (para_coef["I(delta^2)"] < 0) {
+            if (out >= 0) {
+              out <- (-para_coef["delta"] + sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
+                unname()
+            } else {
+              out <- (-para_coef["delta"] - sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
+                unname()
+            }
+          } else {
+            if (near(para_coef["I(delta^2)"], 0)) {
+              warning("Coefficient for quadratic term is 0. Use 0 shifting.")
+
+              out <- 0
+            }
+          }
+
+          ### Minimum value of parabola is far from delta with minmimum MSE
+          ### Bad fit
+          if (!between(out, min(delta), max(delta))) {
+            warning("Minimum value of the parabola is out of preset delta range. Use 0 shifting.")
 
             out <- 0
+
+            # out <- pmin(out, max(delta))
+            # out <- pmax(out, min(delta))
           }
+
+          out
         }
-
-        ### Minimum value of parabola is far from delta with minmimum MSE
-        ### Bad fit
-        if (!between(out, min(delta), max(delta))) {
-          warning("Minimum value of the parabola is out of preset delta range. Use 0 shifting.")
-
-          out <- 0
-
-          # out <- pmin(out, max(delta))
-          # out <- pmax(out, min(delta))
-        }
-
-        out
       }
     })
 
   if (ifplot) {
     p_delta <- data.frame(
       y_sort = y_sort,
-      delta_min = c(delta_min, NA)
+      delta_min = delta_min
     ) %>%
       ggplot(aes(x = y_sort, y = delta_min)) +
       geom_line()
     print(p_delta)
   }
 
-  ### Cumulative delta
-  x_cumdelta <- c(
-    ### For the largest y
-    0,
-    cumsum(ifelse(is.na(delta_min), 0, delta_min))
-  )
+  ### Tuning parameter
+  delta_min_quantile <- delta_min %>%
+    quantile(delta_q_range, na.rm = TRUE)
 
-  if (ifplot) {
-    p_cumdelta <- data.frame(
-      y_sort = y_sort,
-      x_cumdelta = x_cumdelta
-    ) %>%
-      ggplot(aes(x = y_sort, y = x_cumdelta)) +
-      geom_line()
-    print(p_cumdelta)
+  if (delta_min_quantile[1] > 0) {
+    warning(paste0("0 is smaller than Q1 = ", round(delta_min_quantile[1], 4), " in shifting values. The lower bound is set to 0."))
+    delta_min_quantile[1] <- 0
+  } else {
+    if (delta_min_quantile[2] < 0) {
+      warning(paste0("0 is larger than Q3 = ", round(delta_min_quantile[2], 4), " in shifting values. The upper bound is set to 0"))
+      delta_min_quantile[2] <- 0
+    }
   }
 
   ### Combine with y values
   x_shift_delta_value_df <- data.frame(
     ### Fix x curve with largest y
     y = y_sort,
+    delta_min = delta_min,
     ### Shift x by increment in x
-    x_shift_delta_value = x_cumdelta * x3p$header.info$incrementX
-  )
+    x_shift_delta_value = delta_min * x3p$header.info$incrementX
+  ) %>%
+    filter(between(delta_min, delta_min_quantile[1], delta_min_quantile[2]))
+
+  length_bigger <- which(y_sort_mid <= x_shift_delta_value_df$y) %>%
+    length()
+  length_smaller <- which(y_sort_mid > x_shift_delta_value_df$y) %>%
+    length()
+  x_shift_delta_value_df <- x_shift_delta_value_df %>%
+    filter(
+      near(
+        c(
+          seq(to = y_sort_mid - scale, length.out = length_smaller, by = scale),
+          seq(from = y_sort_mid, length.out = length_bigger, by = scale)
+        ), x_shift_delta_value_df$y
+      )
+    )
 
   ### Shift x values
   x3p_shift_delta_df <- inner_join(x3p_df, x_shift_delta_value_df, by = join_by(y)) %>%
@@ -195,7 +220,6 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5) {
     group_by(y) %>%
     nest(.key = "Dat") %>%
     mutate(Dat = Dat %>% map(.f = function(dat) {
-      # browser()
       if ((sum(!is.na(dat$x_shift_delta)) < 2) || (sum(!is.na(dat$value)) < 2)) {
         dat$value_approx <- NA
       } # can't do anything

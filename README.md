@@ -153,10 +153,59 @@ raw_sig %>%
 #>  $ sig: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...
 
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
 #> Warning: Removed 8 rows containing missing values (`geom_line()`).
 ```
 
-<img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" /><img src="man/figures/README-signal-4.png" width="100%" /><img src="man/figures/README-signal-5.png" width="100%" />
+<img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" /><img src="man/figures/README-signal-4.png" width="100%" />
 
     #> Warning in snapshot3d(scene = x, width = width, height = height): webshot =
     #> TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()
@@ -165,19 +214,19 @@ shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
     #> TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()
     #> instead
 
-<img src="man/figures/README-signal-6.png" width="100%" />
+<img src="man/figures/README-signal-5.png" width="100%" />
 
-    #> Warning: Removed 7512 rows containing missing values (`geom_line()`).
+    #> Warning: Removed 6081 rows containing missing values (`geom_line()`).
     #> Warning: Removed 1 row containing missing values (`geom_line()`).
 
-<img src="man/figures/README-signal-7.png" width="100%" />
+<img src="man/figures/README-signal-6.png" width="100%" />
 
 ``` r
 shift_sig %>%
   str()
 #> tibble [201 × 2] (S3: tbl_df/tbl/data.frame)
 #>  $ x  : num [1:201] 0 6.45 12.9 19.35 25.8 ...
-#>  $ sig: num [1:201] 2.38 2.38 1.82 1.68 1.12 ...
+#>  $ sig: num [1:201] 2.38 2.38 1.91 1.7 1.3 ...
 ```
 
 ## Signal alignment
@@ -187,14 +236,16 @@ Extracted signals can be aligned and cross correlation can be computed:
 ``` r
 vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
   str()
+#> Warning: Removed 1 row containing missing values (`geom_line()`).
+#> Removed 1 row containing missing values (`geom_line()`).
 ```
 
 <img src="man/figures/README-align-1.png" width="100%" />
 
     #> List of 3
-    #>  $ ccf  : num 0.981
-    #>  $ lag  : num 0
-    #>  $ lands:'data.frame':   200 obs. of  3 variables:
-    #>   ..$ x   : int [1:200] 1 2 3 4 5 6 7 8 9 10 ...
-    #>   ..$ sig1: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...
-    #>   ..$ sig2: num [1:200] 2.38 2.38 1.82 1.68 1.12 ...
+    #>  $ ccf  : num 0.982
+    #>  $ lag  : num 1
+    #>  $ lands:'data.frame':   201 obs. of  3 variables:
+    #>   ..$ x   : int [1:201] 1 2 3 4 5 6 7 8 9 10 ...
+    #>   ..$ sig1: num [1:201] NA 1.85 1.92 1.76 1.57 ...
+    #>   ..$ sig2: num [1:201] 2.38 2.38 1.91 1.7 1.3 ...
