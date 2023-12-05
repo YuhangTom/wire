@@ -25,7 +25,7 @@
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 #'
 #' if (interactive()) {
-#'   x3p_shift_midlag(x3p_bin_rotate, ifplot = TRUE)
+#'   x3p_shift(x3p_bin_rotate, ifplot = TRUE)
 #' }
 #'
 x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
