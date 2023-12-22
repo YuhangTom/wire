@@ -8,8 +8,8 @@
 list
 A list of \code{x3p} objects named with surface scan names
 \itemize{
-\item T2AW-LM-R2-B32: \code{x3p} object
-\item T2CW-LI-R2-B15: \code{x3p} object
+\item T1AW-LI-R1: \code{x3p} object
+\item T1AW-LI-R2: \code{x3p} object
 }
 }
 \usage{

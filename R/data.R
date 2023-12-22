@@ -4,6 +4,6 @@
 #'
 #' @format list
 #' A list of `x3p` objects named with surface scan names
-#' * T2AW-LM-R2-B32: `x3p` object
-#' * T2CW-LI-R2-B15: `x3p` object
+#' * T1AW-LI-R1: `x3p` object
+#' * T1AW-LI-R2: `x3p` object
 "x3p_subsamples"

@@ -2,12 +2,12 @@
 library(purrr)
 
 x3p_names <- c(
-  "T2AW-LM-R2-B32",
-  "T2CW-LI-R2-B15"
+  "T1AW-LI-R1",
+  "T1AW-LI-R2"
 )
 
 dir <- x3p_names %>%
-  paste0("./data-raw/", .) %>%
+  paste0("../Wirecuts/scans/", .) %>%
   paste0(".x3p")
 
 x3p_subsamples <- map(dir, x3ptools::x3p_read) %>%

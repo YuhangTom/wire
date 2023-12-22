@@ -44,14 +44,14 @@ object, named as `x3p_subsamples`. The data can be used by:
 library(wire)
 
 x3p_subsamples
-#> $`T2AW-LM-R2-B32`
+#> $`T1AW-LI-R1`
 #> x3p object
-#> size (width x height): 231 x 182 in pixel 
+#> size (width x height): 239 x 172 in pixel 
 #> resolution: 6.4500e+00 x 6.4500e+00 
 #> 
-#> $`T2CW-LI-R2-B15`
+#> $`T1AW-LI-R2`
 #> x3p object
-#> size (width x height): 231 x 179 in pixel 
+#> size (width x height): 238 x 171 in pixel 
 #> resolution: 6.4500e+00 x 6.4500e+00
 ```
 
@@ -70,16 +70,16 @@ insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b
 ``` r
 insidepoly_df %>%
   str()
-#> 'data.frame':    42042 obs. of  6 variables:
+#> 'data.frame':    41108 obs. of  6 variables:
 #>  $ x                  : num  0 6.45 12.9 19.35 25.8 ...
-#>  $ y                  : num  1167 1167 1167 1167 1167 ...
+#>  $ y                  : num  1103 1103 1103 1103 1103 ...
 #>  $ value              : num  NA NA NA NA NA NA NA NA NA NA ...
 #>  $ mask               : chr  "#FFFFFF" "#FFFFFF" "#FFFFFF" "#FFFFFF" ...
 #>  $ n_neighbor_val_miss: Factor w/ 11 levels "0","1","2","3",..: 11 11 11 11 11 11 11 11 11 11 ...
 #>  $ sd_not_miss        : num  NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN ...
 #>  - attr(*, "header.info")=List of 4
-#>   ..$ sizeX     : int 231
-#>   ..$ sizeY     : int 182
+#>   ..$ sizeX     : int 239
+#>   ..$ sizeY     : int 172
 #>   ..$ incrementX: num 6.45
 #>   ..$ incrementY: num 6.45
 ```
@@ -92,7 +92,7 @@ To remove overall trend on the inner surface, we can use:
 x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 x3p_inner_nomiss_res
 #> x3p object
-#> size (width x height): 231 x 182 in pixel 
+#> size (width x height): 239 x 172 in pixel 
 #> resolution: 6.4500e+00 x 6.4500e+00
 ```
 
@@ -109,7 +109,7 @@ x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALS
 ``` r
 x3p_inner_impute
 #> x3p object
-#> size (width x height): 231 x 182 in pixel 
+#> size (width x height): 239 x 172 in pixel 
 #> resolution: 6.4500e+00 x 6.4500e+00
 ```
 
@@ -126,7 +126,7 @@ x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = T
 ``` r
 x3p_bin_rotate
 #> x3p object
-#> size (width x height): 200 x 149 in pixel 
+#> size (width x height): 207 x 146 in pixel 
 #> resolution: 6.4500e+00 x 6.4500e+00
 ```
 
@@ -145,9 +145,9 @@ raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 ``` r
 raw_sig %>%
   str()
-#> tibble [200 × 2] (S3: tbl_df/tbl/data.frame)
-#>  $ x  : num [1:200] 0 6.45 12.9 19.35 25.8 ...
-#>  $ sig: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...
+#> tibble [207 × 2] (S3: tbl_df/tbl/data.frame)
+#>  $ x  : num [1:207] 0 6.45 12.9 19.35 25.8 ...
+#>  $ sig: num [1:207] -1.243 -2.182 -1.861 -1.606 0.294 ...
 
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 ```
@@ -157,9 +157,9 @@ shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 ``` r
 shift_sig %>%
   str()
-#> tibble [201 × 2] (S3: tbl_df/tbl/data.frame)
-#>  $ x  : num [1:201] 0 6.45 12.9 19.35 25.8 ...
-#>  $ sig: num [1:201] 2.38 2.38 1.91 1.7 1.3 ...
+#> tibble [207 × 2] (S3: tbl_df/tbl/data.frame)
+#>  $ x  : num [1:207] 0 6.45 12.9 19.35 25.8 ...
+#>  $ sig: num [1:207] -1.781 -2.151 -2.242 -1.182 0.508 ...
 ```
 
 ## Signal alignment
@@ -174,9 +174,9 @@ vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
 <img src="man/figures/README-align-1.png" width="100%" />
 
     #> List of 3
-    #>  $ ccf  : num 0.982
-    #>  $ lag  : num 1
-    #>  $ lands:'data.frame':   201 obs. of  3 variables:
-    #>   ..$ x   : int [1:201] 1 2 3 4 5 6 7 8 9 10 ...
-    #>   ..$ sig1: num [1:201] NA 1.85 1.92 1.76 1.57 ...
-    #>   ..$ sig2: num [1:201] 2.38 2.38 1.91 1.7 1.3 ...
+    #>  $ ccf  : num 0.993
+    #>  $ lag  : num 0
+    #>  $ lands:'data.frame':   207 obs. of  3 variables:
+    #>   ..$ x   : int [1:207] 1 2 3 4 5 6 7 8 9 10 ...
+    #>   ..$ sig1: num [1:207] -1.243 -2.182 -1.861 -1.606 0.294 ...
+    #>   ..$ sig2: num [1:207] -1.781 -2.151 -2.242 -1.182 0.508 ...
