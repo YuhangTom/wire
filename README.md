@@ -65,11 +65,7 @@ x3p <- x3p_subsamples[[1]]
 insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE)
 ```
 
-<img src="man/figures/README-insidepoly-1.png" width="100%" /><img src="man/figures/README-insidepoly-2.png" width="100%" /><img src="man/figures/README-insidepoly-3.png" width="100%" />
-
-    #> Warning: Removed 19502 rows containing non-finite values (`stat_boxplot()`).
-
-<img src="man/figures/README-insidepoly-4.png" width="100%" />
+<img src="man/figures/README-insidepoly-1.png" width="100%" /><img src="man/figures/README-insidepoly-2.png" width="100%" /><img src="man/figures/README-insidepoly-3.png" width="100%" /><img src="man/figures/README-insidepoly-4.png" width="100%" />
 
 ``` r
 insidepoly_df %>%
@@ -142,7 +138,6 @@ respectively:
 
 ``` r
 raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
-#> Warning: Removed 7215 rows containing missing values (`geom_line()`).
 ```
 
 <img src="man/figures/README-signal-1.png" width="100%" />
@@ -155,86 +150,9 @@ raw_sig %>%
 #>  $ sig: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...
 
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
-#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
-#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
-
-#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
-
-#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
-#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
-
-#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
-
-#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
-
-#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
 ```
 
-<img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" />
-
-    #> Warning in snapshot3d(scene = x, width = width, height = height): webshot =
-    #> TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()
-    #> instead
-    #> Warning in snapshot3d(scene = x, width = width, height = height): webshot =
-    #> TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()
-    #> instead
-
-<img src="man/figures/README-signal-4.png" width="100%" />
-
-    #> Warning: Removed 6081 rows containing missing values (`geom_line()`).
-    #> Warning: Removed 1 row containing missing values (`geom_line()`).
-
-<img src="man/figures/README-signal-5.png" width="100%" />
+<img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" /><img src="man/figures/README-signal-4.png" width="100%" /><img src="man/figures/README-signal-5.png" width="100%" />
 
 ``` r
 shift_sig %>%
@@ -251,8 +169,6 @@ Extracted signals can be aligned and cross correlation can be computed:
 ``` r
 vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
   str()
-#> Warning: Removed 1 row containing missing values (`geom_line()`).
-#> Removed 1 row containing missing values (`geom_line()`).
 ```
 
 <img src="man/figures/README-align-1.png" width="100%" />
