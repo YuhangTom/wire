@@ -7,7 +7,9 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--11--20-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--12--21-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
 coverage](https://codecov.io/gh/YuhangTom/wire/branch/main/graph/badge.svg)](https://app.codecov.io/gh/YuhangTom/wire?branch=main)
 [![R-CMD-check](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml)
@@ -153,8 +155,12 @@ raw_sig %>%
 #>  $ sig: num [1:200] 1.852 1.916 1.759 1.572 0.794 ...
 
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
-#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
-#> delta range. Use 0 shifting.
+#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
+#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
+
+#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
+
+#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
 #> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
 #> delta range. Use 0 shifting.
 
@@ -202,6 +208,16 @@ shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 
 #> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
 #> delta range. Use 0 shifting.
+
+#> Warning in .f(.x[[i]], ...): Minimum value of the parabola is out of preset
+#> delta range. Use 0 shifting.
+#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
+
+#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
+
+#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
+
+#> Warning in .f(.x[[i]], ...): No enough non-NA MSE values to fit parabola.
 ```
 
 <img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" />
