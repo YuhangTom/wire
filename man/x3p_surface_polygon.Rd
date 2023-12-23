@@ -2,7 +2,7 @@
 % Please edit documentation in R/x3p_surface_polygon.R
 \name{x3p_surface_polygon}
 \alias{x3p_surface_polygon}
-\title{Add a polygon of the scan shape as mask}
+\title{Add a polygon mask of the scan shape}
 \usage{
 x3p_surface_polygon(
   x3p,
@@ -13,25 +13,21 @@ x3p_surface_polygon(
 )
 }
 \arguments{
-\item{x3p}{\code{x3p} file}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{colour}{colour for the polygon}
+\item{colour}{A string specifying the colour of the polygon mask.}
 
-\item{sample}{strictly positive integer value specifying the amount of
-downsampling to be used (see \code{x3ptools::x3p_sample}) to calculate the boundary points
-of the polygon. Larger values of \code{sample} will result in faster response times
-but results in less accurate polygons.}
+\item{sample}{A positive integer indicating the downsampling rate used to calculate the boundary points of the polygon. Higher values result in faster computation but less accurate polygons.}
 
-\item{center}{point on the center of the scan. If \code{NULL}, a center will be
-derived from the boundary points}
+\item{center}{A numeric vector representing the center point of the scan. If \code{NULL}, the center point is derived from the boundary points.}
 
-\item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
+\item{concavity}{A positive number used in the \code{concaveman::concaveman} function to determine the concavity of the polygon.}
 }
 \value{
-\code{x3p} object with mask
+An \code{x3p} object with an added polygon mask.
 }
 \description{
-Add a polygon of the scan shape as mask
+This function adds a polygon mask to an \code{x3p} scan. The polygon represents the shape of the scan.
 }
 \examples{
 if (interactive()) {

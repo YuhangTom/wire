@@ -1,13 +1,15 @@
-#' Extract signal with transformed `x3p` object by minimizing MSE
+#' Extract signal from transformed `x3p` object by minimizing MSE
 #'
-#' Extract signal by computing summary statistics of values along `y` for each `x` with transformed `x3p` object by minimizing MSE.
-#' @param x3p `x3p` object
-#' @param method choice of `median` or `mean` when computing the summary statistics
-#' @param ifplot whether graphs are displayed
-#' @param delta shifting range when minimizing MSE
-#' @return data frame of 2 columns
-#' * x: x value
-#' * sig: signal extracted
+#' This function extracts the signal from a transformed `x3p` object by minimizing the Mean Squared Error (MSE).
+#' It computes summary statistics of values along the `y` axis for each `x` value.
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param method A string indicating the method for computing summary statistics. Options are `median` or `mean`.
+#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param delta A numeric vector representing the shifting range for minimizing MSE.
+#' @return A data frame with two columns:
+#' * x: The `x` values from the `x3p` object.
+#' * sig: The extracted signal.
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
 #' @importFrom ggplot2 ggplot aes geom_line geom_point

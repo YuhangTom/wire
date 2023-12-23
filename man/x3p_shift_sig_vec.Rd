@@ -2,28 +2,29 @@
 % Please edit documentation in R/x3p_shift_sig_vec.R
 \name{x3p_shift_sig_vec}
 \alias{x3p_shift_sig_vec}
-\title{Extract signal with transformed \code{x3p} object by minimizing MSE}
+\title{Extract signal from transformed \code{x3p} object by minimizing MSE}
 \usage{
 x3p_shift_sig_vec(x3p, method = "median", ifplot = FALSE, delta = -5:5)
 }
 \arguments{
-\item{x3p}{\code{x3p} object}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{method}{choice of \code{median} or \code{mean} when computing the summary statistics}
+\item{method}{A string indicating the method for computing summary statistics. Options are \code{median} or \code{mean}.}
 
-\item{ifplot}{whether graphs are displayed}
+\item{ifplot}{A Boolean flag indicating whether to display graphs.}
 
-\item{delta}{shifting range when minimizing MSE}
+\item{delta}{A numeric vector representing the shifting range for minimizing MSE.}
 }
 \value{
-data frame of 2 columns
+A data frame with two columns:
 \itemize{
-\item x: x value
-\item sig: signal extracted
+\item x: The \code{x} values from the \code{x3p} object.
+\item sig: The extracted signal.
 }
 }
 \description{
-Extract signal by computing summary statistics of values along \code{y} for each \code{x} with transformed \code{x3p} object by minimizing MSE.
+This function extracts the signal from a transformed \code{x3p} object by minimizing the Mean Squared Error (MSE).
+It computes summary statistics of values along the \code{y} axis for each \code{x} value.
 }
 \examples{
 x3p <- x3p_subsamples[[2]]

@@ -1,18 +1,19 @@
-#' Summary data frame for the inner polygon
+#' Generate summary data frame for inner polygon
 #'
-#' Create the summary data frame for the inner polygon of an `x3p` object.
-#' @param x3p `x3p` object
-#' @param mask_col colour for the polygon
-#' @param concavity strictly positive value used in `concaveman::concaveman`
-#' @param b positive integer value, block size, used in `x3ptools::x3p_average`
-#' @param ifplot whether graphs are displayed
-#' @return data frame of inside polygon
-#' * x: `x` value from input `x3p` object
-#' * y: `y` value from input `x3p` object
-#' * value: height value from input `x3p` object
-#' * mask: mask value from input `x3p` object
-#' * n_neighbor_val_miss: number of missing immediate neighbor, self included
-#' * sd_not_miss: standard deviation for immediate neighbor
+#' This function generates a summary data frame for the inner polygon of an `x3p` object.
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param mask_col A string representing the color to be used for the polygon.
+#' @param concavity A strictly positive number used in `concaveman::concaveman` to influence the shape of the polygon.
+#' @param b A positive integer representing the block size for `x3ptools::x3p_average`.
+#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @return A data frame summarizing the inner polygon. The data frame includes the following columns:
+#' * x: The `x` coordinates from the `x3p` object.
+#' * y: The `y` coordinates from the `x3p` object.
+#' * value: The height values from the `x3p` object.
+#' * mask: The mask values from the `x3p` object.
+#' * n_neighbor_val_miss: The number of immediate neighbors, including the point itself, that are missing.
+#' * sd_not_miss: The standard deviation of the immediate neighbors that are not missing.
 #' @import dplyr
 #' @importFrom x3ptools x3p_extract x3p_average x3p_to_df x3p_get_scale
 #' @importFrom tidyr pivot_longer

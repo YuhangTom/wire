@@ -2,26 +2,26 @@
 % Please edit documentation in R/x3p_impute.R
 \name{x3p_impute}
 \alias{x3p_impute}
-\title{Impute the inner polygon}
+\title{Impute missing values}
 \usage{
 x3p_impute(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 }
 \arguments{
-\item{x3p}{\code{x3p} object}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{ifout}{whether the imputation procedure will extrapolate, extrapolate for \code{ifout = TRUE}}
+\item{ifout}{A Boolean flag indicating whether the imputation procedure should extrapolate. Set to \code{TRUE} for extrapolation.}
 
-\item{ifsave}{whether the imputation procedure gif is going to be saved}
+\item{ifsave}{A Boolean flag indicating whether to save the imputation procedure gif.}
 
-\item{dir_name}{required when \code{ifsave = TRUE}}
+\item{dir_name}{A string representing the directory name where the gif should be saved. Required when \code{ifsave = TRUE}.}
 
-\item{ifplot}{whether graphs are displayed, automatically set to \code{TRUE} when \code{ifsave = TRUE}}
+\item{ifplot}{A Boolean flag indicating whether to display graphs. Automatically set to \code{TRUE} when \code{ifsave = TRUE}.}
 }
 \value{
-\code{x3p} object after imputation
+An \code{x3p} object after imputation.
 }
 \description{
-Obtained \code{x3p} object after imputing the inner polygon.
+This function imputes missing values in an \code{x3p} object.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

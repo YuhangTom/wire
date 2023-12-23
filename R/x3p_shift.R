@@ -1,11 +1,12 @@
-#' Shift striations by minimizing MSE
+#' Minimize MSE by shifting striations
 #'
-#' Shift striations on `x3p` object by minimizing MSE.
-#' @param x3p `x3p` object
-#' @param ifplot whether graphs are displayed
-#' @param delta shifting range when minimizing MSE
-#' @param delta_q_range lower and upper bound for quantile taken
-#' @return `x3p` object after transformation
+#' This function shifts the striations on an `x3p` object to minimize the Mean Squared Error (MSE).
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param delta A numeric vector representing the shifting range for minimizing MSE.
+#' @param delta_q_range A numeric vector of length 2, representing the lower and upper bounds for the quantile taken.
+#' @return An `x3p` object after the transformation.
 #' @import dplyr
 #' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
 #' @importFrom ggplot2 ggplot aes geom_line geom_point

@@ -2,7 +2,7 @@
 % Please edit documentation in R/vec_align_sigs_list.R
 \name{vec_align_sigs_list}
 \alias{vec_align_sigs_list}
-\title{Align signals}
+\title{Align two signal vectors}
 \usage{
 vec_align_sigs_list(
   sig1,
@@ -16,27 +16,27 @@ vec_align_sigs_list(
 )
 }
 \arguments{
-\item{sig1}{first numeric signal vector}
+\item{sig1}{The first numeric signal vector.}
 
-\item{sig2}{second numeric signal vector}
+\item{sig2}{The second numeric signal vector.}
 
-\item{min.overlap}{additional parameter passed on to \code{bulletxtrctr::get_ccf}}
+\item{min.overlap}{An optional parameter passed to \code{bulletxtrctr::get_ccf} to specify the minimum overlap between signals.}
 
-\item{ifplot}{whether graphs are displayed}
+\item{ifplot}{A Boolean flag indicating whether to plot the aligned signals.}
 
-\item{name1}{name for the first cut}
+\item{name1}{A string to label the first signal in the plot.}
 
-\item{name2}{name for the second cut}
+\item{name2}{A string to label the second signal in the plot.}
 
-\item{legendname}{legend name}
+\item{legendname}{A string to label the legend in the plot.}
 
-\item{titlename}{title name}
+\item{titlename}{A string to set the title of the plot.}
 }
 \value{
-list of aligned signals named \code{ccf}, \code{lag} and \code{lands} followed the output format of \code{bulletxtrctr::sig_align}
+A list containing the cross-correlation function (\code{ccf}), the lag (\code{lag}), and the landmarks (\code{lands}) of the aligned signals. This follows the output format of \code{bulletxtrctr::sig_align}.
 }
 \description{
-Align signals with plot.
+This function aligns two numeric signal vectors. It also provides an option to visualize the aligned signals.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

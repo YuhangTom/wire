@@ -2,30 +2,24 @@
 % Please edit documentation in R/inside_polygon.R
 \name{inside_polygon}
 \alias{inside_polygon}
-\title{Identify the inside polygon of a set of points}
+\title{Identify the inner polygon of a point set}
 \usage{
 inside_polygon(x, y, concavity, center = NULL)
 }
 \arguments{
-\item{x}{numeric vector of \code{x} positions}
+\item{x}{A numeric vector representing the \code{x} coordinates of the points.}
 
-\item{y}{numeric vector of \code{y} positions}
+\item{y}{A numeric vector representing the \code{y} coordinates of the points.}
 
-\item{concavity}{strictly positive parameter. Smaller values approach the
-inside of the boundary
-more closely. Large values concentrate on the inner center of the area}
+\item{concavity}{A strictly positive parameter that influences the shape of the inner polygon. Smaller values result in a shape that closely follows the inner boundary, while larger values create a shape that focuses more on the central area.}
 
-\item{center}{numeric vector of length 2, consisting of \verb{(x,y)} coordinate for
-centering \code{x} and \code{y} values.
-If center is \code{NULL}, the half ranges of \code{x} and \code{y} are used.}
+\item{center}{A numeric vector of length 2, representing the \verb{(x,y)} coordinates of the center point for the mirroring process. If \code{NULL}, the mid-ranges of \code{x} and \code{y} are used.}
 }
 \value{
-data frame of \code{x} and \code{y} positions describing the inside of the area
-described by the input \code{x} and \code{y}, variable id describes the order of the points
+A data frame containing \code{x} and \code{y} coordinates that describe the inner polygon. The \code{id} variable indicates the order of the points.
 }
 \description{
-Uses concentric mirroring onto a radius around the center point, applies an
-alpha hull to that shape, and mirrors the result back.
+This function identifies the inner polygon of a given set of points. It uses a method of concentric mirroring around a center point, applies an alpha hull to the mirrored shape, and then mirrors the result back.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

@@ -1,15 +1,13 @@
-#' Add a polygon of the scan shape as mask
+#' Add a polygon mask of the scan shape
 #'
-#' @param x3p `x3p` file
-#' @param colour colour for the polygon
-#' @param sample strictly positive integer value specifying the amount of
-#' downsampling to be used (see `x3ptools::x3p_sample`) to calculate the boundary points
-#' of the polygon. Larger values of `sample` will result in faster response times
-#' but results in less accurate polygons.
-#' @param center point on the center of the scan. If `NULL`, a center will be
-#' derived from the boundary points
-#' @param concavity strictly positive value used in `concaveman::concaveman`
-#' @return `x3p` object with mask
+#' This function adds a polygon mask to an `x3p` scan. The polygon represents the shape of the scan.
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param colour A string specifying the colour of the polygon mask.
+#' @param sample A positive integer indicating the downsampling rate used to calculate the boundary points of the polygon. Higher values result in faster computation but less accurate polygons.
+#' @param center A numeric vector representing the center point of the scan. If `NULL`, the center point is derived from the boundary points.
+#' @param concavity A positive number used in the `concaveman::concaveman` function to determine the concavity of the polygon.
+#' @return An `x3p` object with an added polygon mask.
 #' @importFrom Cairo CairoPNG
 #' @importFrom x3ptools x3p_get_scale x3p_add_mask
 #' @importFrom png readPNG

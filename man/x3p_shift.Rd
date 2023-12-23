@@ -2,24 +2,24 @@
 % Please edit documentation in R/x3p_shift.R
 \name{x3p_shift}
 \alias{x3p_shift}
-\title{Shift striations by minimizing MSE}
+\title{Minimize MSE by shifting striations}
 \usage{
 x3p_shift(x3p, ifplot = FALSE, delta = -5:5, delta_q_range = c(0, 1))
 }
 \arguments{
-\item{x3p}{\code{x3p} object}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{ifplot}{whether graphs are displayed}
+\item{ifplot}{A Boolean flag indicating whether to display graphs.}
 
-\item{delta}{shifting range when minimizing MSE}
+\item{delta}{A numeric vector representing the shifting range for minimizing MSE.}
 
-\item{delta_q_range}{lower and upper bound for quantile taken}
+\item{delta_q_range}{A numeric vector of length 2, representing the lower and upper bounds for the quantile taken.}
 }
 \value{
-\code{x3p} object after transformation
+An \code{x3p} object after the transformation.
 }
 \description{
-Shift striations on \code{x3p} object by minimizing MSE.
+This function shifts the striations on an \code{x3p} object to minimize the Mean Squared Error (MSE).
 }
 \examples{
 x3p <- x3p_subsamples[[2]]

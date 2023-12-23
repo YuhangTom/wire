@@ -1,17 +1,12 @@
-#' Identify the inside polygon of a set of points
+#' Identify the inner polygon of a point set
 #'
-#' Uses concentric mirroring onto a radius around the center point, applies an
-#' alpha hull to that shape, and mirrors the result back.
-#' @param x numeric vector of `x` positions
-#' @param y numeric vector of `y` positions
-#' @param concavity strictly positive parameter. Smaller values approach the
-#' inside of the boundary
-#' more closely. Large values concentrate on the inner center of the area
-#' @param center numeric vector of length 2, consisting of `(x,y)` coordinate for
-#' centering `x` and `y` values.
-#' If center is `NULL`, the half ranges of `x` and `y` are used.
-#' @return data frame of `x` and `y` positions describing the inside of the area
-#' described by the input `x` and `y`, variable id describes the order of the points
+#' This function identifies the inner polygon of a given set of points. It uses a method of concentric mirroring around a center point, applies an alpha hull to the mirrored shape, and then mirrors the result back.
+#'
+#' @param x A numeric vector representing the `x` coordinates of the points.
+#' @param y A numeric vector representing the `y` coordinates of the points.
+#' @param concavity A strictly positive parameter that influences the shape of the inner polygon. Smaller values result in a shape that closely follows the inner boundary, while larger values create a shape that focuses more on the central area.
+#' @param center A numeric vector of length 2, representing the `(x,y)` coordinates of the center point for the mirroring process. If `NULL`, the mid-ranges of `x` and `y` are used.
+#' @return A data frame containing `x` and `y` coordinates that describe the inner polygon. The `id` variable indicates the order of the points.
 #' @importFrom dplyr mutate select rename arrange n near
 #' @importFrom concaveman concaveman
 #' @importFrom tidyr pivot_longer

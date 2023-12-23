@@ -1,10 +1,10 @@
-#' Identify boundary of a 3d topographic scan in `x3p` format
+#' Extract boundary points from a 3D topographic scan
 #'
-#' @param x3p topographic scan in `x3p `format
-#' @param sample positive integer value specifying the sampling ratio:
-#' every `sample` value in `x` and `y` direction will be included.
-#' Higher values result in faster results but cruder assessments of the boundary.
-#' @return data frame of boundary points, variables are named `x` and `y`
+#' This function identifies and extracts the boundary points from a 3D topographic scan in `x3p` format.
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param sample A positive integer that defines the sampling rate for the `x` and `y` directions. Every `sample` value will be included in the output. Higher values lead to faster computation but a less precise boundary representation.
+#' @return A data frame containing the boundary points. Each row represents a point on the boundary, with `x` and `y` columns indicating its coordinates.
 #' @importFrom x3ptools x3p_sample x3p_to_df
 #' @importFrom dplyr `%>%` group_by mutate filter summarize select
 #' @importFrom assertthat assert_that is.count

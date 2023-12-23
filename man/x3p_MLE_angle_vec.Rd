@@ -2,7 +2,7 @@
 % Please edit documentation in R/x3p_MLE_angle_vec.R
 \name{x3p_MLE_angle_vec}
 \alias{x3p_MLE_angle_vec}
-\title{Compute the rotation angle using MLE}
+\title{Calculate rotation angle using maximum likelihood estimation (MLE)}
 \usage{
 x3p_MLE_angle_vec(
   x3p,
@@ -13,21 +13,21 @@ x3p_MLE_angle_vec(
 )
 }
 \arguments{
-\item{x3p}{\code{x3p} object}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{ntheta}{number of bins along theta used in \code{imager::hough_line}}
+\item{ntheta}{The number of bins along the theta axis used in \code{imager::hough_line}.}
 
-\item{min_score_cut}{the tuning parameter for minimum scores required in hough transformation}
+\item{min_score_cut}{A tuning parameter that sets the minimum score required for the Hough transformation.}
 
-\item{ifplot}{whether graphs are displayed}
+\item{ifplot}{A Boolean flag indicating whether to display graphs.}
 
-\item{loess_span}{the parameter which controls the degree of smoothing}
+\item{loess_span}{A parameter controlling the degree of smoothing in the LOESS function.}
 }
 \value{
-vector of rotation angles computed by MLE procedure
+A vector of rotation angles computed by the MLE procedure.
 }
 \description{
-Compute the rotation angle using MLE with hough transformation.
+This function calculates the rotation angle of an \code{x3p} object using maximum likelihood estimation (MLE) with Hough transformation.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

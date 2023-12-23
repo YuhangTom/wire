@@ -1,12 +1,13 @@
-#' Impute the inner polygon
+#' Impute missing values
 #'
-#' Obtained `x3p` object after imputing the inner polygon.
-#' @param x3p `x3p` object
-#' @param ifout whether the imputation procedure will extrapolate, extrapolate for `ifout = TRUE`
-#' @param ifsave whether the imputation procedure gif is going to be saved
-#' @param dir_name required when `ifsave = TRUE`
-#' @param ifplot whether graphs are displayed, automatically set to `TRUE` when `ifsave = TRUE`
-#' @return `x3p` object after imputation
+#' This function imputes missing values in an `x3p` object.
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param ifout A Boolean flag indicating whether the imputation procedure should extrapolate. Set to `TRUE` for extrapolation.
+#' @param ifsave A Boolean flag indicating whether to save the imputation procedure gif.
+#' @param dir_name A string representing the directory name where the gif should be saved. Required when `ifsave = TRUE`.
+#' @param ifplot A Boolean flag indicating whether to display graphs. Automatically set to `TRUE` when `ifsave = TRUE`.
+#' @return An `x3p` object after imputation.
 #' @import dplyr
 #' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask x3p_get_scale
 #' @importFrom ggplot2 ggplot aes geom_raster scale_fill_gradient2 labs ggsave

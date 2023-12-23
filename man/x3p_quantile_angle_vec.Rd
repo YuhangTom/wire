@@ -2,24 +2,24 @@
 % Please edit documentation in R/x3p_quantile_angle_vec.R
 \name{x3p_quantile_angle_vec}
 \alias{x3p_quantile_angle_vec}
-\title{Compute the rotation angle using quantile}
+\title{Calculate rotation angle using quantile method}
 \usage{
 x3p_quantile_angle_vec(x3p, ntheta = 720, min_score_cut = 0.1, ifplot = FALSE)
 }
 \arguments{
-\item{x3p}{\code{x3p} object}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{ntheta}{number of bins along theta used in \code{imager::hough_line}}
+\item{ntheta}{An integer representing the number of bins along the theta axis used in \code{imager::hough_line}.}
 
-\item{min_score_cut}{the tuning parameter for minimum scores required in hough transformation}
+\item{min_score_cut}{A numeric value representing the minimum score required in the Hough transformation.}
 
-\item{ifplot}{whether graphs are displayed}
+\item{ifplot}{A Boolean flag indicating whether to display graphs.}
 }
 \value{
-vector of rotation angles computed by quantile procedure
+A vector of rotation angles computed by the quantile procedure.
 }
 \description{
-Compute the rotation angle using quantile with hough transformation.
+This function calculates the rotation angle of an \code{x3p} object using the quantile method with Hough transformation.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]
@@ -29,6 +29,6 @@ x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
 ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 
 x3p_quantile_angle_vec(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE) \%>\%
-str()
+    str()
 
 }

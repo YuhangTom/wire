@@ -2,7 +2,7 @@
 % Please edit documentation in R/x3p_insidepoly_df.R
 \name{x3p_insidepoly_df}
 \alias{x3p_insidepoly_df}
-\title{Summary data frame for the inner polygon}
+\title{Generate summary data frame for inner polygon}
 \usage{
 x3p_insidepoly_df(
   x3p,
@@ -13,29 +13,29 @@ x3p_insidepoly_df(
 )
 }
 \arguments{
-\item{x3p}{\code{x3p} object}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{mask_col}{colour for the polygon}
+\item{mask_col}{A string representing the color to be used for the polygon.}
 
-\item{concavity}{strictly positive value used in \code{concaveman::concaveman}}
+\item{concavity}{A strictly positive number used in \code{concaveman::concaveman} to influence the shape of the polygon.}
 
-\item{b}{positive integer value, block size, used in \code{x3ptools::x3p_average}}
+\item{b}{A positive integer representing the block size for \code{x3ptools::x3p_average}.}
 
-\item{ifplot}{whether graphs are displayed}
+\item{ifplot}{A Boolean flag indicating whether to display graphs.}
 }
 \value{
-data frame of inside polygon
+A data frame summarizing the inner polygon. The data frame includes the following columns:
 \itemize{
-\item x: \code{x} value from input \code{x3p} object
-\item y: \code{y} value from input \code{x3p} object
-\item value: height value from input \code{x3p} object
-\item mask: mask value from input \code{x3p} object
-\item n_neighbor_val_miss: number of missing immediate neighbor, self included
-\item sd_not_miss: standard deviation for immediate neighbor
+\item x: The \code{x} coordinates from the \code{x3p} object.
+\item y: The \code{y} coordinates from the \code{x3p} object.
+\item value: The height values from the \code{x3p} object.
+\item mask: The mask values from the \code{x3p} object.
+\item n_neighbor_val_miss: The number of immediate neighbors, including the point itself, that are missing.
+\item sd_not_miss: The standard deviation of the immediate neighbors that are not missing.
 }
 }
 \description{
-Create the summary data frame for the inner polygon of an \code{x3p} object.
+This function generates a summary data frame for the inner polygon of an \code{x3p} object.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

@@ -1,11 +1,12 @@
-#' Plot `x3p` object as an image with auto-adjusted size
+#' Display an `x3p` object as an auto-sized image
 #'
-#' Plot `x3p` object as an image with auto-adjusted size based on `x3ptools::x3p_image`.
-#' @param x3p `x3p` object
-#' @param ifhtml logical, whether the image will be put on html
-#' @param zoom numeric value indicating the amount of `zoom` in `x3ptools::x3p_image`
-#' @param ... other parameter values except `size` and `zoom` used in `x3ptools::x3p_image`
-#' @return `rgl` plot, list of tags when `ifhtml = TRUE`
+#' This function displays an `x3p` object as an image with automatically adjusted size based on the dimensions of the `x3p` object.
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param ifhtml A Boolean flag indicating whether the image will be embedded in HTML.
+#' @param zoom A numeric value indicating the zoom level for the image display.
+#' @param ... Additional parameters for `x3ptools::x3p_image`, excluding `size` and `zoom`.
+#' @return An `rgl` plot. If `ifhtml = TRUE`, a list of HTML tags is returned.
 #' @importFrom x3ptools x3p_image
 #' @importFrom rgl rglwidget
 #' @importFrom htmltools tagList

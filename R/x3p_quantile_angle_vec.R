@@ -1,11 +1,12 @@
-#' Compute the rotation angle using quantile
+#' Calculate rotation angle using quantile method
 #'
-#' Compute the rotation angle using quantile with hough transformation.
-#' @param x3p `x3p` object
-#' @param ntheta number of bins along theta used in `imager::hough_line`
-#' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
-#' @param ifplot whether graphs are displayed
-#' @return vector of rotation angles computed by quantile procedure
+#' This function calculates the rotation angle of an `x3p` object using the quantile method with Hough transformation.
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param ntheta An integer representing the number of bins along the theta axis used in `imager::hough_line`.
+#' @param min_score_cut A numeric value representing the minimum score required in the Hough transformation.
+#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @return A vector of rotation angles computed by the quantile procedure.
 #' @import dplyr
 #' @importFrom ggplot2 ggplot aes geom_histogram geom_point
 #' @importFrom raster raster
@@ -21,7 +22,7 @@
 #' ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 #'
 #' x3p_quantile_angle_vec(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE) %>%
-#' str()
+#'     str()
 #'
 x3p_quantile_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
                                           ifplot = FALSE) {

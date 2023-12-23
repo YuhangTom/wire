@@ -1,14 +1,15 @@
 #' Rotate imputed `x3p` object to vertical direction
 #'
-#' Rotate imputed `x3p` object with striations to the vertical direction.
-#' @param x3p_inner_impute `x3p` object after imputation
-#' @param freqs length 4 vector of values corresponding to color frequency (turned into quantiles of the differenced values) used in `x3ptools::x3p_bin_stripes`
-#' @param method choice of `MLE` or `quantile` when computing rotation angle
-#' @param ntheta number of bins along theta used in `imager::hough_line`
-#' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
-#' @param ifplot whether graphs are displayed
-#' @param loess_span the parameter which controls the degree of smoothing, only available when `method = MLE`
-#' @return `x3p` object after rotation with vertical striations
+#' This function rotates an imputed `x3p` object with striations to the vertical direction.
+#'
+#' @param x3p_inner_impute An `x3p` object after imputation.
+#' @param freqs A numeric vector of length 4, representing color frequency quantiles used in `x3ptools::x3p_bin_stripes`.
+#' @param method A string indicating the method for computing rotation angle. Options are `MLE` or `quantile`.
+#' @param ntheta An integer representing the number of bins along the theta axis used in `imager::hough_line`.
+#' @param min_score_cut A numeric value representing the minimum score required in the Hough transformation.
+#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param loess_span A numeric value controlling the degree of smoothing. This is only available when `method = MLE`.
+#' @return An `x3p` object after rotation with vertical striations.
 #' @import dplyr
 #' @importFrom x3ptools x3p_bin_stripes x3p_extract x3p_rotate
 #' @importFrom assertthat assert_that is.count is.number is.flag is.number

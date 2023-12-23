@@ -2,22 +2,20 @@
 % Please edit documentation in R/x3p_boundary_points.R
 \name{x3p_boundary_points}
 \alias{x3p_boundary_points}
-\title{Identify boundary of a 3d topographic scan in \code{x3p} format}
+\title{Extract boundary points from a 3D topographic scan}
 \usage{
 x3p_boundary_points(x3p, sample)
 }
 \arguments{
-\item{x3p}{topographic scan in \code{x3p }format}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{sample}{positive integer value specifying the sampling ratio:
-every \code{sample} value in \code{x} and \code{y} direction will be included.
-Higher values result in faster results but cruder assessments of the boundary.}
+\item{sample}{A positive integer that defines the sampling rate for the \code{x} and \code{y} directions. Every \code{sample} value will be included in the output. Higher values lead to faster computation but a less precise boundary representation.}
 }
 \value{
-data frame of boundary points, variables are named \code{x} and \code{y}
+A data frame containing the boundary points. Each row represents a point on the boundary, with \code{x} and \code{y} columns indicating its coordinates.
 }
 \description{
-Identify boundary of a 3d topographic scan in \code{x3p} format
+This function identifies and extracts the boundary points from a 3D topographic scan in \code{x3p} format.
 }
 \examples{
 x3p <- x3p_subsamples[[1]]

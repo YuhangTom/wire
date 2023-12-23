@@ -1,12 +1,13 @@
-#' Compute the rotation angle using MLE
+#' Calculate rotation angle using maximum likelihood estimation (MLE)
 #'
-#' Compute the rotation angle using MLE with hough transformation.
-#' @param x3p `x3p` object
-#' @param ntheta number of bins along theta used in `imager::hough_line`
-#' @param min_score_cut the tuning parameter for minimum scores required in hough transformation
-#' @param ifplot whether graphs are displayed
-#' @param loess_span the parameter which controls the degree of smoothing
-#' @return vector of rotation angles computed by MLE procedure
+#' This function calculates the rotation angle of an `x3p` object using maximum likelihood estimation (MLE) with Hough transformation.
+#'
+#' @param x3p An `x3p` object representing a topographic scan.
+#' @param ntheta The number of bins along the theta axis used in `imager::hough_line`.
+#' @param min_score_cut A tuning parameter that sets the minimum score required for the Hough transformation.
+#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param loess_span A parameter controlling the degree of smoothing in the LOESS function.
+#' @return A vector of rotation angles computed by the MLE procedure.
 #' @import dplyr
 #' @importFrom ggplot2 ggplot geom_histogram geom_point geom_smooth
 #' @importFrom raster raster

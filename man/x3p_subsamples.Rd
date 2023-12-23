@@ -3,19 +3,18 @@
 \docType{data}
 \name{x3p_subsamples}
 \alias{x3p_subsamples}
-\title{Subsampled wire cuts data}
+\title{Subsampled dataset of wire cuts}
 \format{
-list
-A list of \code{x3p} objects named with surface scan names
+A list of \code{x3p} objects, each representing a surface scan. The list includes:
 \itemize{
-\item T1AW-LI-R1: \code{x3p} object
-\item T1AW-LI-R2: \code{x3p} object
+\item T1AW-LI-R1: An \code{x3p} object representing the first surface scan.
+\item T1AW-LI-R2: An \code{x3p} object representing the second surface scan.
 }
 }
 \usage{
 x3p_subsamples
 }
 \description{
-A list of wire cuts data set by subsampling factor 10 of the original wire cuts \code{x3p}.
+This dataset is a subsampled version of the original \code{x3p} wire cuts data. The subsampling is performed at a factor of 10.
 }
 \keyword{datasets}

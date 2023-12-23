@@ -2,18 +2,22 @@
 % Please edit documentation in R/df_rmtrend_x3p.R
 \name{df_rmtrend_x3p}
 \alias{df_rmtrend_x3p}
-\title{Removing missing values and the quadratic trend from inner polygon}
+\title{Removing missing values and a quadratic trend}
 \usage{
 df_rmtrend_x3p(insidepoly_df)
 }
 \arguments{
-\item{insidepoly_df}{data frame of inside polygon obtained from \code{wire::x3p_insidepoly_df}}
+\item{insidepoly_df}{A data frame representing the inner polygon. This is typically obtained from the \code{wire::x3p_insidepoly_df} function.}
 }
 \value{
-\code{x3p} object of residuals after removing trend
+An \code{x3p} object that contains the residuals after the removal of the quadratic trend.
 }
 \description{
-Obtained \code{x3p} object after removing missing values and the quadratic trend from the inner polygon.
+This function takes an \code{x3p} object, specifically the inner polygon data frame, and performs two main operations:
+\enumerate{
+\item Removes missing values.
+\item Detrends the data by removing a quadratic trend.
+}
 }
 \examples{
 x3p <- x3p_subsamples[[1]]
