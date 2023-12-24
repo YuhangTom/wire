@@ -62,7 +62,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of <code>wire</code> is to implement a systematic reproducible automatic algorithm to analyze similarity between wire cut scans.</p>
+<p>The goal of <code>wire</code> is to provide a systematic reproducible automatic algorithm to analyze the similarity between wire cut scans.</p>
 </div>
 <div class="section level1">
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -78,7 +78,7 @@
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
-<p>The original scans for the wire cuts are stored in <code>x3p</code> format of width around <span class="math inline">2, 300</span> and height around <span class="math inline">1, 800</span>, under a resolution <span class="math inline">0.645<em>μ</em><em>m</em> × 0.645<em>μ</em><em>m</em></span>, with each file being at least 15 MB, which is much larger compared to the file limit of 5 MB for a <code>R</code> package. Therefore, we make available 2 subsampled <code>x3p</code> data set by every 10 observations, saved as entries with its label in a <code>list</code> object, named as <code>x3p_subsamples</code>. The data can be used by:</p>
+<p>The original scans for the wire cuts are stored in <code>x3p</code> format of width around 2300 and height around 1800, under a resolution 0.645$m <span class="math inline">0.645</span>m$, with each file being at least 15 MB, which is much larger compared to the file limit of 5 MB for a <code>R</code> package. Therefore, we subsampled the original scans by a factor of 10, and saved them as <code>x3p_subsamples</code> in the package. The data can be used by:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yuhangtom.github.io/wire/">wire</a></span><span class="op">)</span></span>
 <span></span>
@@ -96,7 +96,7 @@
 <div class="section level2">
 <h2 id="inner-polygon">Inner polygon<a class="anchor" aria-label="anchor" href="#inner-polygon"></a>
 </h2>
-<p>To remove edge effect, we extract the inner part of the scan, which can be achieved by:</p>
+<p>To remove the edge effect, we extract the inner part of the scan, which can be achieved by:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x3p</span> <span class="op">&lt;-</span> <span class="va">x3p_subsamples</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">insidepoly_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_insidepoly_df.html">x3p_insidepoly_df</a></span><span class="op">(</span><span class="va">x3p</span>, mask_col <span class="op">=</span> <span class="st">"#FF0000"</span>, concavity <span class="op">=</span> <span class="fl">1.5</span>, b <span class="op">=</span> <span class="fl">1</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -120,7 +120,7 @@
 <div class="section level2">
 <h2 id="remove-trend">Remove trend<a class="anchor" aria-label="anchor" href="#remove-trend"></a>
 </h2>
-<p>To remove overall trend on the inner surface, we can use:</p>
+<p>To remove the overall trend on the inner surface, we can use:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x3p_inner_nomiss_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/df_rmtrend_x3p.html">df_rmtrend_x3p</a></span><span class="op">(</span><span class="va">insidepoly_df</span><span class="op">)</span></span>
 <span><span class="va">x3p_inner_nomiss_res</span></span>
@@ -180,7 +180,7 @@
 <div class="section level2">
 <h2 id="signal-alignment">Signal alignment<a class="anchor" aria-label="anchor" href="#signal-alignment"></a>
 </h2>
-<p>Extracted signals can be aligned and cross correlation can be computed:</p>
+<p>Extracted signals can be aligned, and the cross-correlation can be computed:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vec_align_sigs_list.html">vec_align_sigs_list</a></span><span class="op">(</span><span class="va">raw_sig</span><span class="op">$</span><span class="va">sig</span>, <span class="va">shift_sig</span><span class="op">$</span><span class="va">sig</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -231,7 +231,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://github.com/YuhangTom/wire/commits/main" class="external-link"><img src="https://img.shields.io/badge/last%20change-2023--12--22-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="https://github.com/YuhangTom/wire/commits/main" class="external-link"><img src="https://img.shields.io/badge/last%20change-2023--12--23-yellowgreen.svg" alt="Last-changedate"></a></li>
 <li><a href="https://CRAN.R-project.org/package=wire" class="external-link"><img src="https://www.r-pkg.org/badges/version/wire.png" alt="CRAN status"></a></li>
 <li><a href="https://app.codecov.io/gh/YuhangTom/wire?branch=main" class="external-link"><img src="https://codecov.io/gh/YuhangTom/wire/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
