@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--12--22-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--12--23-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
@@ -15,8 +15,8 @@ coverage](https://codecov.io/gh/YuhangTom/wire/branch/main/graph/badge.svg)](htt
 [![R-CMD-check](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of `wire` is to implement a systematic reproducible automatic
-algorithm to analyze similarity between wire cut scans.
+The goal of `wire` is to provide a systematic reproducible automatic
+algorithm to analyze the similarity between wire cut scans.
 
 # Installation
 
@@ -33,12 +33,11 @@ devtools::install_github("YuhangTom/wire")
 ## Data
 
 The original scans for the wire cuts are stored in `x3p` format of width
-around $2,300$ and height around $1,800$, under a resolution
-$0.645 \mu m \times 0.645 \mu m$, with each file being at least 15 MB,
-which is much larger compared to the file limit of 5 MB for a `R`
-package. Therefore, we make available 2 subsampled `x3p` data set by
-every 10 observations, saved as entries with its label in a `list`
-object, named as `x3p_subsamples`. The data can be used by:
+around 2300 and height around 1800, under a resolution 0.645\$m
+$0.645$m\$, with each file being at least 15 MB, which is much larger
+compared to the file limit of 5 MB for a `R` package. Therefore, we
+subsampled the original scans by a factor of 10, and saved them as
+`x3p_subsamples` in the package. The data can be used by:
 
 ``` r
 library(wire)
@@ -57,8 +56,8 @@ x3p_subsamples
 
 ## Inner polygon
 
-To remove edge effect, we extract the inner part of the scan, which can
-be achieved by:
+To remove the edge effect, we extract the inner part of the scan, which
+can be achieved by:
 
 ``` r
 x3p <- x3p_subsamples[[1]]
@@ -86,7 +85,7 @@ insidepoly_df %>%
 
 ## Remove trend
 
-To remove overall trend on the inner surface, we can use:
+To remove the overall trend on the inner surface, we can use:
 
 ``` r
 x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
@@ -164,7 +163,8 @@ shift_sig %>%
 
 ## Signal alignment
 
-Extracted signals can be aligned and cross correlation can be computed:
+Extracted signals can be aligned, and the cross-correlation can be
+computed:
 
 ``` r
 vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
