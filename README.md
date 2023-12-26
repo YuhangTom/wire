@@ -33,11 +33,12 @@ devtools::install_github("YuhangTom/wire")
 ## Data
 
 The original scans for the wire cuts are stored in `x3p` format of width
-around 2300 and height around 1800, under a resolution 0.645\$m
-$0.645$m\$, with each file being at least 15 MB, which is much larger
-compared to the file limit of 5 MB for a `R` package. Therefore, we
-subsampled the original scans by a factor of 10, and saved them as
-`x3p_subsamples` in the package. The data can be used by:
+around 2300 and height around 1800, under a resolution
+$0.645 \mu m \times 0.645 \mu m$, with each file being at least 15 MB,
+which is much larger compared to the file limit of 5 MB for a `R`
+package. Therefore, we subsampled the original scans by a factor of 10,
+and saved them as `x3p_subsamples` in the package. The data can be used
+by:
 
 ``` r
 library(wire)
