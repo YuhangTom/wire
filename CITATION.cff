@@ -10,8 +10,8 @@ license: MIT
 title: 'wire: Tools for Analyzing Similarity Between Wires'
 version: 0.0.0.9000
 abstract: This `wire` package allows everyone to conduct reproducible automatic analysis
-  to compare different wire scans. A conclusion for similarity or dissimilarity can
-  be easily drawn.
+  to compare different wire scans in 'x3p' format. A conclusion for similarity or
+  dissimilarity can be easily drawn based on the resulting cross-correlation.
 authors:
 - family-names: Lin
   given-names: Yuhang
