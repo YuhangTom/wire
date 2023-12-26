@@ -14,13 +14,13 @@
 #' * mask: The mask values from the `x3p` object.
 #' * n_neighbor_val_miss: The number of immediate neighbors, including the point itself, that are missing.
 #' * sd_not_miss: The standard deviation of the immediate neighbors that are not missing.
-#' @import dplyr
+#' @import dplyr ggplot2
 #' @importFrom x3ptools x3p_extract x3p_average x3p_to_df x3p_get_scale
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell focal
-#' @importFrom ggplot2 ggplot geom_raster scale_fill_gradient2 labs ggtitle geom_boxplot
 #' @importFrom assertthat assert_that is.string is.number is.count is.flag
+#' @importFrom readr parse_number
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -47,6 +47,7 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
     value <-
     sd_not_miss <-
     . <-
+    n_discrete <-
     NULL
 
   x3p <- x3p %>%
@@ -171,12 +172,17 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       print()
 
     (x3p_inner_df %>%
-      ggplot(aes(x = n_neighbor_val_miss, y = log(sd_not_miss))) +
-      geom_boxplot() +
+      mutate(
+        n_discrete = ifelse(parse_number(as.character(n_neighbor_val_miss)) <= 4, as.character(n_neighbor_val_miss), "5 or more")
+      ) %>%
+      filter(!is.na(n_discrete)) %>%
+      ggplot(aes(x = n_discrete, y = sd_not_miss)) +
+      geom_boxplot(fill = "grey80") +
       labs(
-        x = "Number of missing immediate neighbors (including self)",
-        y = "log(standard deviation)"
-      )) %>%
+        x = "Number of missing immediate neighbors (including self)"
+      ) +
+      theme_bw() +
+      scale_y_continuous("standard deviation", limits = c(0, .5))) %>%
       print()
   }
 

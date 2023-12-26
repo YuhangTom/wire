@@ -39,7 +39,8 @@ Imports:
     Cairo,
     png,
     grDevices,
-    graphics
+    graphics,
+    readr
 Remotes: 
     heike/bulletxtrctr,
     heike/x3ptools
