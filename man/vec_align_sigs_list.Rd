@@ -9,8 +9,6 @@ vec_align_sigs_list(
   sig2,
   min.overlap = NULL,
   ifplot = FALSE,
-  name1 = "Cut1",
-  name2 = "Cut2",
   legendname = "Signal",
   titlename = NULL
 )
@@ -23,10 +21,6 @@ vec_align_sigs_list(
 \item{min.overlap}{An optional parameter passed to \code{bulletxtrctr::get_ccf} to specify the minimum overlap between signals.}
 
 \item{ifplot}{A Boolean flag indicating whether to plot the aligned signals.}
-
-\item{name1}{A string to label the first signal in the plot.}
-
-\item{name2}{A string to label the second signal in the plot.}
 
 \item{legendname}{A string to label the legend in the plot.}
 

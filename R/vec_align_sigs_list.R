@@ -6,8 +6,6 @@
 #' @param sig2 The second numeric signal vector.
 #' @param min.overlap An optional parameter passed to `bulletxtrctr::get_ccf` to specify the minimum overlap between signals.
 #' @param ifplot A Boolean flag indicating whether to plot the aligned signals.
-#' @param name1 A string to label the first signal in the plot.
-#' @param name2 A string to label the second signal in the plot.
 #' @param legendname A string to label the legend in the plot.
 #' @param titlename A string to set the title of the plot.
 #' @return A list containing the cross-correlation function (`ccf`), the lag (`lag`), and the landmarks (`lands`) of the aligned signals. This follows the output format of `bulletxtrctr::sig_align`.
@@ -34,16 +32,12 @@ vec_align_sigs_list <- function(
     sig2,
     min.overlap = NULL,
     ifplot = FALSE,
-    name1 = "Cut1",
-    name2 = "Cut2",
     legendname = "Signal",
     titlename = NULL) {
   assert_that(
     is.numeric(sig1),
     is.numeric(sig2),
     is.flag(ifplot),
-    is.string(name1),
-    is.string(name2),
     is.string(legendname)
   )
   if (not_empty(min.overlap)) {
@@ -57,20 +51,24 @@ vec_align_sigs_list <- function(
     )
   }
 
-  x <- NULL
+  x <-
+    value <-
+    NULL
 
-  sigalign <- sig_align(sig1, sig2)
+  aligned <- sig_align(sig1, sig2, min.overlap = min.overlap)
   if (ifplot) {
-    p <- sigalign$lands %>%
-      ggplot(aes(x = x)) +
-      geom_line(aes(y = sig1, color = name1)) +
-      geom_line(aes(y = sig2, color = name2)) +
-      labs(color = legendname) +
+    p <- aligned$lands %>%
+      pivot_longer(sig1:sig2, names_to = legendname, names_prefix = "sig") %>%
+      ggplot(aes(x = x, y = value)) +
+      geom_line(aes(colour = !!sym(legendname))) +
+      theme_bw() +
+      scale_colour_brewer(palette = "Paired") +
       xlab("x") +
-      ylab("sig") +
-      ggtitle(titlename, subtitle = paste0("ccf = ", round(sigalign$ccf, 3), "; lag = ", sigalign$lag))
+      ylab("signal value") +
+      ggtitle(titlename, subtitle = paste0("ccf = ", round(aligned$ccf, 3), "; lag = ", aligned$lag))
+
     print(p)
   }
 
-  sigalign
+  aligned
 }
