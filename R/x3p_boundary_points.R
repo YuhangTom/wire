@@ -5,8 +5,8 @@
 #' @param x3p An `x3p` object representing a topographic scan.
 #' @param sample A positive integer that defines the sampling rate for the `x` and `y` directions. Every `sample` value will be included in the output. Higher values lead to faster computation but a less precise boundary representation.
 #' @return A data frame containing the boundary points. Each row represents a point on the boundary, with `x` and `y` columns indicating its coordinates.
+#' @import dplyr
 #' @importFrom x3ptools x3p_sample x3p_to_df
-#' @importFrom dplyr group_by mutate filter summarize select
 #' @importFrom assertthat assert_that is.count
 #' @export
 #' @examples

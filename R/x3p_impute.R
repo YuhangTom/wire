@@ -9,8 +9,8 @@
 #' @param ifplot A Boolean flag indicating whether to display graphs. Automatically set to `TRUE` when `ifsave = TRUE`.
 #' @return An `x3p` object after imputation.
 #' @import dplyr
+#' @import ggplot2
 #' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask x3p_get_scale
-#' @importFrom ggplot2 ggplot aes geom_raster scale_fill_gradient2 labs ggsave
 #' @importFrom raster raster focal as.data.frame as.matrix
 #' @importFrom purrr map
 #' @importFrom magick image_read image_join image_animate image_write

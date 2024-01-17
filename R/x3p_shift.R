@@ -8,8 +8,8 @@
 #' @param delta_q_range A numeric vector of length 2, representing the lower and upper bounds for the quantile taken.
 #' @return An `x3p` object after the transformation.
 #' @import dplyr
+#' @import ggplot2
 #' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
-#' @importFrom ggplot2 ggplot aes geom_line geom_point
 #' @importFrom stats lm coef approx
 #' @importFrom purrr map_dbl map set_names
 #' @importFrom tidyr nest unnest

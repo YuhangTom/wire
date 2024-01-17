@@ -8,7 +8,7 @@
 #' @param ifplot A Boolean flag indicating whether to display graphs.
 #' @return A vector of rotation angles computed by the quantile procedure.
 #' @import dplyr
-#' @importFrom ggplot2 ggplot aes geom_histogram geom_point
+#' @import ggplot2
 #' @importFrom raster raster
 #' @importFrom imager as.cimg hough_line nfline
 #' @importFrom stats quantile median

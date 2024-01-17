@@ -9,7 +9,7 @@
 #' @param loess_span A parameter controlling the degree of smoothing in the LOESS function.
 #' @return A vector of rotation angles computed by the MLE procedure.
 #' @import dplyr
-#' @importFrom ggplot2 ggplot geom_histogram geom_point geom_smooth
+#' @import ggplot2
 #' @importFrom raster raster
 #' @importFrom imager as.cimg hough_line nfline
 #' @importFrom stats loess predict

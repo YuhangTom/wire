@@ -9,7 +9,7 @@
 #' @param legendname A string to label the legend in the plot.
 #' @param titlename A string to set the title of the plot.
 #' @return A list containing the cross-correlation function (`ccf`), the lag (`lag`), and the landmarks (`lands`) of the aligned signals. This follows the output format of `bulletxtrctr::sig_align`.
-#' @importFrom ggplot2 ggplot aes geom_line labs xlab ylab ggtitle
+#' @import ggplot2
 #' @importFrom bulletxtrctr sig_align
 #' @importFrom assertthat assert_that not_empty is.count is.flag is.string
 #' @export

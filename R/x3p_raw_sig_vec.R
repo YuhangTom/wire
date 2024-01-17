@@ -9,8 +9,8 @@
 #' * x: The `x` values from the `x3p` object.
 #' * sig: The extracted signal.
 #' @import dplyr
+#' @import ggplot2
 #' @importFrom x3ptools x3p_to_df
-#' @importFrom ggplot2 ggplot aes geom_line
 #' @importFrom stats na.omit median
 #' @importFrom assertthat assert_that is.flag
 #' @export

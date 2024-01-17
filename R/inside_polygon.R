@@ -7,7 +7,7 @@
 #' @param concavity A strictly positive parameter that influences the shape of the inner polygon. Smaller values result in a shape that closely follows the inner boundary, while larger values create a shape that focuses more on the central area.
 #' @param center A numeric vector of length 2, representing the `(x,y)` coordinates of the center point for the mirroring process. If `NULL`, the mid-ranges of `x` and `y` are used.
 #' @return A data frame containing `x` and `y` coordinates that describe the inner polygon. The `id` variable indicates the order of the points.
-#' @importFrom dplyr mutate select rename arrange n near
+#' @import dplyr
 #' @importFrom concaveman concaveman
 #' @importFrom tidyr pivot_longer
 #' @importFrom assertthat assert_that is.number

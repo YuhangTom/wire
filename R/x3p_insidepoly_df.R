@@ -14,7 +14,8 @@
 #' * mask: The mask values from the `x3p` object.
 #' * n_neighbor_val_miss: The number of immediate neighbors, including the point itself, that are missing.
 #' * sd_not_miss: The standard deviation of the immediate neighbors that are not missing.
-#' @import dplyr ggplot2
+#' @import dplyr
+#' @import ggplot2
 #' @importFrom x3ptools x3p_extract x3p_average x3p_to_df x3p_get_scale
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
