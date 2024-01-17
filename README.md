@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--12--26-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--01--17-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
@@ -121,7 +121,7 @@ We can rotate the surface to the correct angle by:
 x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE)
 ```
 
-<img src="man/figures/README-rotate-1.png" width="100%" /><img src="man/figures/README-rotate-2.png" width="100%" /><img src="man/figures/README-rotate-3.png" width="100%" /><img src="man/figures/README-rotate-4.png" width="100%" /><img src="man/figures/README-rotate-5.png" width="100%" /><img src="man/figures/README-rotate-6.png" width="100%" /><img src="man/figures/README-rotate-7.png" width="100%" /><img src="man/figures/README-rotate-8.png" width="100%" /><img src="man/figures/README-rotate-9.png" width="100%" /><img src="man/figures/README-rotate-10.png" width="100%" /><img src="man/figures/README-rotate-11.png" width="100%" /><img src="man/figures/README-rotate-12.png" width="100%" /><img src="man/figures/README-rotate-13.png" width="100%" /><img src="man/figures/README-rotate-14.png" width="100%" />
+<img src="man/figures/README-rotate-1.png" width="100%" /><img src="man/figures/README-rotate-2.png" width="100%" /><img src="man/figures/README-rotate-3.png" width="100%" /><img src="man/figures/README-rotate-4.png" width="100%" /><img src="man/figures/README-rotate-5.png" width="100%" /><img src="man/figures/README-rotate-6.png" width="100%" />
 
 ``` r
 x3p_bin_rotate

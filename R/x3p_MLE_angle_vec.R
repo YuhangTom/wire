@@ -69,14 +69,6 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
   ### Hough transformation for lines
   x3p_hough_df <- hough_line(x3p_cimg, ntheta = ntheta, data.frame = TRUE, shift = FALSE)
 
-  if (ifplot) {
-    ### Histogram with bins
-    (x3p_hough_df %>%
-      ggplot(aes(x = theta, weight = score)) +
-      geom_histogram(bins = ntheta)) %>%
-      print()
-  }
-
   ### For theta_mod: 0 = pi = 2 * pi <- pi / 2, pi / 2 = pi * 3 / 2 <- 0
   ### For theta_mod_shift: 0 = pi = 2 * pi <- pi, pi / 2 = pi * 3 / 2 <- pi / 2
   ### For theta_mod_shift / pi: 0 = pi = 2 * pi <- 1, pi / 2 = pi * 3 / 2 <- 1 / 2
@@ -105,15 +97,6 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
   ### loess predict
   loess_pred <- predict(loess_fit, x3p_hough_df_shift$theta_mod_shift)
 
-  if (ifplot) {
-    ### loess fit
-    (x3p_hough_df_shift %>%
-      mutate(loess_pred = loess_pred) %>%
-      ggplot(aes(x = theta_mod_shift, y = loess_pred)) +
-      geom_point()) %>%
-      print()
-  }
-
   ### loess cutoff point
   loess_cut <- x3p_hough_df_shift$theta_mod_shift[which.max(loess_pred)]
 
@@ -131,16 +114,6 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
       theta_mod_shift %in% theta_filter$theta_mod_shift
     )
 
-  if (ifplot) {
-    ### Histogram with rho
-    ### Ideally should look like our strikes (signals), with rotated x axis
-    (x3p_hough_rho_df %>%
-      filter(score > min_score_cut) %>%
-      ggplot(aes(x = rho, weight = score)) +
-      geom_histogram(bins = 150)) %>%
-      print()
-  }
-
   ### Select main lines
   main_lines <- x3p_hough_rho_df %>%
     filter(score > min_score_cut)
@@ -149,15 +122,6 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
     ### Plot image with main lines after selecting theta
     plot(x3p_cimg)
     with(main_lines, nfline(theta, rho, col = "red"))
-  }
-
-  if (ifplot) {
-    ### Distribution of transformed theta and absolute value of rho
-    (main_lines %>%
-      ggplot(aes(x = theta_mod_shift / pi, weight = score)) +
-      geom_histogram() +
-      geom_histogram(aes(x = abs(rho), weight = score), data = main_lines)) %>%
-      print()
   }
 
   return(
