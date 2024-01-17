@@ -20,14 +20,15 @@
 #' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1)
 #' x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 #' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
-#' ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+#'   ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE
+#' )
 #'
-#' x3p_MLE_angle_vec(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE) %>%
-#' str()
+#' x3p_MLE_angle_vec(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE) %>%
+#'   str()
 #'
 x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
-                                     ifplot = FALSE,
-                                     loess_span = 0.2) {
+                              ifplot = FALSE,
+                              loess_span = 0.2) {
   assert_that(
     "x3p" %in% class(x3p),
     is.count(ntheta),
@@ -83,15 +84,6 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
       score = sum(score)
     )
 
-  if (ifplot) {
-    ### ggplot loess fit
-    (x3p_hough_df_shift %>%
-      ggplot(aes(x = theta_mod_shift / pi, y = score)) +
-      geom_point() +
-      geom_smooth(method = "loess", span = loess_span)) %>%
-      print()
-  }
-
   ### loess fit
   loess_fit <- loess(score ~ theta_mod_shift, span = loess_span, data = x3p_hough_df_shift)
   ### loess predict
@@ -124,11 +116,32 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
     with(main_lines, nfline(theta, rho, col = "red"))
   }
 
-  return(
-    (
-      (main_lines$theta / pi * 180) %>%
-        unique()
-      ### 0 is same as pi on the same line
-    ) %% 180
-  )
+  angles <- (
+    (main_lines$theta / pi * 180) %>%
+      unique()
+    ### 0 is same as pi on the same line
+  ) %% 180
+
+
+  if (ifplot) {
+    angle <- ifelse(angles > 90, -(180 - angles), angles) %>%
+      mean()
+
+    ### ggplot loess fit
+    (x3p_hough_df %>%
+      mutate(theta = (theta - pi / 2) %% pi + pi / 2 - pi) %>%
+      group_by(theta) %>%
+      summarise(
+        score = sum(score)
+      ) %>%
+      ggplot(aes(x = theta, y = score)) +
+      geom_point() +
+      geom_smooth(method = "loess", span = loess_span) +
+      theme_bw() +
+      xlab("angle (radians)") +
+      geom_vline(xintercept = angle / 180 * pi, col = "red")) %>%
+      print()
+  }
+
+  return(angles)
 }
