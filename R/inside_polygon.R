@@ -22,7 +22,8 @@
 #' bounds %>%
 #'   ggplot(aes(x = x, y = y)) +
 #'   geom_point() +
-#'   geom_polygon(data = polygon)
+#'   geom_polygon(data = polygon) +
+#'   theme_bw()
 #'
 inside_polygon <- function(x, y, concavity, center = NULL) {
   assert_that(

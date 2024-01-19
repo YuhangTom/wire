@@ -153,7 +153,8 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
     (x3p_inner_df %>%
       ggplot(aes(x = x, y = y, fill = value)) +
       geom_raster() +
-      scale_fill_gradient2(midpoint = 0)) %>%
+      scale_fill_gradient2(midpoint = 0) +
+      theme_bw()) %>%
       print()
 
     ### ggplot
@@ -161,7 +162,8 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       ggplot(aes(x = x, y = y, fill = n_neighbor_val_miss)) +
       geom_raster() +
       labs(fill = "number") +
-      ggtitle("Number of missing immediate neighbors (including self)")) %>%
+      ggtitle("Number of missing immediate neighbors (including self)") +
+      theme_bw()) %>%
       print()
 
     ### ggplot
@@ -169,7 +171,8 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       ggplot(aes(x = x, y = y, fill = sd_not_miss)) +
       geom_raster() +
       labs(fill = "sd") +
-      ggtitle("Standard deviation of non-missing immediate neighbors (including self)")) %>%
+      ggtitle("Standard deviation of non-missing immediate neighbors (including self)") +
+      theme_bw()) %>%
       print()
 
     (x3p_inner_df %>%

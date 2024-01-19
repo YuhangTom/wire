@@ -87,7 +87,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       scale_fill_gradient2(midpoint = 0) +
       labs(title = "Number of imputation: 0") +
       xlab("x") +
-      ylab("y")
+      ylab("y") +
+      theme_bw()
 
     print(p0)
   }
@@ -100,15 +101,17 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
   nNA <- table(is.na(x3p_inner_nomiss_res_raster[]))["TRUE"]
 
   ### Initialize focal raster
-#  browser()
-#  p1 <- proc.time()
+  #  browser()
+  #  p1 <- proc.time()
   ns <- focal(!is.na(x3p_inner_nomiss_res_raster),
-                fun = sum, w = matrix(1, nrow = 3, ncol = 3))
+    fun = sum, w = matrix(1, nrow = 3, ncol = 3)
+  )
   sums <- focal(x3p_inner_nomiss_res_raster,
-                   fun = sum, w = matrix(1, nrow = 3, ncol = 3), na.rm=TRUE, NAonly = TRUE)
+    fun = sum, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE
+  )
   ns[!(is.na(x3p_inner_nomiss_res_raster[]))] <- 1
-  x3p_inner_nomiss_res_focal_raster <- sums/ns
-#  p2 <- proc.time()
+  x3p_inner_nomiss_res_focal_raster <- sums / ns
+  #  p2 <- proc.time()
 
   # p3 <- proc.time()
   # x3p_inner_nomiss_res_focal_raster <-
@@ -119,7 +122,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
   # p4 <- proc.time()
 
   # x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
-#  x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
+  #  x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
 
 
 
@@ -138,7 +141,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       scale_fill_gradient2(midpoint = 0) +
       labs(title = "Number of imputation: 1") +
       xlab("x") +
-      ylab("y")
+      ylab("y") +
+      theme_bw()
 
     print(p1)
   }
@@ -166,15 +170,17 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
     nNA <- table(is.na(x3p_inner_nomiss_res_focal_raster[]))["TRUE"]
 
     ### Focal raster
-#    x3p_inner_nomiss_res_focal_raster <- focal(x3p_inner_nomiss_res_focal_raster, fun = function(x, na.rm) {
-#      mean(x, na.rm = TRUE)
-#   }, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE)
+    #    x3p_inner_nomiss_res_focal_raster <- focal(x3p_inner_nomiss_res_focal_raster, fun = function(x, na.rm) {
+    #      mean(x, na.rm = TRUE)
+    #   }, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE)
     ns <- focal(!is.na(x3p_inner_nomiss_res_focal_raster),
-                fun = sum, w = matrix(1, nrow = 3, ncol = 3))
+      fun = sum, w = matrix(1, nrow = 3, ncol = 3)
+    )
     sums <- focal(x3p_inner_nomiss_res_focal_raster,
-                  fun = sum, w = matrix(1, nrow = 3, ncol = 3), na.rm=TRUE, NAonly = TRUE)
+      fun = sum, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE
+    )
     ns[!(is.na(x3p_inner_nomiss_res_focal_raster[]))] <- 1
-    x3p_inner_nomiss_res_focal_raster <- sums/ns
+    x3p_inner_nomiss_res_focal_raster <- sums / ns
 
 
 
@@ -195,7 +201,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
         scale_fill_gradient2(midpoint = 0) +
         labs(title = paste0("Number of imputation: ", nimp)) +
         xlab("x") +
-        ylab("y")
+        ylab("y") +
+        theme_bw()
     }
 
     if (ifsave) {

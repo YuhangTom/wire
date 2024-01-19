@@ -54,7 +54,8 @@ x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
       geom_line(aes(group = y), alpha = 0.1)
 
     (p_all +
-      geom_line(aes(x = x, y = sig), data = raw_sig, color = "red")) %>%
+      geom_line(aes(x = x, y = sig), data = raw_sig, color = "red") +
+      theme_bw()) %>%
       print()
   }
 

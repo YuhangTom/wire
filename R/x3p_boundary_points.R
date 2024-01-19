@@ -17,7 +17,8 @@
 #' library(dplyr)
 #' bounds %>%
 #'   ggplot(aes(x = x, y = y)) +
-#'   geom_point()
+#'   geom_point() +
+#'   theme_bw()
 #'
 x3p_boundary_points <- function(x3p, sample) {
   assert_that(

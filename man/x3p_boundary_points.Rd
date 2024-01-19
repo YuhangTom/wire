@@ -25,6 +25,7 @@ library(ggplot2)
 library(dplyr)
 bounds \%>\%
   ggplot(aes(x = x, y = y)) +
-  geom_point()
+  geom_point() +
+  theme_bw()
 
 }
