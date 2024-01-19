@@ -44,7 +44,7 @@ x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
   ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE
 )
 
-x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE)
+x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 5, ifplot = TRUE)
 x3p_bin_rotate
 if (interactive()) {
   x3p_image_autosize(x3p_bin_rotate)
