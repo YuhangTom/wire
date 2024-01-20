@@ -51,7 +51,6 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">x3p_vertical</span><span class="op">(</span></span>
 <span>  <span class="va">x3p_inner_impute</span>,</span>
 <span>  freqs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span>  method <span class="op">=</span> <span class="st">"MLE"</span>,</span>
 <span>  ntheta <span class="op">=</span> <span class="fl">720</span>,</span>
 <span>  min_score_cut <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>  ifplot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -69,10 +68,6 @@
 <dd><p>A numeric vector of length 4, representing color frequency quantiles used in <code><a href="https://heike.github.io/x3ptools/reference/x3p_bin_stripes.html" class="external-link">x3ptools::x3p_bin_stripes</a></code>.</p></dd>
 
 
-<dt>method</dt>
-<dd><p>A string indicating the method for computing rotation angle. Options are <code>MLE</code> or <code>quantile</code>.</p></dd>
-
-
 <dt>ntheta</dt>
 <dd><p>An integer representing the number of bins along the theta axis used in <code><a href="https://rdrr.io/pkg/imager/man/hough_line.html" class="external-link">imager::hough_line</a></code>.</p></dd>
 
@@ -86,7 +81,7 @@
 
 
 <dt>loess_span</dt>
-<dd><p>A numeric value controlling the degree of smoothing. This is only available when <code>method = MLE</code>.</p></dd>
+<dd><p>A numeric value controlling the degree of smoothing.</p></dd>
 
 </dl></div>
     <div class="section level2">
