@@ -135,8 +135,7 @@ respectively:
 
 ```{r signal}
 raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
-raw_sig %>%
-  str()
+attr(raw_sig, "x3p_raw_sig_vec_plot")
 
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 shift_sig %>%

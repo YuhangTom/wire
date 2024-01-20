@@ -22,8 +22,9 @@
 #' )
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 #'
-#' x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE) %>%
-#'   str()
+#' raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
+#'
+#' attr(raw_sig, "x3p_raw_sig_vec_plot")
 #'
 x3p_raw_sig_vec <- function(x3p, ifplot = FALSE) {
   assert_that(
@@ -49,10 +50,9 @@ x3p_raw_sig_vec <- function(x3p, ifplot = FALSE) {
       ggplot(aes(x = x, y = value)) +
       geom_line(aes(group = y), alpha = 0.1)
 
-    (p_all +
+    attr(raw_sig, "x3p_raw_sig_vec_plot") <- p_all +
       geom_line(aes(x = x, y = sig), data = raw_sig, color = "red") +
-      theme_bw()) %>%
-      print()
+      theme_bw()
   }
 
   return(raw_sig)

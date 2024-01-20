@@ -30,7 +30,8 @@ x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
 )
 x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 
-x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE) \%>\%
-  str()
+raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
+
+attr(raw_sig, "x3p_raw_sig_vec_plot")
 
 }
