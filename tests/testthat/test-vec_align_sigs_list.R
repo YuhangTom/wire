@@ -124,10 +124,7 @@ test_that("input check works", {
 
 test_that("output plot works", {
   expect_visible(
-    vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
-      min.overlap = NULL, ifplot = TRUE, legendname = "Signal",
-      titlename = NULL
-    )
+    attr(alignedsigs, "sig_align_plot")
   )
 })
 

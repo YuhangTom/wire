@@ -7,7 +7,7 @@ x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = F
 raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = FALSE, delta = -5:5)
 alignedsigs <- vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
-  min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
+  min.overlap = NULL, ifplot = TRUE, legendname = "Signal",
   titlename = NULL
 )
 boundary <- x3p_boundary_points(x3p, sample = 3)

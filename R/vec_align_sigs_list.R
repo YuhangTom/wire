@@ -22,10 +22,13 @@
 #' )
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1)
 #'
-#' vec_align_sigs_list(x3p_raw_sig_vec(x3p_bin_rotate)$sig, x3p_shift_sig_vec(x3p_bin_rotate)$sig,
+#' aligned <- vec_align_sigs_list(
+#'   x3p_raw_sig_vec(x3p_bin_rotate)$sig,
+#'   x3p_shift_sig_vec(x3p_bin_rotate)$sig,
 #'   ifplot = TRUE
-#' ) %>%
-#'   str()
+#' )
+#'
+#' attr(aligned, "sig_align_plot")
 #'
 vec_align_sigs_list <- function(
     sig1,
@@ -57,7 +60,7 @@ vec_align_sigs_list <- function(
 
   aligned <- sig_align(sig1, sig2, min.overlap = min.overlap)
   if (ifplot) {
-    p <- aligned$lands %>%
+    attr(aligned, "sig_align_plot") <- aligned$lands %>%
       pivot_longer(sig1:sig2, names_to = legendname, names_prefix = "sig") %>%
       ggplot(aes(x = x, y = value)) +
       geom_line(aes(colour = !!sym(legendname))) +
@@ -66,8 +69,6 @@ vec_align_sigs_list <- function(
       xlab("x") +
       ylab("signal value") +
       ggtitle(titlename, subtitle = paste0("ccf = ", round(aligned$ccf, 3), "; lag = ", aligned$lag))
-
-    print(p)
   }
 
   aligned

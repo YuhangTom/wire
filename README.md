@@ -322,9 +322,9 @@ shift_sig %>%
 #>     super:  <ggproto object: Class ScalesList, gg> 
 #>   ..$ mapping    :List of 2
 #>   .. ..$ x: language ~x
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x14ae1b040> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1546d5c40> 
 #>   .. ..$ y: language ~value
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x14ae1b040> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1546d5c40> 
 #>   .. ..- attr(*, "class")= chr "uneval"
 #>   ..$ theme      :List of 97
 #>   .. ..$ line                      :List of 6
@@ -791,7 +791,7 @@ shift_sig %>%
 #>     train_scales: function
 #>     vars: function
 #>     super:  <ggproto object: Class FacetNull, Facet, gg> 
-#>   ..$ plot_env   :<environment: 0x14ae1b040> 
+#>   ..$ plot_env   :<environment: 0x1546d5c40> 
 #>   ..$ labels     :List of 3
 #>   .. ..$ x    : chr "x"
 #>   .. ..$ y    : chr "value"
@@ -805,16 +805,8 @@ Extracted signals can be aligned, and the cross-correlation can be
 computed:
 
 ``` r
-vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
-  str()
+aligned <- vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE)
+attr(aligned, "sig_align_plot")
 ```
 
 <img src="man/figures/README-align-1.png" width="100%" />
-
-    #> List of 3
-    #>  $ ccf  : num 0.993
-    #>  $ lag  : num 0
-    #>  $ lands:'data.frame':   207 obs. of  3 variables:
-    #>   ..$ x   : int [1:207] 1 2 3 4 5 6 7 8 9 10 ...
-    #>   ..$ sig1: num [1:207] -1.243 -2.182 -1.861 -1.606 0.294 ...
-    #>   ..$ sig2: num [1:207] -1.781 -2.151 -2.242 -1.182 0.508 ...

@@ -150,7 +150,7 @@ Extracted signals can be aligned,
 and the cross-correlation can be computed:
 
 ```{r align}
-vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE) %>%
-  str()
+aligned <- vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE)
+attr(aligned, "sig_align_plot")
 ```
 
