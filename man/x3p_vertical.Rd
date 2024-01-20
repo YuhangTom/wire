@@ -7,7 +7,6 @@
 x3p_vertical(
   x3p_inner_impute,
   freqs = c(0, 0.3, 0.7, 1),
-  method = "MLE",
   ntheta = 720,
   min_score_cut = 0.1,
   ifplot = FALSE,
@@ -19,15 +18,13 @@ x3p_vertical(
 
 \item{freqs}{A numeric vector of length 4, representing color frequency quantiles used in \code{x3ptools::x3p_bin_stripes}.}
 
-\item{method}{A string indicating the method for computing rotation angle. Options are \code{MLE} or \code{quantile}.}
-
 \item{ntheta}{An integer representing the number of bins along the theta axis used in \code{imager::hough_line}.}
 
 \item{min_score_cut}{A numeric value representing the minimum score required in the Hough transformation.}
 
 \item{ifplot}{A Boolean flag indicating whether to display graphs.}
 
-\item{loess_span}{A numeric value controlling the degree of smoothing. This is only available when \code{method = MLE}.}
+\item{loess_span}{A numeric value controlling the degree of smoothing.}
 }
 \value{
 An \code{x3p} object after rotation with vertical striations.

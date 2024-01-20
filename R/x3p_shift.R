@@ -10,7 +10,7 @@
 #' @import dplyr
 #' @import ggplot2
 #' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
-#' @importFrom stats lm coef approx
+#' @importFrom stats lm coef approx quantile
 #' @importFrom purrr map_dbl map set_names
 #' @importFrom tidyr nest unnest
 #' @importFrom assertthat assert_that is.flag
