@@ -4,12 +4,10 @@
 \alias{x3p_shift_sig_vec}
 \title{Extract signal from transformed \code{x3p} object by minimizing MSE}
 \usage{
-x3p_shift_sig_vec(x3p, method = "median", ifplot = FALSE, delta = -5:5)
+x3p_shift_sig_vec(x3p, ifplot = FALSE, delta = -5:5)
 }
 \arguments{
 \item{x3p}{An \code{x3p} object representing a topographic scan.}
-
-\item{method}{A string indicating the method for computing summary statistics. Options are \code{median} or \code{mean}.}
 
 \item{ifplot}{A Boolean flag indicating whether to display graphs.}
 

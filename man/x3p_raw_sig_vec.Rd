@@ -4,12 +4,10 @@
 \alias{x3p_raw_sig_vec}
 \title{Extract signal from raw \code{x3p} object}
 \usage{
-x3p_raw_sig_vec(x3p, method = "median", ifplot = FALSE)
+x3p_raw_sig_vec(x3p, ifplot = FALSE)
 }
 \arguments{
 \item{x3p}{An \code{x3p} object representing a topographic scan.}
-
-\item{method}{A string indicating the method for computing summary statistics. Options are \code{median} or \code{mean}.}
 
 \item{ifplot}{A Boolean flag indicating whether to display graphs.}
 }

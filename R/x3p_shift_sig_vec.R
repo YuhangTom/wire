@@ -4,7 +4,6 @@
 #' It computes summary statistics of values along the `y` axis for each `x` value.
 #'
 #' @param x3p An `x3p` object representing a topographic scan.
-#' @param method A string indicating the method for computing summary statistics. Options are `median` or `mean`.
 #' @param ifplot A Boolean flag indicating whether to display graphs.
 #' @param delta A numeric vector representing the shifting range for minimizing MSE.
 #' @return A data frame with two columns:
@@ -33,16 +32,15 @@
 #'     str()
 #' }
 #'
-x3p_shift_sig_vec <- function(x3p, method = "median", ifplot = FALSE, delta = -5:5) {
+x3p_shift_sig_vec <- function(x3p, ifplot = FALSE, delta = -5:5) {
   assert_that(
     "x3p" %in% class(x3p),
-    method %in% c("median", "mean"),
     is.flag(ifplot),
     is.numeric(delta), length(delta) >= 3
   )
 
   x3p_approx <- x3p_shift(x3p, ifplot = ifplot, delta = delta)
-  shift_sig <- x3p_raw_sig_vec(x3p_approx, method = method, ifplot = ifplot)
+  shift_sig <- x3p_raw_sig_vec(x3p_approx, ifplot = ifplot)
 
   return(shift_sig)
 }

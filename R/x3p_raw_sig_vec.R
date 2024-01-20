@@ -3,7 +3,6 @@
 #' This function extracts the signal from a raw `x3p` object by computing summary statistics of values along the `y` axis for each `x` value.
 #'
 #' @param x3p An `x3p` object representing a topographic scan.
-#' @param method A string indicating the method for computing summary statistics. Options are `median` or `mean`.
 #' @param ifplot A Boolean flag indicating whether to display graphs.
 #' @return A data frame with two columns:
 #' * x: The `x` values from the `x3p` object.
@@ -26,10 +25,9 @@
 #' x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE) %>%
 #'   str()
 #'
-x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
+x3p_raw_sig_vec <- function(x3p, ifplot = FALSE) {
   assert_that(
     "x3p" %in% class(x3p),
-    method %in% c("median", "mean"),
     is.flag(ifplot)
   )
 
@@ -44,9 +42,7 @@ x3p_raw_sig_vec <- function(x3p, method = "median", ifplot = FALSE) {
 
   raw_sig <- x3p_df %>%
     group_by(x) %>%
-    summarise(sig = ifelse(method == "median", median(value, na.rm = TRUE),
-      mean(value, na.rm = TRUE)
-    ))
+    summarise(sig = median(value, na.rm = TRUE))
 
   if (ifplot) {
     p_all <- x3p_df %>%
