@@ -40,7 +40,11 @@ This function generates a summary data frame for the inner polygon of an \code{x
 \examples{
 x3p <- x3p_subsamples[[1]]
 
-x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE) \%>\%
-  str()
+insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE)
+
+attr(insidepoly_df, "x3p_plot")
+attr(insidepoly_df, "number_of_missing_immediate_neighbors_plot")
+attr(insidepoly_df, "standard_deviation_of_non_missing_immediate_neighbors_plot")
+attr(insidepoly_df, "number_of_missing_immediate_neighbors_boxplot")
 
 }

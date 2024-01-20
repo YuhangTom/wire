@@ -61,7 +61,19 @@ test_that("input check works", {
 
 test_that("output plot works", {
   expect_visible(
-    x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE)
+    attr(insidepoly_df, "x3p_plot")
+  )
+
+  expect_visible(
+    attr(insidepoly_df, "number_of_missing_immediate_neighbors_plot")
+  )
+
+  expect_visible(
+    attr(insidepoly_df, "standard_deviation_of_non_missing_immediate_neighbors_plot")
+  )
+
+  expect_visible(
+    attr(insidepoly_df, "number_of_missing_immediate_neighbors_boxplot")
   )
 })
 

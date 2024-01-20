@@ -26,8 +26,12 @@
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
 #'
-#' x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE) %>%
-#'   str()
+#' insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE)
+#'
+#' attr(insidepoly_df, "x3p_plot")
+#' attr(insidepoly_df, "number_of_missing_immediate_neighbors_plot")
+#' attr(insidepoly_df, "standard_deviation_of_non_missing_immediate_neighbors_plot")
+#' attr(insidepoly_df, "number_of_missing_immediate_neighbors_boxplot")
 #'
 x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10,
                               ifplot = FALSE) {
@@ -150,32 +154,27 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
   }
 
   if (ifplot) {
-    (x3p_inner_df %>%
+    attr(x3p_inner_df, "x3p_plot") <- x3p_inner_df %>%
       ggplot(aes(x = x, y = y, fill = value)) +
       geom_raster() +
       scale_fill_gradient2(midpoint = 0) +
-      theme_bw()) %>%
-      print()
+      theme_bw()
 
-    ### ggplot
-    (x3p_inner_df %>%
+    attr(x3p_inner_df, "number_of_missing_immediate_neighbors_plot") <- x3p_inner_df %>%
       ggplot(aes(x = x, y = y, fill = n_neighbor_val_miss)) +
       geom_raster() +
       labs(fill = "number") +
       ggtitle("Number of missing immediate neighbors (including self)") +
-      theme_bw()) %>%
-      print()
+      theme_bw()
 
-    ### ggplot
-    (x3p_inner_df %>%
+    attr(x3p_inner_df, "standard_deviation_of_non_missing_immediate_neighbors_plot") <- x3p_inner_df %>%
       ggplot(aes(x = x, y = y, fill = sd_not_miss)) +
       geom_raster() +
       labs(fill = "sd") +
       ggtitle("Standard deviation of non-missing immediate neighbors (including self)") +
-      theme_bw()) %>%
-      print()
+      theme_bw()
 
-    (x3p_inner_df %>%
+    attr(x3p_inner_df, "number_of_missing_immediate_neighbors_boxplot") <- x3p_inner_df %>%
       mutate(
         n_discrete = ifelse(parse_number(as.character(n_neighbor_val_miss)) <= 4, as.character(n_neighbor_val_miss), "5 or more")
       ) %>%
@@ -186,8 +185,7 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
         x = "Number of missing immediate neighbors (including self)"
       ) +
       theme_bw() +
-      scale_y_continuous("standard deviation", limits = c(0, .5))) %>%
-      print()
+      scale_y_continuous("standard deviation", limits = c(0, .5))
   }
 
   return(x3p_inner_df)

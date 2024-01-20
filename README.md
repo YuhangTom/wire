@@ -63,26 +63,29 @@ can be achieved by:
 ``` r
 x3p <- x3p_subsamples[[1]]
 insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b = 1, ifplot = TRUE)
+
+attr(insidepoly_df, "x3p_plot")
 ```
 
-<img src="man/figures/README-insidepoly-1.png" width="100%" /><img src="man/figures/README-insidepoly-2.png" width="100%" /><img src="man/figures/README-insidepoly-3.png" width="100%" /><img src="man/figures/README-insidepoly-4.png" width="100%" />
+<img src="man/figures/README-insidepoly-1.png" width="100%" />
 
 ``` r
-insidepoly_df %>%
-  str()
-#> 'data.frame':    41108 obs. of  6 variables:
-#>  $ x                  : num  0 6.45 12.9 19.35 25.8 ...
-#>  $ y                  : num  1103 1103 1103 1103 1103 ...
-#>  $ value              : num  NA NA NA NA NA NA NA NA NA NA ...
-#>  $ mask               : chr  "#FFFFFF" "#FFFFFF" "#FFFFFF" "#FFFFFF" ...
-#>  $ n_neighbor_val_miss: Factor w/ 11 levels "0","1","2","3",..: 11 11 11 11 11 11 11 11 11 11 ...
-#>  $ sd_not_miss        : num  NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN ...
-#>  - attr(*, "header.info")=List of 4
-#>   ..$ sizeX     : int 239
-#>   ..$ sizeY     : int 172
-#>   ..$ incrementX: num 6.45
-#>   ..$ incrementY: num 6.45
+attr(insidepoly_df, "number_of_missing_immediate_neighbors_plot")
 ```
+
+<img src="man/figures/README-insidepoly-2.png" width="100%" />
+
+``` r
+attr(insidepoly_df, "standard_deviation_of_non_missing_immediate_neighbors_plot")
+```
+
+<img src="man/figures/README-insidepoly-3.png" width="100%" />
+
+``` r
+attr(insidepoly_df, "number_of_missing_immediate_neighbors_boxplot")
+```
+
+<img src="man/figures/README-insidepoly-4.png" width="100%" />
 
 ## Remove trend
 
