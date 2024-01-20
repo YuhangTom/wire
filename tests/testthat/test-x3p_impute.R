@@ -48,7 +48,13 @@ test_that("input check works", {
 
 test_that("output plot works", {
   expect_visible(
-    x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
+    attr(x3p_inner_impute, "x3p_impute_0_plot")
+  )
+  expect_visible(
+    attr(x3p_inner_impute, "x3p_impute_1_plot")
+  )
+  expect_visible(
+    attr(x3p_inner_impute, "x3p_impute_n_plot")
   )
 })
 

@@ -105,16 +105,22 @@ We can impute the missing values inside the surface by:
 
 ``` r
 x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE)
+attr(x3p_inner_impute, "x3p_impute_0_plot")
 ```
 
-<img src="man/figures/README-impute-1.png" width="100%" /><img src="man/figures/README-impute-2.png" width="100%" /><img src="man/figures/README-impute-3.png" width="100%" />
+<img src="man/figures/README-impute-1.png" width="100%" />
 
 ``` r
-x3p_inner_impute
-#> x3p object
-#> size (width x height): 239 x 172 in pixel 
-#> resolution: 6.4500e+00 x 6.4500e+00
+attr(x3p_inner_impute, "x3p_impute_1_plot")
 ```
+
+<img src="man/figures/README-impute-2.png" width="100%" />
+
+``` r
+attr(x3p_inner_impute, "x3p_impute_n_plot")
+```
+
+<img src="man/figures/README-impute-3.png" width="100%" />
 
 ## Rotation
 

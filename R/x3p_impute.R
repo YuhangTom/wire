@@ -25,7 +25,11 @@
 #' x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
 #'   ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE
 #' )
-#' x3p_inner_impute
+#'
+#' attr(x3p_inner_impute, "x3p_impute_0_plot")
+#' attr(x3p_inner_impute, "x3p_impute_1_plot")
+#' attr(x3p_inner_impute, "x3p_impute_n_plot")
+#'
 #' if (interactive()) {
 #'   x3p_image_autosize(x3p_inner_impute)
 #' }
@@ -62,6 +66,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
     . <-
     NULL
 
+  ggplot_attrs <- NA
+
   ### Convert x3p to raster
   x3p_inner_nomiss_res_raster <- x3p$surface.matrix %>%
     raster(
@@ -73,8 +79,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
     x3p_get_scale()
 
   if (ifplot) {
-    ### Plot raster
-    p0 <- x3p_inner_nomiss_res_raster %>%
+    attr(ggplot_attrs, "x3p_impute_0_plot") <- x3p_inner_nomiss_res_raster %>%
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
       mutate(
@@ -89,12 +94,10 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       xlab("x") +
       ylab("y") +
       theme_bw()
-
-    print(p0)
   }
 
   if (ifsave) {
-    ggsave(paste0(dir_name, "/gif_p0.png"), p0, width = 5, height = 3)
+    ggsave(paste0(dir_name, "/gif_p0.png"), attr(ggplot_attrs, "x3p_impute_0_plot"), width = 5, height = 3)
   }
 
   ### Get number of missing values
@@ -127,8 +130,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
 
 
   if (ifplot) {
-    ### First focal raster plot
-    p1 <- x3p_inner_nomiss_res_focal_raster %>%
+    attr(ggplot_attrs, "x3p_impute_1_plot") <- x3p_inner_nomiss_res_focal_raster %>%
       as.data.frame(xy = TRUE) %>%
       as_tibble() %>%
       mutate(
@@ -143,12 +145,10 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       xlab("x") +
       ylab("y") +
       theme_bw()
-
-    print(p1)
   }
 
   if (ifsave) {
-    ggsave(paste0(dir_name, "/gif_p1.png"), p1, width = 5, height = 3)
+    ggsave(paste0(dir_name, "/gif_p1.png"), attr(ggplot_attrs, "x3p_impute_1_plot"), width = 5, height = 3)
   }
 
   ### Initialize condition
@@ -188,7 +188,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
     nimp <- nimp + 1
 
     if (ifplot) {
-      p <- x3p_inner_nomiss_res_focal_raster %>%
+      attr(ggplot_attrs, "x3p_impute_n_plot") <- x3p_inner_nomiss_res_focal_raster %>%
         as.data.frame(xy = TRUE) %>%
         as_tibble() %>%
         mutate(
@@ -206,7 +206,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
     }
 
     if (ifsave) {
-      ggsave(paste0(dir_name, "/gif_p", nimp, ".png"), p, width = 5, height = 3)
+      ggsave(paste0(dir_name, "/gif_p", nimp, ".png"), attr(ggplot_attrs, "x3p_impute_n_plot"), width = 5, height = 3)
     }
 
     ### Check condition
@@ -228,11 +228,6 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
         do <- FALSE
       }
     }
-  }
-
-  ### Plot final raster
-  if (ifplot) {
-    print(p)
   }
 
   if (ifsave) {
@@ -267,6 +262,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
   x3p_inner_impute <- x3p_inner_focal_impute %>%
     x3p_extract(mask_vals = mask_col) %>%
     x3p_delete_mask()
+
+  attributes(x3p_inner_impute) <- c(attributes(x3p_inner_impute), attributes(ggplot_attrs))
 
   return(x3p_inner_impute)
 }

@@ -31,7 +31,11 @@ x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
   ifout = TRUE, ifsave = FALSE, dir_name = NULL, ifplot = TRUE
 )
-x3p_inner_impute
+
+attr(x3p_inner_impute, "x3p_impute_0_plot")
+attr(x3p_inner_impute, "x3p_impute_1_plot")
+attr(x3p_inner_impute, "x3p_impute_n_plot")
+
 if (interactive()) {
   x3p_image_autosize(x3p_inner_impute)
 }
