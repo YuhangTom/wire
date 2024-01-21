@@ -32,7 +32,7 @@
 #'
 #'   attr(shift_sig, "x3p_before_shift_plot")
 #'   attr(shift_sig, "x3p_after_shift_plot")
-#'   attr(shift_sig, "x3p_raw_sig_vec_plot")
+#'   attr(shift_sig, "sig_vec_plot")
 #' }
 #'
 x3p_shift_sig_vec <- function(x3p, ifplot = FALSE, delta = -5:5) {

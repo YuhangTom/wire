@@ -160,7 +160,7 @@ respectively:
 
 ``` r
 raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
-attr(raw_sig, "x3p_raw_sig_vec_plot")
+attr(raw_sig, "sig_vec_plot")
 ```
 
 <img src="man/figures/README-signal-1.png" width="100%" />
@@ -180,7 +180,7 @@ attr(shift_sig, "x3p_after_shift_plot")
 <img src="man/figures/README-signal-3.png" width="100%" />
 
 ``` r
-attr(shift_sig, "x3p_raw_sig_vec_plot")
+attr(shift_sig, "sig_vec_plot")
 ```
 
 <img src="man/figures/README-signal-4.png" width="100%" />

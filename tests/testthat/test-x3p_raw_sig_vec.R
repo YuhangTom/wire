@@ -25,7 +25,7 @@ test_that("input check works", {
 
 test_that("output plot works", {
   expect_visible(
-    attr(raw_sig, "x3p_raw_sig_vec_plot")
+    attr(raw_sig, "sig_vec_plot")
   )
 })
 
