@@ -23,7 +23,15 @@
 #'   ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE
 #' )
 #'
-#' x3p_MLE_angle_vec(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE) %>%
+#' x3p_bin <- x3p_inner_impute %>%
+#'   x3ptools::x3p_bin_stripes(
+#'     direction = "vertical",
+#'     colors = c("#b12819", "#ffffff", "#134D6B"),
+#'     freqs = c(0, 0.3, 0.7, 1)
+#'   )
+#' x3p_bin_red <- x3ptools::x3p_extract(x3p_bin, mask_vals = "#b12819")
+#'
+#' x3p_MLE_angle_vec(x3p_bin_red, min_score_cut = 5, ifplot = TRUE) %>%
 #'   str()
 #'
 x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
