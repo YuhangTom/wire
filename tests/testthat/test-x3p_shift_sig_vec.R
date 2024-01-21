@@ -37,7 +37,13 @@ test_that("input check works", {
 
 test_that("output plot works", {
   expect_visible(
-    x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE, delta = -5:5)
+    attr(shift_sig, "x3p_before_shift_plot")
+  )
+  expect_visible(
+    attr(shift_sig, "x3p_after_shift_plot")
+  )
+  expect_visible(
+    attr(shift_sig, "x3p_raw_sig_vec_plot")
   )
 })
 

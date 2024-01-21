@@ -35,8 +35,11 @@ x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res,
 x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 
 if (interactive()) {
-  x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE) \%>\%
-    str()
+  shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
+
+  attr(shift_sig, "x3p_before_shift_plot")
+  attr(shift_sig, "x3p_after_shift_plot")
+  attr(shift_sig, "x3p_raw_sig_vec_plot")
 }
 
 }

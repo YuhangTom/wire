@@ -5,7 +5,7 @@ x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifout = FALSE, ifsave = FAL
 MLE_angle <- x3p_MLE_angle_vec(x3p_inner_impute, ntheta = 720, min_score_cut = 0.1, ifplot = TRUE, loess_span = 0.2)
 x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = TRUE)
 raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
-shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = FALSE, delta = -5:5)
+shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE, delta = -5:5)
 alignedsigs <- vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
   min.overlap = NULL, ifplot = TRUE, legendname = "Signal",
   titlename = NULL
