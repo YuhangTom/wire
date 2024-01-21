@@ -26,7 +26,10 @@
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 #'
 #' if (interactive()) {
-#'   x3p_shift(x3p_bin_rotate, ifplot = TRUE)
+#'   x3p_approx <- x3p_shift(x3p_bin_rotate, ifplot = TRUE)
+#'
+#'   attr(x3p_approx, "x3p_before_shift_plot")
+#'   attr(x3p_approx, "x3p_after_shift_plot")
 #' }
 #'
 x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
@@ -46,6 +49,8 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
     Dat <-
     value_approx <-
     NULL
+
+  ggplot_attrs <- NA
 
   x3p_df <- x3p %>%
     x3p_to_df()
@@ -179,12 +184,11 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
     mutate(x_shift_delta = x + x_shift_delta_value)
 
   if (ifplot) {
-    (x3p_shift_delta_df %>%
+    attr(ggplot_attrs, "x3p_before_shift_plot") <- x3p_shift_delta_df %>%
       ggplot(aes(x = x, y = y, fill = value)) +
       geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
-      theme_bw()) %>%
-      print()
+      theme_bw()
   }
 
   # shift scan horizontally to let it start in 0
@@ -227,12 +231,11 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
     )
 
   if (ifplot) {
-    (x3p_approx_df %>%
+    attr(ggplot_attrs, "x3p_after_shift_plot") <- x3p_approx_df %>%
       ggplot(aes(x = x, y = y, fill = value_approx)) +
       geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
-      theme_bw()) %>%
-      print()
+      theme_bw()
   }
 
   x3p_approx <- x3p_approx_df %>%
@@ -250,6 +253,8 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
     x3p_approx %>%
       x3p_image_autosize(ifhtml = TRUE)
   }
+
+  attributes(x3p_approx) <- c(attributes(x3p_approx), attributes(ggplot_attrs))
 
   return(x3p_approx)
 }
