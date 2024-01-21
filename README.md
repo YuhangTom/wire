@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--01--20-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--01--21-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
@@ -322,9 +322,9 @@ shift_sig %>%
 #>     super:  <ggproto object: Class ScalesList, gg> 
 #>   ..$ mapping    :List of 2
 #>   .. ..$ x: language ~x
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1546d5c40> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1711be9b0> 
 #>   .. ..$ y: language ~value
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1546d5c40> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1711be9b0> 
 #>   .. ..- attr(*, "class")= chr "uneval"
 #>   ..$ theme      :List of 97
 #>   .. ..$ line                      :List of 6
@@ -791,7 +791,7 @@ shift_sig %>%
 #>     train_scales: function
 #>     vars: function
 #>     super:  <ggproto object: Class FacetNull, Facet, gg> 
-#>   ..$ plot_env   :<environment: 0x1546d5c40> 
+#>   ..$ plot_env   :<environment: 0x1711be9b0> 
 #>   ..$ labels     :List of 3
 #>   .. ..$ x    : chr "x"
 #>   .. ..$ y    : chr "value"

@@ -11,7 +11,7 @@
 #' @import dplyr
 #' @import ggplot2
 #' @importFrom raster raster
-#' @importFrom imager as.cimg hough_line nfline
+#' @importFrom imager as.cimg hough_line
 #' @importFrom stats loess predict
 #' @importFrom assertthat assert_that is.count is.number is.flag
 #' @export
@@ -50,6 +50,11 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
     theta_mod <-
     theta_mod_shift <-
     rho <-
+    x <-
+    y <-
+    value <-
+    slope <-
+    intercept <-
     . <-
     NULL
 
@@ -70,10 +75,6 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
 
   ### Change to cimg
   x3p_cimg <- as.cimg(x3p_raster)
-
-  if (ifplot) {
-    plot(x3p_cimg)
-  }
 
   ### Hough transformation for lines
   x3p_hough_df <- hough_line(x3p_cimg, ntheta = ntheta, data.frame = TRUE, shift = FALSE)
@@ -118,18 +119,33 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
   main_lines <- x3p_hough_rho_df %>%
     filter(score > min_score_cut)
 
-  if (ifplot) {
-    ### Plot image with main lines after selecting theta
-    plot(x3p_cimg)
-    with(main_lines, nfline(theta, rho, col = "red"))
-  }
-
   angles <- (
     (main_lines$theta / pi * 180) %>%
       unique()
     ### 0 is same as pi on the same line
   ) %% 180
 
+  if (ifplot) {
+    p <- x3p %>%
+      x3p_to_df() %>%
+      # filter(!is.na(value)) %>%
+      ggplot(aes(x = x, y = y, fill = value)) +
+      geom_tile() +
+      scale_fill_gradient2(midpoint = 0) +
+      theme_bw()
+
+    abline_df <- main_lines %>%
+      mutate(
+        slope = cos(theta) / sin(theta) * x3p$header.info$incrementY / x3p$header.info$incrementX,
+        intercept = -rho / sin(theta) * x3p$header.info$incrementY + x3p$header.info$sizeY * x3p$header.info$incrementY,
+      ) %>%
+      group_by(slope, intercept) %>%
+      summarise(
+        gg = list(geom_abline(intercept = intercept, slope = slope, col = "red"))
+      )
+
+    print(p + abline_df$gg)
+  }
 
   if (ifplot) {
     angle <- ifelse(angles > 90, -(180 - angles), angles) %>%
