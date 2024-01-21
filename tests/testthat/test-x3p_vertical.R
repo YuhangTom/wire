@@ -165,16 +165,16 @@ test_that("input check works", {
 
 test_that("output plot works", {
   expect_visible(
-    x3p_vertical(x3p_inner_impute,
-      freqs = c(0, 0.3, 0.7, 1),
-      ntheta = 720, min_score_cut = 0.1, ifplot = TRUE, loess_span = 0.2
-    )
+    attr(x3p_bin_rotate, "nfline_red_plot")
   )
   expect_visible(
-    x3p_vertical(x3p_inner_impute,
-      freqs = c(0, 0.3, 0.7, 1),
-      ntheta = 720, min_score_cut = 0.1, ifplot = TRUE, loess_span = 0.2
-    )
+    attr(x3p_bin_rotate, "MLE_loess_red_plot")
+  )
+  expect_visible(
+    attr(x3p_bin_rotate, "nfline_blue_plot")
+  )
+  expect_visible(
+    attr(x3p_bin_rotate, "MLE_loess_blue_plot")
   )
 })
 

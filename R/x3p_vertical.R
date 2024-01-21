@@ -23,7 +23,12 @@
 #' )
 #'
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 5, ifplot = TRUE)
-#' x3p_bin_rotate
+#'
+#' attr(x3p_bin_rotate, "nfline_red_plot")
+#' attr(x3p_bin_rotate, "MLE_loess_red_plot")
+#' attr(x3p_bin_rotate, "nfline_blue_plot")
+#' attr(x3p_bin_rotate, "MLE_loess_blue_plot")
+#'
 #' if (interactive()) {
 #'   x3p_image_autosize(x3p_bin_rotate)
 #' }
@@ -77,6 +82,13 @@ x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
   #  x3p_bin_red_rotate <- x3p_rotate(x3p_bin_red, angle = angle_red)
   #  x3p_bin_blue_rotate <- x3p_rotate(x3p_bin_blue, angle = angle_blue)
   x3p_bin_rotate <- x3p_rotate(x3p_bin, angle = angle)
+
+  if (ifplot) {
+    attr(x3p_bin_rotate, "nfline_red_plot") <- attr(angle_red, "nfline_plot")
+    attr(x3p_bin_rotate, "MLE_loess_red_plot") <- attr(angle_red, "MLE_loess_plot")
+    attr(x3p_bin_rotate, "nfline_blue_plot") <- attr(angle_blue, "nfline_plot")
+    attr(x3p_bin_rotate, "MLE_loess_blue_plot") <- attr(angle_blue, "MLE_loess_plot")
+  }
 
   return(x3p_bin_rotate)
 }

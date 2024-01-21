@@ -128,11 +128,29 @@ We can rotate the surface to the correct angle by:
 
 ``` r
 x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 5, ifplot = TRUE)
-x3p_bin_rotate
-#> x3p object
-#> size (width x height): 207 x 146 in pixel 
-#> resolution: 6.4500e+00 x 6.4500e+00
+
+attr(x3p_bin_rotate, "nfline_red_plot")
 ```
+
+<img src="man/figures/README-rotate-1.png" width="100%" />
+
+``` r
+attr(x3p_bin_rotate, "MLE_loess_red_plot")
+```
+
+<img src="man/figures/README-rotate-2.png" width="100%" />
+
+``` r
+attr(x3p_bin_rotate, "nfline_blue_plot")
+```
+
+<img src="man/figures/README-rotate-3.png" width="100%" />
+
+``` r
+attr(x3p_bin_rotate, "MLE_loess_blue_plot")
+```
+
+<img src="man/figures/README-rotate-4.png" width="100%" />
 
 ## Signal extraction
 
@@ -317,9 +335,9 @@ shift_sig %>%
 #>     super:  <ggproto object: Class ScalesList, gg> 
 #>   ..$ mapping    :List of 2
 #>   .. ..$ x: language ~x
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1136d3e08> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x157fcdee8> 
 #>   .. ..$ y: language ~value
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1136d3e08> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x157fcdee8> 
 #>   .. ..- attr(*, "class")= chr "uneval"
 #>   ..$ theme      :List of 97
 #>   .. ..$ line                      :List of 6
@@ -786,7 +804,7 @@ shift_sig %>%
 #>     train_scales: function
 #>     vars: function
 #>     super:  <ggproto object: Class FacetNull, Facet, gg> 
-#>   ..$ plot_env   :<environment: 0x1136d3e08> 
+#>   ..$ plot_env   :<environment: 0x157fcdee8> 
 #>   ..$ labels     :List of 3
 #>   .. ..$ x    : chr "x"
 #>   .. ..$ y    : chr "value"
