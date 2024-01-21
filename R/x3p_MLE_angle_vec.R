@@ -31,8 +31,10 @@
 #'   )
 #' x3p_bin_red <- x3ptools::x3p_extract(x3p_bin, mask_vals = "#b12819")
 #'
-#' x3p_MLE_angle_vec(x3p_bin_red, min_score_cut = 5, ifplot = TRUE) %>%
-#'   str()
+#' angle_red <- x3p_MLE_angle_vec(x3p_bin_red, min_score_cut = 5, ifplot = TRUE)
+#'
+#' attr(angle_red, "nfline_plot")
+#' attr(angle_red, "MLE_loess_plot")
 #'
 x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
                               ifplot = FALSE,
@@ -144,7 +146,7 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
         gg = list(geom_abline(intercept = intercept, slope = slope, col = "red"))
       )
 
-    print(p + abline_df$gg)
+    attr(angles, "nfline_plot") <- p + abline_df$gg
   }
 
   if (ifplot) {
@@ -152,7 +154,7 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
       mean()
 
     ### ggplot loess fit
-    (x3p_hough_df %>%
+    attr(angles, "MLE_loess_plot") <- x3p_hough_df %>%
       mutate(theta = (theta - pi / 2) %% pi + pi / 2 - pi) %>%
       group_by(theta) %>%
       summarise(
@@ -163,8 +165,7 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
       geom_smooth(method = "loess", span = loess_span) +
       theme_bw() +
       xlab("angle (radians)") +
-      geom_vline(xintercept = angle / 180 * pi, col = "red")) %>%
-      print()
+      geom_vline(xintercept = angle / 180 * pi, col = "red")
   }
 
   return(angles)

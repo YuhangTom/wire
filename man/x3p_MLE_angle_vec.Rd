@@ -45,7 +45,9 @@ x3p_bin <- x3p_inner_impute \%>\%
   )
 x3p_bin_red <- x3ptools::x3p_extract(x3p_bin, mask_vals = "#b12819")
 
-x3p_MLE_angle_vec(x3p_bin_red, min_score_cut = 5, ifplot = TRUE) \%>\%
-  str()
+angle_red <- x3p_MLE_angle_vec(x3p_bin_red, min_score_cut = 5, ifplot = TRUE)
+
+attr(angle_red, "nfline_plot")
+attr(angle_red, "MLE_loess_plot")
 
 }

@@ -128,11 +128,6 @@ We can rotate the surface to the correct angle by:
 
 ``` r
 x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 5, ifplot = TRUE)
-```
-
-<img src="man/figures/README-rotate-1.png" width="100%" /><img src="man/figures/README-rotate-2.png" width="100%" /><img src="man/figures/README-rotate-3.png" width="100%" /><img src="man/figures/README-rotate-4.png" width="100%" />
-
-``` r
 x3p_bin_rotate
 #> x3p object
 #> size (width x height): 207 x 146 in pixel 
@@ -322,9 +317,9 @@ shift_sig %>%
 #>     super:  <ggproto object: Class ScalesList, gg> 
 #>   ..$ mapping    :List of 2
 #>   .. ..$ x: language ~x
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1711be9b0> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1136d3e08> 
 #>   .. ..$ y: language ~value
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1711be9b0> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1136d3e08> 
 #>   .. ..- attr(*, "class")= chr "uneval"
 #>   ..$ theme      :List of 97
 #>   .. ..$ line                      :List of 6
@@ -791,7 +786,7 @@ shift_sig %>%
 #>     train_scales: function
 #>     vars: function
 #>     super:  <ggproto object: Class FacetNull, Facet, gg> 
-#>   ..$ plot_env   :<environment: 0x1711be9b0> 
+#>   ..$ plot_env   :<environment: 0x1136d3e08> 
 #>   ..$ labels     :List of 3
 #>   .. ..$ x    : chr "x"
 #>   .. ..$ y    : chr "value"

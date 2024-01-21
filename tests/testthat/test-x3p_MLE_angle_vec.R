@@ -130,10 +130,10 @@ test_that("input check works", {
 
 test_that("output plot works", {
   expect_visible(
-    x3p_MLE_angle_vec(x3p_inner_impute,
-      ntheta = 720, min_score_cut = 0.1,
-      ifplot = TRUE, loess_span = 0.2
-    )
+    attr(MLE_angle, "nfline_plot")
+  )
+  expect_visible(
+    attr(MLE_angle, "MLE_loess_plot")
   )
 })
 
