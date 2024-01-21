@@ -180,15 +180,10 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
 
   if (ifplot) {
     (x3p_shift_delta_df %>%
-      ggplot(aes(x = x, y = y, color = value)) +
-      geom_point()) %>%
-      print()
-  }
-
-  if (ifplot) {
-    (x3p_shift_delta_df %>%
-      ggplot(aes(x = x_shift_delta, y = y, color = value)) +
-      geom_point()) %>%
+      ggplot(aes(x = x, y = y, fill = value)) +
+      geom_tile() +
+      scale_fill_gradient2(midpoint = 0) +
+      theme_bw()) %>%
       print()
   }
 
@@ -233,8 +228,10 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
 
   if (ifplot) {
     (x3p_approx_df %>%
-      ggplot(aes(x = x, y = y, color = value_approx)) +
-      geom_point()) %>%
+      ggplot(aes(x = x, y = y, fill = value_approx)) +
+      geom_tile() +
+      scale_fill_gradient2(midpoint = 0) +
+      theme_bw()) %>%
       print()
   }
 

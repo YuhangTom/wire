@@ -170,7 +170,7 @@ attr(raw_sig, "x3p_raw_sig_vec_plot")
 shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
 ```
 
-<img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" /><img src="man/figures/README-signal-4.png" width="100%" />
+<img src="man/figures/README-signal-2.png" width="100%" /><img src="man/figures/README-signal-3.png" width="100%" />
 
 ``` r
 shift_sig %>%
@@ -335,9 +335,9 @@ shift_sig %>%
 #>     super:  <ggproto object: Class ScalesList, gg> 
 #>   ..$ mapping    :List of 2
 #>   .. ..$ x: language ~x
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x157fcdee8> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x14fc957b0> 
 #>   .. ..$ y: language ~value
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x157fcdee8> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x14fc957b0> 
 #>   .. ..- attr(*, "class")= chr "uneval"
 #>   ..$ theme      :List of 97
 #>   .. ..$ line                      :List of 6
@@ -804,7 +804,7 @@ shift_sig %>%
 #>     train_scales: function
 #>     vars: function
 #>     super:  <ggproto object: Class FacetNull, Facet, gg> 
-#>   ..$ plot_env   :<environment: 0x157fcdee8> 
+#>   ..$ plot_env   :<environment: 0x14fc957b0> 
 #>   ..$ labels     :List of 3
 #>   .. ..$ x    : chr "x"
 #>   .. ..$ y    : chr "value"
