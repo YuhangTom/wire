@@ -88,7 +88,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       ) %>%
       rename(value = layer) %>%
       ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
-      geom_raster() +
+      geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
       labs(title = "Number of imputation: 0") +
       xlab("x") +
@@ -124,8 +124,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
   #     }, w = matrix(1, nrow = 3, ncol = 3), na.rm = TRUE, NAonly = TRUE)
   # p4 <- proc.time()
 
-  # x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
-  #  x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
+  # x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_tile()
+  #  x3p_inner_nomiss_res_focal_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_tile()
 
 
 
@@ -139,7 +139,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
       ) %>%
       rename(value = layer) %>%
       ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
-      geom_raster() +
+      geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
       labs(title = "Number of imputation: 1") +
       xlab("x") +
@@ -197,7 +197,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
         ) %>%
         rename(value = layer) %>%
         ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
-        geom_raster() +
+        geom_tile() +
         scale_fill_gradient2(midpoint = 0) +
         labs(title = paste0("Number of imputation: ", nimp)) +
         xlab("x") +

@@ -335,9 +335,9 @@ shift_sig %>%
 #>     super:  <ggproto object: Class ScalesList, gg> 
 #>   ..$ mapping    :List of 2
 #>   .. ..$ x: language ~x
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x14fc957b0> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1699fe0e0> 
 #>   .. ..$ y: language ~value
-#>   .. .. ..- attr(*, ".Environment")=<environment: 0x14fc957b0> 
+#>   .. .. ..- attr(*, ".Environment")=<environment: 0x1699fe0e0> 
 #>   .. ..- attr(*, "class")= chr "uneval"
 #>   ..$ theme      :List of 97
 #>   .. ..$ line                      :List of 6
@@ -804,7 +804,7 @@ shift_sig %>%
 #>     train_scales: function
 #>     vars: function
 #>     super:  <ggproto object: Class FacetNull, Facet, gg> 
-#>   ..$ plot_env   :<environment: 0x14fc957b0> 
+#>   ..$ plot_env   :<environment: 0x1699fe0e0> 
 #>   ..$ labels     :List of 3
 #>   .. ..$ x    : chr "x"
 #>   .. ..$ y    : chr "value"

@@ -81,18 +81,18 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       ymx = x3p_inner$header.info$sizeY - 1
     )
 
-  # x3p_inner_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
+  # x3p_inner_raster %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_tile()
 
   # counts the number of non-missing values:
   n_neighbor_val_miss <- focal(is.na(x3p_inner_raster), w = matrix(1, ncol = 3, nrow = 3), fun = sum)
-  # n_neighbor_val_miss %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=factor(layer))) + geom_raster()
+  # n_neighbor_val_miss %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=factor(layer))) + geom_tile()
   # neighbors <- 9-n_neighbor_val_miss
   #  n_neighbor_val_mean <- focal(x3p_inner_raster, w=matrix(1, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
   #  n_neighbor_val_mean <- n_neighbor_val_mean/neighbors
   #  n_neighbor_val_var <- focal((x3p_inner_raster-n_neighbor_val_mean)^2, w=matrix(1, ncol=3, nrow=3), fun=sum, na.rm=TRUE)
   # #neighbors[] <- pmax(0,neighbors[]-1)
   #  n_neighbor_val_sd <- sqrt(n_neighbor_val_var/9)
-  #  n_neighbor_val_sd %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_raster()
+  #  n_neighbor_val_sd %>% as.data.frame(xy=TRUE) %>% ggplot(aes(x=x, y=y, fill=layer)) + geom_tile()
 
   # # lines above are faster - but we need to adjust the denominator :(
   if (ifplot) {
@@ -156,20 +156,20 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
   if (ifplot) {
     attr(x3p_inner_df, "x3p_plot") <- x3p_inner_df %>%
       ggplot(aes(x = x, y = y, fill = value)) +
-      geom_raster() +
+      geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
       theme_bw()
 
     attr(x3p_inner_df, "number_of_missing_immediate_neighbors_plot") <- x3p_inner_df %>%
       ggplot(aes(x = x, y = y, fill = n_neighbor_val_miss)) +
-      geom_raster() +
+      geom_tile() +
       labs(fill = "number") +
       ggtitle("Number of missing immediate neighbors (including self)") +
       theme_bw()
 
     attr(x3p_inner_df, "standard_deviation_of_non_missing_immediate_neighbors_plot") <- x3p_inner_df %>%
       ggplot(aes(x = x, y = y, fill = sd_not_miss)) +
-      geom_raster() +
+      geom_tile() +
       labs(fill = "sd") +
       ggtitle("Standard deviation of non-missing immediate neighbors (including self)") +
       theme_bw()
