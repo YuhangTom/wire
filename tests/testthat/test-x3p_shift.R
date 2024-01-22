@@ -37,13 +37,25 @@ test_that("input check works", {
 
 test_that("output plot works", {
   expect_visible(
-    x3p_shift(x3p_bin_rotate, ifplot = TRUE, delta = -5:5)
+    attr(x3p_approx, "x3p_before_shift_plot")
+  )
+  expect_visible(
+    attr(x3p_approx, "x3p_after_shift_plot")
+  )
+  expect_visible(
+    attr(x3p_approx, "MSE_plot")
   )
 })
 
 
 test_that("output return works", {
   expect_type(
-    shift_sig, "list"
+    x3p_approx, "list"
+  )
+  expect_length(
+    x3p_approx, 5
+  )
+  expect_named(
+    x3p_approx, c("groups", "surface.matrix", "header.info", "matrix.info", "mask")
   )
 })
