@@ -30,6 +30,7 @@
 #'
 #'   attr(x3p_approx, "x3p_before_shift_plot")
 #'   attr(x3p_approx, "x3p_after_shift_plot")
+#'   attr(x3p_approx, "MSE_plot")
 #' }
 #'
 x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
@@ -236,6 +237,84 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
       geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
       theme_bw()
+  }
+
+  if (ifplot) {
+    j <- floor(length(yidx) / 2)
+
+    ### f1 values
+    f1 <- x3p$surface.matrix[, yidx_mid]
+    f2 <- x3p$surface.matrix[, yidx[j]]
+
+    ### Mean squared error for all delta
+    MSE <- map_dbl(delta, function(delta_i) {
+      ### Too few non-missing values, cannot do anything
+      if (sum(!is.na(f2)) < 30) {
+        return(NA)
+      }
+
+      if (delta_i == 0) {
+        mean((f1 - f2)^2, na.rm = TRUE)
+      } else {
+        if (delta_i > 0) {
+          mean((f1[-(1:delta_i)] - f2[1:(length(f2) - delta_i)])^2, na.rm = TRUE)
+        } else {
+          mean((f1[1:(length(f1) - abs(delta_i))] - f2[-(1:abs(delta_i))])^2, na.rm = TRUE)
+        }
+      }
+    }) %>%
+      set_names(delta)
+
+    ### Fit parabola
+    if (length(MSE) - sum(is.na(MSE)) < 3) {
+      warning("No enough non-NA MSE values to fit parabola.")
+
+      return(NA)
+    } else {
+      para_coef <- lm(MSE ~ delta + I(delta^2)) %>%
+        coef()
+
+      ### Get delta with minimum mean squared error
+      out <- (-para_coef["delta"] / (2 * para_coef["I(delta^2)"])) %>%
+        unname()
+
+      ### Consider different a values
+      if (para_coef["I(delta^2)"] < 0) {
+        if (out >= 0) {
+          out <- (-para_coef["delta"] + sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
+            unname()
+        } else {
+          out <- (-para_coef["delta"] - sqrt((para_coef["delta"])^2 - 4 * para_coef["I(delta^2)"] * para_coef["(Intercept)"])) / (2 * para_coef["I(delta^2)"]) %>%
+            unname()
+        }
+      } else {
+        if (near(para_coef["I(delta^2)"], 0)) {
+          warning("Coefficient for quadratic term is 0. Use 0 shifting.")
+
+          out <- 0
+        }
+      }
+
+      ### Minimum value of parabola is far from delta with minmimum MSE
+      ### Bad fit
+      if (!between(out, min(delta), max(delta))) {
+        warning("Minimum value of the parabola is out of preset delta range. Use 0 shifting.")
+
+        out <- 0
+
+        # out <- pmin(out, max(delta))
+        # out <- pmax(out, min(delta))
+      }
+    }
+    out
+
+    attr(ggplot_attrs, "MSE_plot") <- tibble(delta = delta, MSE = MSE) %>%
+      ggplot(aes(x = delta, y = MSE)) +
+      geom_point() +
+      geom_smooth(method = "lm", formula = y ~ x + I(x^2)) +
+      geom_vline(xintercept = (-para_coef[2] / (2 * para_coef[3])), col = "red") +
+      theme_bw() +
+      scale_x_continuous(breaks = delta)
   }
 
   x3p_approx <- x3p_approx_df %>%

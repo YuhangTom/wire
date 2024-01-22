@@ -43,6 +43,9 @@ test_that("output plot works", {
     attr(shift_sig, "x3p_after_shift_plot")
   )
   expect_visible(
+    attr(shift_sig, "MSE_plot")
+  )
+  expect_visible(
     attr(shift_sig, "sig_vec_plot")
   )
 })

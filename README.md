@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--01--21-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--01--22-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
@@ -180,10 +180,16 @@ attr(shift_sig, "x3p_after_shift_plot")
 <img src="man/figures/README-signal-3.png" width="100%" />
 
 ``` r
-attr(shift_sig, "sig_vec_plot")
+attr(shift_sig, "MSE_plot")
 ```
 
 <img src="man/figures/README-signal-4.png" width="100%" />
+
+``` r
+attr(shift_sig, "sig_vec_plot")
+```
+
+<img src="man/figures/README-signal-5.png" width="100%" />
 
 ## Signal alignment
 

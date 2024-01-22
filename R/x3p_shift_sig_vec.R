@@ -47,6 +47,7 @@ x3p_shift_sig_vec <- function(x3p, ifplot = FALSE, delta = -5:5) {
 
   attr(shift_sig, "x3p_before_shift_plot") <- attr(x3p_approx, "x3p_before_shift_plot")
   attr(shift_sig, "x3p_after_shift_plot") <- attr(x3p_approx, "x3p_after_shift_plot")
+  attr(shift_sig, "MSE_plot") <- attr(x3p_approx, "MSE_plot")
 
   return(shift_sig)
 }
