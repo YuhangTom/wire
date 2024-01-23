@@ -6,7 +6,7 @@
 #' @param ifout A Boolean flag indicating whether the imputation procedure should extrapolate. Set to `TRUE` for extrapolation.
 #' @param ifsave A Boolean flag indicating whether to save the imputation procedure gif.
 #' @param dir_name A string representing the directory name where the gif should be saved. Required when `ifsave = TRUE`.
-#' @param ifplot A Boolean flag indicating whether to display graphs. Automatically set to `TRUE` when `ifsave = TRUE`.
+#' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes. Automatically set to `TRUE` when `ifsave = TRUE`.
 #' @return An `x3p` object after imputation.
 #' @import dplyr
 #' @import ggplot2

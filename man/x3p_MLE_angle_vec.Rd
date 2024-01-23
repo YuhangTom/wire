@@ -19,7 +19,7 @@ x3p_MLE_angle_vec(
 
 \item{min_score_cut}{A tuning parameter that sets the minimum score required for the Hough transformation.}
 
-\item{ifplot}{A Boolean flag indicating whether to display graphs.}
+\item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes.}
 
 \item{loess_span}{A parameter controlling the degree of smoothing in the LOESS function.}
 }

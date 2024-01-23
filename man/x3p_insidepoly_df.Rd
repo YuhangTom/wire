@@ -21,7 +21,7 @@ x3p_insidepoly_df(
 
 \item{b}{A positive integer representing the block size for \code{x3ptools::x3p_average}.}
 
-\item{ifplot}{A Boolean flag indicating whether to display graphs.}
+\item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes.}
 }
 \value{
 A data frame summarizing the inner polygon. The data frame includes the following columns:

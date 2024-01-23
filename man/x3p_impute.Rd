@@ -15,7 +15,7 @@ x3p_impute(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 
 \item{dir_name}{A string representing the directory name where the gif should be saved. Required when \code{ifsave = TRUE}.}
 
-\item{ifplot}{A Boolean flag indicating whether to display graphs. Automatically set to \code{TRUE} when \code{ifsave = TRUE}.}
+\item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes. Automatically set to \code{TRUE} when \code{ifsave = TRUE}.}
 }
 \value{
 An \code{x3p} object after imputation.

@@ -6,7 +6,7 @@
 #' @param freqs A numeric vector of length 4, representing color frequency quantiles used in `x3ptools::x3p_bin_stripes`.
 #' @param ntheta An integer representing the number of bins along the theta axis used in `imager::hough_line`.
 #' @param min_score_cut A numeric value representing the minimum score required in the Hough transformation.
-#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @param loess_span A numeric value controlling the degree of smoothing.
 #' @return An `x3p` object after rotation with vertical striations.
 #' @import dplyr

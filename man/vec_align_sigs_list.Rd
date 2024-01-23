@@ -20,7 +20,7 @@ vec_align_sigs_list(
 
 \item{min.overlap}{An optional parameter passed to \code{bulletxtrctr::get_ccf} to specify the minimum overlap between signals.}
 
-\item{ifplot}{A Boolean flag indicating whether to plot the aligned signals.}
+\item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes.}
 
 \item{legendname}{A string to label the legend in the plot.}
 

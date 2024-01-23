@@ -5,7 +5,7 @@
 #' @param sig1 The first numeric signal vector.
 #' @param sig2 The second numeric signal vector.
 #' @param min.overlap An optional parameter passed to `bulletxtrctr::get_ccf` to specify the minimum overlap between signals.
-#' @param ifplot A Boolean flag indicating whether to plot the aligned signals.
+#' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @param legendname A string to label the legend in the plot.
 #' @param titlename A string to set the title of the plot.
 #' @return A list containing the cross-correlation function (`ccf`), the lag (`lag`), and the landmarks (`lands`) of the aligned signals. This follows the output format of `bulletxtrctr::sig_align`.

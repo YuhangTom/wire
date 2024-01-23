@@ -9,7 +9,7 @@ x3p_shift(x3p, ifplot = FALSE, delta = -5:5, delta_q_range = c(0, 1))
 \arguments{
 \item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{ifplot}{A Boolean flag indicating whether to display graphs.}
+\item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes.}
 
 \item{delta}{A numeric vector representing the shifting range for minimizing MSE.}
 

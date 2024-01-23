@@ -6,7 +6,7 @@
 #' @param mask_col A string representing the color to be used for the polygon.
 #' @param concavity A strictly positive number used in `concaveman::concaveman` to influence the shape of the polygon.
 #' @param b A positive integer representing the block size for `x3ptools::x3p_average`.
-#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @return A data frame summarizing the inner polygon. The data frame includes the following columns:
 #' * x: The `x` coordinates from the `x3p` object.
 #' * y: The `y` coordinates from the `x3p` object.

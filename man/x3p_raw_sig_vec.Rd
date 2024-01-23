@@ -9,7 +9,7 @@ x3p_raw_sig_vec(x3p, ifplot = FALSE)
 \arguments{
 \item{x3p}{An \code{x3p} object representing a topographic scan.}
 
-\item{ifplot}{A Boolean flag indicating whether to display graphs.}
+\item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes.}
 }
 \value{
 A data frame with two columns:

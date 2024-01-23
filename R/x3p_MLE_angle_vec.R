@@ -5,7 +5,7 @@
 #' @param x3p An `x3p` object representing a topographic scan.
 #' @param ntheta The number of bins along the theta axis used in `imager::hough_line`.
 #' @param min_score_cut A tuning parameter that sets the minimum score required for the Hough transformation.
-#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @param loess_span A parameter controlling the degree of smoothing in the LOESS function.
 #' @return A vector of rotation angles computed by the MLE procedure.
 #' @import dplyr

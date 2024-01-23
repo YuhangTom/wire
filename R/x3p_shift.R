@@ -3,7 +3,7 @@
 #' This function shifts the striations on an `x3p` object to minimize the Mean Squared Error (MSE).
 #'
 #' @param x3p An `x3p` object representing a topographic scan.
-#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @param delta A numeric vector representing the shifting range for minimizing MSE.
 #' @param delta_q_range A numeric vector of length 2, representing the lower and upper bounds for the quantile taken.
 #' @return An `x3p` object after the transformation.

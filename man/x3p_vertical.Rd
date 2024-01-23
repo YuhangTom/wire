@@ -22,7 +22,7 @@ x3p_vertical(
 
 \item{min_score_cut}{A numeric value representing the minimum score required in the Hough transformation.}
 
-\item{ifplot}{A Boolean flag indicating whether to display graphs.}
+\item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes.}
 
 \item{loess_span}{A numeric value controlling the degree of smoothing.}
 }

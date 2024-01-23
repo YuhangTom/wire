@@ -4,7 +4,7 @@
 #' It computes summary statistics of values along the `y` axis for each `x` value.
 #'
 #' @param x3p An `x3p` object representing a topographic scan.
-#' @param ifplot A Boolean flag indicating whether to display graphs.
+#' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @param delta A numeric vector representing the shifting range for minimizing MSE.
 #' @return A data frame with two columns:
 #' * x: The `x` values from the `x3p` object.
