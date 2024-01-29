@@ -48,7 +48,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">x3p_impute</span><span class="op">(</span><span class="va">x3p</span>, ifout <span class="op">=</span> <span class="cn">FALSE</span>, ifsave <span class="op">=</span> <span class="cn">FALSE</span>, dir_name <span class="op">=</span> <span class="cn">NULL</span>, ifplot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">x3p_impute</span><span class="op">(</span></span>
+<span>  <span class="va">x3p</span>,</span>
+<span>  ifout <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  ifsave <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  dir_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gif_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ifplot <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -67,6 +74,10 @@
 
 <dt>dir_name</dt>
 <dd><p>A string representing the directory name where the gif should be saved. Required when <code>ifsave = TRUE</code>.</p></dd>
+
+
+<dt>gif_name</dt>
+<dd><p>A string representing the gif name. Required when <code>ifsave = TRUE</code>.</p></dd>
 
 
 <dt>ifplot</dt>
