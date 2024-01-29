@@ -4,7 +4,14 @@
 \alias{x3p_impute}
 \title{Impute missing values}
 \usage{
-x3p_impute(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
+x3p_impute(
+  x3p,
+  ifout = FALSE,
+  ifsave = FALSE,
+  dir_name = NULL,
+  gif_name = NULL,
+  ifplot = FALSE
+)
 }
 \arguments{
 \item{x3p}{An \code{x3p} object representing a topographic scan.}
@@ -14,6 +21,8 @@ x3p_impute(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE)
 \item{ifsave}{A Boolean flag indicating whether to save the imputation procedure gif.}
 
 \item{dir_name}{A string representing the directory name where the gif should be saved. Required when \code{ifsave = TRUE}.}
+
+\item{gif_name}{A string representing the gif name. Required when \code{ifsave = TRUE}.}
 
 \item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes. Automatically set to \code{TRUE} when \code{ifsave = TRUE}.}
 }

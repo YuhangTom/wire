@@ -6,6 +6,7 @@
 #' @param ifout A Boolean flag indicating whether the imputation procedure should extrapolate. Set to `TRUE` for extrapolation.
 #' @param ifsave A Boolean flag indicating whether to save the imputation procedure gif.
 #' @param dir_name A string representing the directory name where the gif should be saved. Required when `ifsave = TRUE`.
+#' @param gif_name A string representing the gif name. Required when `ifsave = TRUE`.
 #' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes. Automatically set to `TRUE` when `ifsave = TRUE`.
 #' @return An `x3p` object after imputation.
 #' @import dplyr
@@ -34,7 +35,7 @@
 #'   x3p_image_autosize(x3p_inner_impute)
 #' }
 #'
-x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifplot = FALSE) {
+x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, gif_name = NULL, ifplot = FALSE) {
   assert_that(
     "x3p" %in% class(x3p),
     is.flag(ifout),
@@ -43,6 +44,14 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
   )
   if (ifsave) {
     ifplot <- TRUE
+
+    if (not_empty(gif_name)){
+      assert_that(
+        is.string(gif_name)
+      )
+    } else {
+      gif_name <- "focal_impute.gif"
+    }
 
     if (not_empty(dir_name)) {
       assert_that(
@@ -242,7 +251,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, ifpl
     ### Save gif to disk
     image_write(
       image = x3p_inner_nomiss_res_focal_impute_gif,
-      path = paste0(dir_name, "/focal_impute.gif")
+      path = paste0(dir_name, "/", gif_name)
     )
 
     list.files(
