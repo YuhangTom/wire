@@ -2,139 +2,121 @@ test_that("input check works", {
   expect_error(
     vec_align_sigs_list("abc", shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(TRUE, shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(data.frame(1:3, 2:4), shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, "abc",
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, TRUE,
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, data.frame(1:3, 2:4),
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = -1, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = 0, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = 1.1, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = "abc", ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = TRUE, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = 1, legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = "abc", legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = data.frame(1:3, 2:4), legendname = "Signal",
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = 1,
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = TRUE,
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = data.frame(1:3, 2:4),
-      titlename = NULL, subtitlename = NULL
+      titlename = NULL
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = 1, subtitlename = NULL
+      titlename = 1
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = TRUE, subtitlename = NULL
+      titlename = TRUE
     )
   )
   expect_error(
     vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
       min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = data.frame(1:3, 2:4), subtitlename = NULL
-    )
-  )
-  expect_error(
-    vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
-      min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = 1
-    )
-  )
-  expect_error(
-    vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
-      min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = TRUE
-    )
-  )
-  expect_error(
-    vec_align_sigs_list(raw_sig$sig, shift_sig$sig,
-      min.overlap = NULL, ifplot = FALSE, legendname = "Signal",
-      titlename = NULL, subtitlename = data.frame(1:3, 2:4)
+      titlename = data.frame(1:3, 2:4)
     )
   )
 })

@@ -11,7 +11,7 @@ vec_align_sigs_list(
   ifplot = FALSE,
   legendname = "Signal",
   titlename = NULL,
-  subtitlename = NULL
+  subtitlename = TRUE
 )
 }
 \arguments{
@@ -27,7 +27,7 @@ vec_align_sigs_list(
 
 \item{titlename}{A string to set the title of the plot.}
 
-\item{subtitlename}{A string to set the subtitle of the plot. Show \code{ccf} and \code{lag} if \code{NULL}.}
+\item{subtitlename}{A string to set the subtitle of the plot. Show \code{ccf} and \code{lag} if \code{TRUE}.}
 }
 \value{
 A list containing the cross-correlation function (\code{ccf}), the lag (\code{lag}), and the landmarks (\code{lands}) of the aligned signals. This follows the output format of \code{bulletxtrctr::sig_align}.
@@ -47,7 +47,8 @@ x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1)
 aligned <- vec_align_sigs_list(
   x3p_raw_sig_vec(x3p_bin_rotate)$sig,
   x3p_shift_sig_vec(x3p_bin_rotate)$sig,
-  ifplot = TRUE
+  ifplot = TRUE,
+  subtitlename = TRUE
 )
 
 attr(aligned, "sig_align_plot")

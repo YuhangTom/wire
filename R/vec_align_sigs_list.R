@@ -8,7 +8,7 @@
 #' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @param legendname A string to label the legend in the plot.
 #' @param titlename A string to set the title of the plot.
-#' @param subtitlename A string to set the subtitle of the plot. Show `ccf` and `lag` if `NULL`.
+#' @param subtitlename A string to set the subtitle of the plot. Show `ccf` and `lag` if `TRUE`.
 #' @return A list containing the cross-correlation function (`ccf`), the lag (`lag`), and the landmarks (`lands`) of the aligned signals. This follows the output format of `bulletxtrctr::sig_align`.
 #' @import ggplot2
 #' @importFrom bulletxtrctr sig_align
@@ -26,7 +26,8 @@
 #' aligned <- vec_align_sigs_list(
 #'   x3p_raw_sig_vec(x3p_bin_rotate)$sig,
 #'   x3p_shift_sig_vec(x3p_bin_rotate)$sig,
-#'   ifplot = TRUE
+#'   ifplot = TRUE,
+#'   subtitlename = TRUE
 #' )
 #'
 #' attr(aligned, "sig_align_plot")
@@ -38,7 +39,7 @@ vec_align_sigs_list <- function(
     ifplot = FALSE,
     legendname = "Signal",
     titlename = NULL,
-    subtitlename = NULL) {
+    subtitlename = TRUE) {
   assert_that(
     is.numeric(sig1),
     is.numeric(sig2),
@@ -55,11 +56,6 @@ vec_align_sigs_list <- function(
       is.string(titlename)
     )
   }
-  if (not_empty(subtitlename)) {
-    assert_that(
-      is.string(subtitlename)
-    )
-  }
 
   x <-
     value <-
@@ -67,7 +63,9 @@ vec_align_sigs_list <- function(
 
   aligned <- sig_align(sig1, sig2, min.overlap = min.overlap)
 
-  subtitlename <- ifelse(is.null(subtitlename), paste0("ccf = ", round(aligned$ccf, 3), "; lag = ", aligned$lag), subtitlename)
+  if (!is.null(subtitlename)) {
+    subtitlename <- ifelse(isTRUE(subtitlename), paste0("ccf = ", round(aligned$ccf, 3), "; lag = ", aligned$lag), as.character(subtitlename))
+  }
 
   if (ifplot) {
     attr(aligned, "sig_align_plot") <- aligned$lands %>%
