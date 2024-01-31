@@ -10,7 +10,8 @@ vec_align_sigs_list(
   min.overlap = NULL,
   ifplot = FALSE,
   legendname = "Signal",
-  titlename = NULL
+  titlename = NULL,
+  subtitlename = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ vec_align_sigs_list(
 \item{legendname}{A string to label the legend in the plot.}
 
 \item{titlename}{A string to set the title of the plot.}
+
+\item{subtitlename}{A string to set the subtitle of the plot. Show \code{ccf} and \code{lag} if \code{NULL}.}
 }
 \value{
 A list containing the cross-correlation function (\code{ccf}), the lag (\code{lag}), and the landmarks (\code{lands}) of the aligned signals. This follows the output format of \code{bulletxtrctr::sig_align}.

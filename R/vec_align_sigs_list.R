@@ -8,6 +8,7 @@
 #' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @param legendname A string to label the legend in the plot.
 #' @param titlename A string to set the title of the plot.
+#' @param subtitlename A string to set the subtitle of the plot. Show `ccf` and `lag` if `NULL`.
 #' @return A list containing the cross-correlation function (`ccf`), the lag (`lag`), and the landmarks (`lands`) of the aligned signals. This follows the output format of `bulletxtrctr::sig_align`.
 #' @import ggplot2
 #' @importFrom bulletxtrctr sig_align
@@ -36,7 +37,8 @@ vec_align_sigs_list <- function(
     min.overlap = NULL,
     ifplot = FALSE,
     legendname = "Signal",
-    titlename = NULL) {
+    titlename = NULL,
+    subtitlename = NULL) {
   assert_that(
     is.numeric(sig1),
     is.numeric(sig2),
@@ -53,12 +55,20 @@ vec_align_sigs_list <- function(
       is.string(titlename)
     )
   }
+  if (not_empty(subtitlename)) {
+    assert_that(
+      is.string(subtitlename)
+    )
+  }
 
   x <-
     value <-
     NULL
 
   aligned <- sig_align(sig1, sig2, min.overlap = min.overlap)
+
+  subtitlename <- ifelse(is.null(subtitlename), paste0("ccf = ", round(aligned$ccf, 3), "; lag = ", aligned$lag), subtitlename)
+
   if (ifplot) {
     attr(aligned, "sig_align_plot") <- aligned$lands %>%
       pivot_longer(sig1:sig2, names_to = legendname, names_prefix = "sig") %>%
@@ -68,7 +78,7 @@ vec_align_sigs_list <- function(
       scale_colour_brewer(palette = "Paired") +
       xlab("x") +
       ylab("signal value") +
-      ggtitle(titlename, subtitle = paste0("ccf = ", round(aligned$ccf, 3), "; lag = ", aligned$lag))
+      ggtitle(titlename, subtitle = subtitlename)
   }
 
   aligned
