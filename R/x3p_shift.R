@@ -240,7 +240,7 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
   }
 
   if (ifplot) {
-    j <- floor(length(yidx) / 2)
+    j <- floor(length(yidx) / 2 - 30)
 
     ### f1 values
     f1 <- x3p$surface.matrix[, yidx_mid]
