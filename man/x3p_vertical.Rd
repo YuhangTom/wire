@@ -5,7 +5,7 @@
 \title{Rotate imputed \code{x3p} object to vertical direction}
 \usage{
 x3p_vertical(
-  x3p_inner_impute,
+  x3p,
   freqs = c(0, 0.3, 0.7, 1),
   ntheta = 720,
   min_score_cut = 0.1,
@@ -14,7 +14,7 @@ x3p_vertical(
 )
 }
 \arguments{
-\item{x3p_inner_impute}{An \code{x3p} object after imputation.}
+\item{x3p}{An \code{x3p} object representing a topographic scan.}
 
 \item{freqs}{A numeric vector of length 4, representing color frequency quantiles used in \code{x3ptools::x3p_bin_stripes}.}
 

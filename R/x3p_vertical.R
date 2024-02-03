@@ -2,7 +2,7 @@
 #'
 #' This function rotates an imputed `x3p` object with striations to the vertical direction.
 #'
-#' @param x3p_inner_impute An `x3p` object after imputation.
+#' @param x3p An `x3p` object representing a topographic scan.
 #' @param freqs A numeric vector of length 4, representing color frequency quantiles used in `x3ptools::x3p_bin_stripes`.
 #' @param ntheta An integer representing the number of bins along the theta axis used in `imager::hough_line`.
 #' @param min_score_cut A numeric value representing the minimum score required in the Hough transformation.
@@ -33,12 +33,12 @@
 #'   x3p_image_autosize(x3p_bin_rotate)
 #' }
 #'
-x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
+x3p_vertical <- function(x3p, freqs = c(0, 0.3, 0.7, 1),
                          ntheta = 720, min_score_cut = 0.1,
                          ifplot = FALSE,
                          loess_span = 0.2) {
   assert_that(
-    "x3p" %in% class(x3p_inner_impute),
+    "x3p" %in% class(x3p),
     is.numeric(freqs), near(length(freqs), 4), near(freqs[1], 0), near(freqs[4], 1),
     is.count(ntheta),
     is.number(min_score_cut),
@@ -47,7 +47,7 @@ x3p_vertical <- function(x3p_inner_impute, freqs = c(0, 0.3, 0.7, 1),
     loess_span > 0
   )
 
-  x3p_bin <- x3p_inner_impute %>%
+  x3p_bin <- x3p %>%
     x3p_bin_stripes(
       direction = "vertical",
       colors = c("#b12819", "#ffffff", "#134D6B"),
