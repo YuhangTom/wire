@@ -364,7 +364,6 @@ references:
     email: eric@oaiti.org
     orcid: https://orcid.org/0000-0002-4277-3146
   year: '2024'
-  version: '>= 0.0.3.9000'
 - type: software
   title: concaveman
   abstract: 'concaveman: A Very Fast 2D Concave Hull Algorithm'
