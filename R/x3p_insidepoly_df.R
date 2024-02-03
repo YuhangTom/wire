@@ -16,7 +16,7 @@
 #' * sd_not_miss: The standard deviation of the immediate neighbors that are not missing.
 #' @import dplyr
 #' @import ggplot2
-#' @importFrom x3ptools x3p_extract x3p_average x3p_to_df x3p_get_scale
+#' @import x3ptools
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
 #' @importFrom raster raster adjacent ncell focal

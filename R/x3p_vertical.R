@@ -10,7 +10,7 @@
 #' @param loess_span A numeric value controlling the degree of smoothing.
 #' @return An `x3p` object after rotation with vertical striations.
 #' @import dplyr
-#' @importFrom x3ptools x3p_bin_stripes x3p_extract x3p_rotate
+#' @import x3ptools
 #' @importFrom assertthat assert_that is.count is.number is.flag is.number
 #' @export
 #' @examples

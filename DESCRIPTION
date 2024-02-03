@@ -11,7 +11,7 @@ Description: This `wire` package allows everyone to conduct reproducible automat
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 URL: https://yuhangtom.github.io/wire/, https://github.com/YuhangTom/wire
 Suggests: 
     sf,

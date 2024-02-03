@@ -11,7 +11,7 @@
 #' * sig: The extracted signal.
 #' @import dplyr
 #' @import ggplot2
-#' @importFrom x3ptools x3p_to_df x3p_delete_mask x3p_bin_stripes
+#' @import x3ptools
 #' @importFrom stats na.omit median lm coef approx
 #' @importFrom purrr map_dbl map set_names
 #' @importFrom tidyr nest unnest

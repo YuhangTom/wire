@@ -8,8 +8,8 @@
 #' @param center A numeric vector representing the center point of the scan. If `NULL`, the center point is derived from the boundary points.
 #' @param concavity A positive number used in the `concaveman::concaveman` function to determine the concavity of the polygon.
 #' @return An `x3p` object with an added polygon mask.
+#' @import x3ptools
 #' @importFrom Cairo CairoPNG
-#' @importFrom x3ptools x3p_get_scale x3p_add_mask
 #' @importFrom png readPNG
 #' @importFrom grDevices as.raster dev.off
 #' @importFrom graphics par plot.default polygon

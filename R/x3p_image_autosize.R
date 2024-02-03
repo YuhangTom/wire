@@ -7,7 +7,7 @@
 #' @param zoom A numeric value indicating the zoom level for the image display.
 #' @param ... Additional parameters for `x3ptools::x3p_image`, excluding `size` and `zoom`.
 #' @return An `rgl` plot. If `ifhtml = TRUE`, a list of HTML tags is returned.
-#' @importFrom x3ptools x3p_image
+#' @import x3ptools
 #' @importFrom rgl rglwidget
 #' @importFrom htmltools tagList
 #' @importFrom assertthat assert_that is.flag is.number

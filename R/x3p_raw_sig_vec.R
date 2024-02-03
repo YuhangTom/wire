@@ -9,7 +9,7 @@
 #' * sig: The extracted signal.
 #' @import dplyr
 #' @import ggplot2
-#' @importFrom x3ptools x3p_to_df
+#' @import x3ptools
 #' @importFrom stats na.omit median
 #' @importFrom assertthat assert_that is.flag
 #' @export

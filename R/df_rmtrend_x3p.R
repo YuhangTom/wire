@@ -1,13 +1,13 @@
 #' Removing missing values and a quadratic trend
 #'
-#' This function takes an `x3p` object, specifically the inner polygon data frame, and performs two main operations: 
+#' This function takes an `x3p` object, specifically the inner polygon data frame, and performs two main operations:
 #' 1. Removes missing values.
 #' 2. Detrends the data by removing a quadratic trend.
 #'
 #' @param insidepoly_df A data frame representing the inner polygon. This is typically obtained from the `wire::x3p_insidepoly_df` function.
 #' @return An `x3p` object that contains the residuals after the removal of the quadratic trend.
 #' @import dplyr
-#' @importFrom x3ptools df_to_x3p
+#' @import x3ptools
 #' @importFrom stats lm predict
 #' @importFrom assertthat assert_that has_name
 #' @export

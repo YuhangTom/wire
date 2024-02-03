@@ -11,7 +11,7 @@
 #' @return An `x3p` object after imputation.
 #' @import dplyr
 #' @import ggplot2
-#' @importFrom x3ptools x3p_delete_mask x3p_extract x3p_average x3p_add_mask x3p_get_scale
+#' @import x3ptools
 #' @importFrom raster raster focal as.data.frame as.matrix
 #' @importFrom purrr map
 #' @importFrom magick image_read image_join image_animate image_write
