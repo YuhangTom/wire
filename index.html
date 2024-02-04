@@ -180,12 +180,17 @@
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig_df</span>, <span class="st">"sig_df_plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-signal-5.png" width="100%"></p>
+<p>The signals and hooks can be further smoothed and removed by:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">raw_ccsig_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/df_ccsig.html">df_ccsig</a></span><span class="op">(</span><span class="va">raw_sig_df</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">raw_ccsig_df</span>, <span class="st">"sig_df_plot"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-ccsignals-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="signal-alignment">Signal alignment<a class="anchor" aria-label="anchor" href="#signal-alignment"></a>
 </h2>
 <p>Extracted signals can be aligned, and the cross-correlation can be computed:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">aligned</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/vec_align_sigs_list.html">vec_align_sigs_list</a></span><span class="op">(</span><span class="va">raw_sig_df</span><span class="op">$</span><span class="va">sig</span>, <span class="va">shift_sig_df</span><span class="op">$</span><span class="va">sig</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">aligned</span>, <span class="st">"sig_align_plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-align-1.png" width="100%"></p>
