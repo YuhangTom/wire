@@ -323,8 +323,7 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
       direction = "vertical",
       colors = c("#b12819", "#ffffff", "#134D6B"),
       freqs = c(0, 0.3, 0.7, 1)
-    ) %>%
-    x3p_trim_na(ratio = 1)
+    )
 
   if (ifplot) {
     x3p %>%

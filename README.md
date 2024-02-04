@@ -95,9 +95,8 @@ To remove the overall trend on the inner surface, we can use:
 x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 x3p_inner_nomiss_res
 #> x3p object
-#> size (width x height): 203 x 139 in pixel 
-#> resolution: 6.4500e+00 x 6.4500e+00 
-#> Comment:  ; cropped from location ( 17 , 12 )
+#> size (width x height): 239 x 172 in pixel 
+#> resolution: 6.4500e+00 x 6.4500e+00
 ```
 
 ## Imputation

@@ -49,6 +49,5 @@ x3p_surface_polygon <- function(x3p, colour = "red", sample = 10, center = NULL,
 
   # this replaces any existing mask
 
-  x3p_add_mask(x3p, mask = as.raster(mask)) %>%
-    x3p_trim_na(ratio = 1)
+  x3p_add_mask(x3p, mask = as.raster(mask))
 }

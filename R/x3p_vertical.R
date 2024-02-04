@@ -81,8 +81,7 @@ x3p_vertical <- function(x3p, freqs = c(0, 0.3, 0.7, 1),
 
   #  x3p_bin_red_rotate <- x3p_rotate(x3p_bin_red, angle = angle_red)
   #  x3p_bin_blue_rotate <- x3p_rotate(x3p_bin_blue, angle = angle_blue)
-  x3p_bin_rotate <- x3p_rotate(x3p_bin, angle = angle) %>%
-    x3p_trim_na(ratio = 1)
+  x3p_bin_rotate <- x3p_rotate(x3p_bin, angle = angle)
 
   if (ifplot) {
     attr(x3p_bin_rotate, "nfline_red_plot") <- attr(angle_red, "nfline_plot")
