@@ -43,7 +43,8 @@ x3p_raw_sig_vec <- function(x3p, ifplot = FALSE) {
 
   raw_sig <- x3p_df %>%
     group_by(x) %>%
-    summarise(sig = median(value, na.rm = TRUE))
+    summarise(sig = median(value, na.rm = TRUE)) %>%
+    filter(!is.na(sig))
 
   if (ifplot) {
     p_all <- x3p_df %>%
