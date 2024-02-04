@@ -16,6 +16,9 @@
     <loc>https://yuhangtom.github.io/wire/index.html</loc>
   </url>
   <url>
+    <loc>https://yuhangtom.github.io/wire/reference/df_ccsig.html</loc>
+  </url>
+  <url>
     <loc>https://yuhangtom.github.io/wire/reference/df_rmtrend_x3p.html</loc>
   </url>
   <url>
@@ -46,13 +49,13 @@
     <loc>https://yuhangtom.github.io/wire/reference/x3p_insidepoly_df.html</loc>
   </url>
   <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_raw_sig_vec.html</loc>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_raw_sig_df.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_shift.html</loc>
   </url>
   <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_shift_sig_vec.html</loc>
+    <loc>https://yuhangtom.github.io/wire/reference/x3p_shift_sig_df.html</loc>
   </url>
   <url>
     <loc>https://yuhangtom.github.io/wire/reference/x3p_subsamples.html</loc>

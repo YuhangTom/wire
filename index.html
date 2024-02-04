@@ -161,24 +161,24 @@
 <div class="section level2">
 <h2 id="signal-extraction">Signal extraction<a class="anchor" aria-label="anchor" href="#signal-extraction"></a>
 </h2>
-<p>To extract signals from the rotated surface, two methods are provided, implemented by <code><a href="reference/x3p_raw_sig_vec.html">wire::x3p_raw_sig_vec</a></code> and <code><a href="reference/x3p_shift_sig_vec.html">wire::x3p_shift_sig_vec</a></code>, respectively:</p>
+<p>To extract signals from the rotated surface, two methods are provided, implemented by <code><a href="reference/x3p_raw_sig_df.html">wire::x3p_raw_sig_df</a></code> and <code><a href="reference/x3p_shift_sig_df.html">wire::x3p_shift_sig_df</a></code>, respectively:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">raw_sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_raw_sig_vec.html">x3p_raw_sig_vec</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">raw_sig</span>, <span class="st">"sig_vec_plot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">raw_sig_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_raw_sig_df.html">x3p_raw_sig_df</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">raw_sig_df</span>, <span class="st">"sig_df_plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-signal-1.png" width="100%"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">shift_sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_shift_sig_vec.html">x3p_shift_sig_vec</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig</span>, <span class="st">"x3p_before_shift_plot"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">shift_sig_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_shift_sig_df.html">x3p_shift_sig_df</a></span><span class="op">(</span><span class="va">x3p_bin_rotate</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig_df</span>, <span class="st">"x3p_before_shift_plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-signal-2.png" width="100%"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig</span>, <span class="st">"x3p_after_shift_plot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig_df</span>, <span class="st">"x3p_after_shift_plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-signal-3.png" width="100%"></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig</span>, <span class="st">"MSE_plot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig_df</span>, <span class="st">"MSE_plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-signal-4.png" width="100%"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig</span>, <span class="st">"sig_vec_plot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">shift_sig_df</span>, <span class="st">"sig_df_plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-signal-5.png" width="100%"></p>
 </div>
 <div class="section level2">
@@ -186,7 +186,7 @@
 </h2>
 <p>Extracted signals can be aligned, and the cross-correlation can be computed:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">aligned</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/vec_align_sigs_list.html">vec_align_sigs_list</a></span><span class="op">(</span><span class="va">raw_sig</span><span class="op">$</span><span class="va">sig</span>, <span class="va">shift_sig</span><span class="op">$</span><span class="va">sig</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">aligned</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/vec_align_sigs_list.html">vec_align_sigs_list</a></span><span class="op">(</span><span class="va">raw_sig_df</span><span class="op">$</span><span class="va">sig</span>, <span class="va">shift_sig_df</span><span class="op">$</span><span class="va">sig</span>, ifplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">aligned</span>, <span class="st">"sig_align_plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-align-1.png" width="100%"></p>
 </div>
@@ -228,7 +228,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://github.com/YuhangTom/wire/commits/main" class="external-link"><img src="https://img.shields.io/badge/last%20change-2024--02--03-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="https://github.com/YuhangTom/wire/commits/main" class="external-link"><img src="https://img.shields.io/badge/last%20change-2024--02--04-yellowgreen.svg" alt="Last-changedate"></a></li>
 <li><a href="https://CRAN.R-project.org/package=wire" class="external-link"><img src="https://www.r-pkg.org/badges/version/wire.png" alt="CRAN status"></a></li>
 <li><a href="https://app.codecov.io/gh/YuhangTom/wire?branch=main" class="external-link"><img src="https://codecov.io/gh/YuhangTom/wire/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/YuhangTom/wire/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
