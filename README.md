@@ -191,6 +191,15 @@ attr(shift_sig_df, "sig_df_plot")
 
 <img src="man/figures/README-signal-5.png" width="100%" />
 
+The signals and hooks can be further smoothed and removed by:
+
+``` r
+raw_ccsig_df <- df_ccsig(raw_sig_df, ifplot = TRUE)
+attr(raw_ccsig_df, "sig_df_plot")
+```
+
+<img src="man/figures/README-ccsignals-1.png" width="100%" />
+
 ## Signal alignment
 
 Extracted signals can be aligned, and the cross-correlation can be
