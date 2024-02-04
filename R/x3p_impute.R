@@ -270,7 +270,8 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, gif_
 
   x3p_inner_impute <- x3p_inner_focal_impute %>%
     x3p_extract(mask_vals = mask_col) %>%
-    x3p_delete_mask()
+    x3p_delete_mask() %>%
+    x3p_trim_na(ratio = 1)
 
   attributes(x3p_inner_impute) <- c(attributes(x3p_inner_impute), attributes(ggplot_attrs))
 

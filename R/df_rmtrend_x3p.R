@@ -51,7 +51,8 @@ df_rmtrend_x3p <- function(insidepoly_df) {
   x3p_insidepoly_mask <- insidepoly_df %>%
    df_to_x3p() %>%
     .$mask
-  x3p_inner_nomiss_res <- x3p_add_mask(x3p_inner_nomiss_res, mask = x3p_insidepoly_mask)
+  x3p_inner_nomiss_res <- x3p_add_mask(x3p_inner_nomiss_res, mask = x3p_insidepoly_mask) %>%
+    x3p_trim_na(ratio = 1)
 
   return(x3p_inner_nomiss_res)
 }

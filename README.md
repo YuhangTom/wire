@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--02--02-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--02--03-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
@@ -95,8 +95,9 @@ To remove the overall trend on the inner surface, we can use:
 x3p_inner_nomiss_res <- df_rmtrend_x3p(insidepoly_df)
 x3p_inner_nomiss_res
 #> x3p object
-#> size (width x height): 239 x 172 in pixel 
-#> resolution: 6.4500e+00 x 6.4500e+00
+#> size (width x height): 203 x 139 in pixel 
+#> resolution: 6.4500e+00 x 6.4500e+00 
+#> Comment:  ; cropped from location ( 17 , 12 )
 ```
 
 ## Imputation
