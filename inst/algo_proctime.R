@@ -34,8 +34,8 @@ benchmark(
   "x3p_vertical" = {
     x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1)
   },
-  "x3p_shift_sig_vec" = {
-    shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate)
+  "x3p_shift_sig_df" = {
+    shift_sig_df <- x3p_shift_sig_df(x3p_bin_rotate)
   },
   replications = 1,
   columns = c("test", "user.self", "sys.self", "elapsed", "user.child", "sys.child"),
@@ -49,6 +49,6 @@ Sys.time() - t0
 # 2    df_rmtrend_x3p     1.930    0.247   2.183          0         0
 # 3     x3p_impute-in     4.698    0.656   5.352          0         0
 # 4      x3p_vertical     8.342    3.722  12.691          0         0
-# 5 x3p_shift_sig_vec     1.954    0.319   2.272          0         0
+# 5 x3p_shift_sig_df     1.954    0.319   2.272          0         0
 #
 # Time difference of 50.55963 secs

@@ -22,11 +22,11 @@
 #' )
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 #'
-#' raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
+#' raw_sig_df <- x3p_raw_sig_df(x3p_bin_rotate, ifplot = TRUE)
 #'
-#' attr(raw_sig, "sig_vec_plot")
+#' attr(raw_sig_df, "sig_df_plot")
 #'
-x3p_raw_sig_vec <- function(x3p, ifplot = FALSE) {
+x3p_raw_sig_df <- function(x3p, ifplot = FALSE) {
   assert_that(
     "x3p" %in% class(x3p),
     is.flag(ifplot)
@@ -41,7 +41,7 @@ x3p_raw_sig_vec <- function(x3p, ifplot = FALSE) {
   x3p_df <- x3p %>%
     x3p_to_df()
 
-  raw_sig <- x3p_df %>%
+  sig_df <- x3p_df %>%
     group_by(x) %>%
     summarise(sig = median(value, na.rm = TRUE)) %>%
     filter(!is.na(sig))
@@ -51,10 +51,10 @@ x3p_raw_sig_vec <- function(x3p, ifplot = FALSE) {
       ggplot(aes(x = x, y = value)) +
       geom_line(aes(group = y), alpha = 0.1)
 
-    attr(raw_sig, "sig_vec_plot") <- p_all +
-      geom_line(aes(x = x, y = sig), data = raw_sig, color = "red") +
+    attr(sig_df, "sig_df_plot") <- p_all +
+      geom_line(aes(x = x, y = sig), data = sig_df, color = "red") +
       theme_bw()
   }
 
-  return(raw_sig)
+  return(sig_df)
 }

@@ -28,14 +28,14 @@
 #' x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 0.1, ifplot = FALSE)
 #'
 #' if (interactive()) {
-#'   shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
+#'   shift_sig_df <- x3p_shift_sig_df(x3p_bin_rotate, ifplot = TRUE)
 #'
-#'   attr(shift_sig, "x3p_before_shift_plot")
-#'   attr(shift_sig, "x3p_after_shift_plot")
-#'   attr(shift_sig, "sig_vec_plot")
+#'   attr(shift_sig_df, "x3p_before_shift_plot")
+#'   attr(shift_sig_df, "x3p_after_shift_plot")
+#'   attr(shift_sig_df, "sig_df_plot")
 #' }
 #'
-x3p_shift_sig_vec <- function(x3p, ifplot = FALSE, delta = -5:5) {
+x3p_shift_sig_df <- function(x3p, ifplot = FALSE, delta = -5:5) {
   assert_that(
     "x3p" %in% class(x3p),
     is.flag(ifplot),
@@ -43,11 +43,11 @@ x3p_shift_sig_vec <- function(x3p, ifplot = FALSE, delta = -5:5) {
   )
 
   x3p_approx <- x3p_shift(x3p, ifplot = ifplot, delta = delta)
-  shift_sig <- x3p_raw_sig_vec(x3p_approx, ifplot = ifplot)
+  sig_df <- x3p_raw_sig_df(x3p_approx, ifplot = ifplot)
 
-  attr(shift_sig, "x3p_before_shift_plot") <- attr(x3p_approx, "x3p_before_shift_plot")
-  attr(shift_sig, "x3p_after_shift_plot") <- attr(x3p_approx, "x3p_after_shift_plot")
-  attr(shift_sig, "MSE_plot") <- attr(x3p_approx, "MSE_plot")
+  attr(sig_df, "x3p_before_shift_plot") <- attr(x3p_approx, "x3p_before_shift_plot")
+  attr(sig_df, "x3p_after_shift_plot") <- attr(x3p_approx, "x3p_after_shift_plot")
+  attr(sig_df, "MSE_plot") <- attr(x3p_approx, "MSE_plot")
 
-  return(shift_sig)
+  return(sig_df)
 }

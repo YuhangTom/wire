@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--02--03-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--02--04-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
@@ -155,38 +155,38 @@ attr(x3p_bin_rotate, "MLE_loess_blue_plot")
 ## Signal extraction
 
 To extract signals from the rotated surface, two methods are provided,
-implemented by `wire::x3p_raw_sig_vec` and `wire::x3p_shift_sig_vec`,
+implemented by `wire::x3p_raw_sig_df` and `wire::x3p_shift_sig_df`,
 respectively:
 
 ``` r
-raw_sig <- x3p_raw_sig_vec(x3p_bin_rotate, ifplot = TRUE)
-attr(raw_sig, "sig_vec_plot")
+raw_sig_df <- x3p_raw_sig_df(x3p_bin_rotate, ifplot = TRUE)
+attr(raw_sig_df, "sig_df_plot")
 ```
 
 <img src="man/figures/README-signal-1.png" width="100%" />
 
 ``` r
 
-shift_sig <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = TRUE)
-attr(shift_sig, "x3p_before_shift_plot")
+shift_sig_df <- x3p_shift_sig_df(x3p_bin_rotate, ifplot = TRUE)
+attr(shift_sig_df, "x3p_before_shift_plot")
 ```
 
 <img src="man/figures/README-signal-2.png" width="100%" />
 
 ``` r
-attr(shift_sig, "x3p_after_shift_plot")
+attr(shift_sig_df, "x3p_after_shift_plot")
 ```
 
 <img src="man/figures/README-signal-3.png" width="100%" />
 
 ``` r
-attr(shift_sig, "MSE_plot")
+attr(shift_sig_df, "MSE_plot")
 ```
 
 <img src="man/figures/README-signal-4.png" width="100%" />
 
 ``` r
-attr(shift_sig, "sig_vec_plot")
+attr(shift_sig_df, "sig_df_plot")
 ```
 
 <img src="man/figures/README-signal-5.png" width="100%" />
@@ -197,7 +197,7 @@ Extracted signals can be aligned, and the cross-correlation can be
 computed:
 
 ``` r
-aligned <- vec_align_sigs_list(raw_sig$sig, shift_sig$sig, ifplot = TRUE)
+aligned <- vec_align_sigs_list(raw_sig_df$sig, shift_sig_df$sig, ifplot = TRUE)
 attr(aligned, "sig_align_plot")
 ```
 

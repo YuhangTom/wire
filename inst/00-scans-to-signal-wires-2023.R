@@ -35,7 +35,7 @@ res <- replicate(10, {
 
   p5 <- proc.time()
 
-  x3p_shift <- x3p_shift_sig_vec(x3p_bin_rotate, ifplot = FALSE)
+  x3p_shift <- x3p_shift_sig_df(x3p_bin_rotate, ifplot = FALSE)
 
   p6 <- proc.time()
   # write output
