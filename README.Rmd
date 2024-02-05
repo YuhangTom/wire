@@ -20,7 +20,7 @@ set.seed(0)
 ```
 
 
-# wire
+# wire <a href="https://yuhangtom.github.io/wire/"><img src="man/figures/logo.png" align="right" height="139" alt="wire website" /></a>
 
 
 <!-- badges: start -->
