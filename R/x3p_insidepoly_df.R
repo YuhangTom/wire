@@ -19,7 +19,7 @@
 #' @import x3ptools
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats sd
-#' @importFrom raster raster adjacent ncell focal
+#' @importFrom raster raster adjacent ncell focal as.data.frame
 #' @importFrom assertthat assert_that is.string is.number is.count is.flag
 #' @importFrom readr parse_number
 #' @export
