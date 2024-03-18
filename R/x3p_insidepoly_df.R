@@ -22,6 +22,7 @@
 #' @importFrom raster raster adjacent ncell focal as.data.frame
 #' @importFrom assertthat assert_that is.string is.number is.count is.flag
 #' @importFrom readr parse_number
+#' @importFrom RColorBrewer brewer.pal
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -161,10 +162,14 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       theme_bw()
 
     attr(x3p_inner_df, "number_of_missing_immediate_neighbors_plot") <- x3p_inner_df %>%
+      mutate(n_neighbor_val_miss = as.numeric(as.character(n_neighbor_val_miss))) %>%
+      filter(!is.na(n_neighbor_val_miss)) %>%
+      mutate(n_neighbor_val_miss = factor(n_neighbor_val_miss)) %>%
       ggplot(aes(x = x, y = y, fill = n_neighbor_val_miss)) +
       geom_tile() +
       labs(fill = "number") +
       ggtitle("Number of missing immediate neighbors (including self)") +
+      scale_fill_manual(values = brewer.pal(11, "Set3")[1:10]) +
       theme_bw()
 
     attr(x3p_inner_df, "standard_deviation_of_non_missing_immediate_neighbors_plot") <- x3p_inner_df %>%

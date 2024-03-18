@@ -41,7 +41,8 @@ Imports:
     grDevices,
     graphics,
     readr,
-    zoo
+    zoo,
+    RColorBrewer
 Remotes: 
     heike/bulletxtrctr
 Depends: 
