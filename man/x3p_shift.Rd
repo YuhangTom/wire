@@ -36,6 +36,7 @@ if (interactive()) {
 
   attr(x3p_approx, "x3p_before_shift_plot")
   attr(x3p_approx, "x3p_after_shift_plot")
+  attr(x3p_approx, "fn_align_plot")
   attr(x3p_approx, "MSE_plot")
 }
 

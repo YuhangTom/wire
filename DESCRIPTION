@@ -40,7 +40,8 @@ Imports:
     png,
     grDevices,
     graphics,
-    readr
+    readr,
+    zoo
 Remotes: 
     heike/bulletxtrctr
 Depends: 

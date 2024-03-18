@@ -14,6 +14,7 @@
 #' @importFrom purrr map_dbl map set_names
 #' @importFrom tidyr nest unnest
 #' @importFrom assertthat assert_that is.flag
+#' @importFrom zoo na.trim
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[2]]
@@ -30,6 +31,7 @@
 #'
 #'   attr(x3p_approx, "x3p_before_shift_plot")
 #'   attr(x3p_approx, "x3p_after_shift_plot")
+#'   attr(x3p_approx, "fn_align_plot")
 #'   attr(x3p_approx, "MSE_plot")
 #' }
 #'
@@ -49,6 +51,7 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
     x_shift_delta <-
     Dat <-
     value_approx <-
+    f <-
     NULL
 
   ggplot_attrs <- NA
@@ -245,6 +248,16 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
     ### f1 values
     f1 <- x3p$surface.matrix[, yidx_mid]
     f2 <- x3p$surface.matrix[, yidx[j]]
+
+    attr(ggplot_attrs, "fn_align_plot") <- tibble(f1, f2) %>%
+      na.trim() %>%
+      mutate(x = 1:n()) %>%
+      pivot_longer(f1:f2, names_to = "f", names_prefix = "f") %>%
+      mutate(f = ifelse(f == "1", paste0(yidx_mid, " (ref)"), yidx[j])) %>%
+      ggplot(aes(x = x, y = value, color = f)) +
+      geom_line() +
+      scale_colour_brewer(palette = "Paired") +
+      theme_bw()
 
     ### Mean squared error for all delta
     MSE <- map_dbl(delta, function(delta_i) {

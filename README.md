@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--03--02-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--03--18-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
@@ -168,6 +168,8 @@ attr(raw_sig_df, "sig_df_plot")
 ``` r
 
 shift_sig_df <- x3p_shift_sig_df(x3p_bin_rotate, ifplot = TRUE)
+#> Error : Chromote: timed out waiting for event Page.loadEventFired
+#> Error : Chromote: timed out waiting for event Page.loadEventFired
 attr(shift_sig_df, "x3p_before_shift_plot")
 ```
 

@@ -45,6 +45,9 @@ test_that("output plot works", {
   expect_visible(
     attr(x3p_approx, "MSE_plot")
   )
+  expect_visible(
+    attr(x3p_approx, "fn_align_plot")
+  )
 })
 
 
