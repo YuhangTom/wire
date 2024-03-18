@@ -134,10 +134,10 @@ test_that("output return works", {
     alignedsigs, "list"
   )
   expect_length(
-    alignedsigs, 3
+    alignedsigs, 4
   )
   expect_named(
     alignedsigs,
-    c("ccf", "lag", "lands")
+    c("ccf", "lag", "lands", "cors")
   )
 })
