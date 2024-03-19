@@ -37,7 +37,7 @@ vec_align_sigs_list <- function(
     sig2,
     min.overlap = NULL,
     ifplot = FALSE,
-    legendname = "Signal",
+    legendname = "signal",
     titlename = NULL,
     subtitlename = TRUE) {
   assert_that(
@@ -74,8 +74,8 @@ vec_align_sigs_list <- function(
       geom_line(aes(colour = !!sym(legendname))) +
       theme_bw() +
       scale_colour_brewer(palette = "Paired") +
-      xlab("x") +
-      ylab("signal value") +
+      xlab("x (px)") +
+      ylab(expression(paste("signal value (", mu, "m)"))) +
       ggtitle(titlename, subtitle = subtitlename)
   }
 

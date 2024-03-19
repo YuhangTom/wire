@@ -169,7 +169,9 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       geom_tile() +
       labs(fill = "number") +
       ggtitle("Number of missing immediate neighbors (including self)") +
-      scale_fill_manual(values = brewer.pal(11, "Set3")[1:10]) +
+      scale_fill_manual(values = c("white", brewer.pal(9, "Blues")[2:9], "grey")) +
+      xlab(expression(paste("x (", mu, "m)"))) +
+      ylab(expression(paste("y (", mu, "m)"))) +
       theme_bw()
 
     attr(x3p_inner_df, "standard_deviation_of_non_missing_immediate_neighbors_plot") <- x3p_inner_df %>%
@@ -186,11 +188,9 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       filter(!is.na(n_discrete)) %>%
       ggplot(aes(x = n_discrete, y = sd_not_miss)) +
       geom_boxplot(fill = "grey80") +
-      labs(
-        x = "Number of missing immediate neighbors (including self)"
-      ) +
-      theme_bw() +
-      scale_y_continuous("standard deviation", limits = c(0, .5))
+      scale_y_continuous(expression(paste("standard deviation (", mu, "m)")), limits = c(0, .5)) +
+      xlab("Number of missing immediate neighbors (including self)") +
+      theme_bw()
   }
 
   return(x3p_inner_df)

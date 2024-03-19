@@ -49,7 +49,9 @@ x3p_raw_sig_df <- function(x3p, ifplot = FALSE) {
   if (ifplot) {
     p_all <- x3p_df %>%
       ggplot(aes(x = x, y = value)) +
-      geom_line(aes(group = y), alpha = 0.1)
+      geom_line(aes(group = y), alpha = 0.1) +
+      xlab(expression(paste("x (", mu, "m)"))) +
+      ylab(expression(paste("value (", mu, "m)")))
 
     attr(sig_df, "sig_df_plot") <- p_all +
       geom_line(aes(x = x, y = sig), data = sig_df, color = "red") +

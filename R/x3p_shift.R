@@ -252,10 +252,12 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
     attr(ggplot_attrs, "fn_align_plot") <- tibble(f1, f2) %>%
       na.trim() %>%
       mutate(x = 1:n()) %>%
-      pivot_longer(f1:f2, names_to = "f", names_prefix = "f") %>%
-      mutate(f = ifelse(f == "1", paste0(yidx_mid, " (ref)"), yidx[j])) %>%
-      ggplot(aes(x = x, y = value, color = f)) +
+      pivot_longer(f1:f2, names_to = "row", names_prefix = "f") %>%
+      mutate(row = ifelse(row == "1", paste0(yidx_mid, " (ref)"), yidx[j])) %>%
+      ggplot(aes(x = x, y = value, color = row)) +
       geom_line() +
+      xlab("x (px)") +
+      ylab(expression(paste("value (", mu, "m)"))) +
       scale_colour_brewer(palette = "Paired") +
       theme_bw()
 
@@ -327,7 +329,9 @@ x3p_shift <- function(x3p, ifplot = FALSE, delta = -5:5,
       geom_smooth(method = "lm", formula = y ~ x + I(x^2)) +
       geom_vline(xintercept = (-para_coef[2] / (2 * para_coef[3])), col = "red") +
       theme_bw() +
-      scale_x_continuous(breaks = delta)
+      scale_x_continuous(breaks = delta) +
+      xlab("delta (px)") +
+      ylab(expression(paste("MSE (", mu, "m"^2, ")")))
   }
 
   x3p_approx <- x3p_approx_df %>%

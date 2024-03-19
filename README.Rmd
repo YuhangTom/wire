@@ -144,6 +144,7 @@ attr(raw_sig_df, "sig_df_plot")
 shift_sig_df <- x3p_shift_sig_df(x3p_bin_rotate, ifplot = TRUE)
 attr(shift_sig_df, "x3p_before_shift_plot")
 attr(shift_sig_df, "x3p_after_shift_plot")
+attr(shift_sig_df, "fn_align_plot")
 attr(shift_sig_df, "MSE_plot")
 attr(shift_sig_df, "sig_df_plot")
 ```

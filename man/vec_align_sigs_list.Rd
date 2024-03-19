@@ -9,7 +9,7 @@ vec_align_sigs_list(
   sig2,
   min.overlap = NULL,
   ifplot = FALSE,
-  legendname = "Signal",
+  legendname = "signal",
   titlename = NULL,
   subtitlename = TRUE
 )

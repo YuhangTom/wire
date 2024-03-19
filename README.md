@@ -182,6 +182,8 @@ attr(shift_sig_df, "x3p_after_shift_plot")
 <img src="man/figures/README-signal-3.png" width="100%" />
 
 ``` r
+attr(shift_sig_df, "fn_align_plot")
+#> NULL
 attr(shift_sig_df, "MSE_plot")
 ```
 

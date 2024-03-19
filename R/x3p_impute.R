@@ -45,7 +45,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, gif_
   if (ifsave) {
     ifplot <- TRUE
 
-    if (not_empty(gif_name)){
+    if (not_empty(gif_name)) {
       assert_that(
         is.string(gif_name)
       )
@@ -99,9 +99,12 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, gif_
       ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
       geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
-      labs(title = "Number of imputation: 0") +
-      xlab("x") +
-      ylab("y") +
+      labs(
+        title = "Number of imputation: 0",
+        fill = expression(paste("value (", mu, "m)"))
+      ) +
+      xlab(expression(paste("x (", mu, "m)"))) +
+      ylab(expression(paste("y (", mu, "m)"))) +
       theme_bw()
   }
 
@@ -150,9 +153,12 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, gif_
       ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
       geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
-      labs(title = "Number of imputation: 1") +
-      xlab("x") +
-      ylab("y") +
+      labs(
+        title = "Number of imputation: 1",
+        fill = expression(paste("value (", mu, "m)"))
+      ) +
+      xlab(expression(paste("x (", mu, "m)"))) +
+      ylab(expression(paste("y (", mu, "m)"))) +
       theme_bw()
   }
 
@@ -208,9 +214,12 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, gif_
         ggplot(aes(x = x_plot, y = y_plot, fill = value)) +
         geom_tile() +
         scale_fill_gradient2(midpoint = 0) +
-        labs(title = paste0("Number of imputation: ", nimp)) +
-        xlab("x") +
-        ylab("y") +
+        labs(
+          title = paste0("Number of imputation: ", nimp),
+          fill = expression(paste("value (", mu, "m)"))
+        ) +
+        xlab(expression(paste("x (", mu, "m)"))) +
+        ylab(expression(paste("y (", mu, "m)"))) +
         theme_bw()
     }
 

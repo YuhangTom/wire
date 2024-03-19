@@ -43,7 +43,14 @@ df_ccsig <- function(sig_df, span1 = 400, span2 = 40,
 
   x <-
     sig <-
+    sig.x <-
+    sig.y <-
+    smoothed <-
+    value <-
+    signal <-
     NULL
+
+  raw_sig_df <- sig_df
 
   dsmall <- sig_df %>%
     select(x, value = sig) %>%
@@ -78,9 +85,16 @@ df_ccsig <- function(sig_df, span1 = 400, span2 = 40,
     filter(!is.na(sig))
 
   if (ifplot) {
-    attr(sig_df, "sig_df_plot") <- sig_df %>%
-      ggplot(aes(x = x, y = sig)) +
+    sig_plot_df <- full_join(sig_df, raw_sig_df, by = "x") %>%
+      rename(smoothed = sig.x, raw = sig.y) %>%
+      pivot_longer(smoothed:raw, names_to = "signal", values_to = "value")
+
+    attr(sig_df, "sig_df_plot") <- sig_plot_df %>%
+      ggplot(aes(x = x, y = value, color = signal)) +
       geom_line() +
+      scale_colour_brewer(palette = "Paired") +
+      xlab(expression(paste("x (", mu, "m)"))) +
+      ylab(expression(paste("signal value (", mu, "m)"))) +
       theme_bw()
   }
 

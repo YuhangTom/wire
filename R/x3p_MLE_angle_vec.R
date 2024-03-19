@@ -134,6 +134,9 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
       ggplot(aes(x = x, y = y, fill = value)) +
       geom_tile() +
       scale_fill_gradient2(midpoint = 0) +
+      xlab(expression(paste("x (", mu, "m)"))) +
+      ylab(expression(paste("y (", mu, "m)"))) +
+      labs(fill = expression(paste("value (", mu, "m)"))) +
       theme_bw()
 
     abline_df <- main_lines %>%
@@ -164,7 +167,7 @@ x3p_MLE_angle_vec <- function(x3p, ntheta = 720, min_score_cut = 0.1,
       geom_point() +
       geom_smooth(method = "loess", span = loess_span) +
       theme_bw() +
-      xlab("angle (radians)") +
+      xlab("angle (rad)") +
       geom_vline(xintercept = angle / 180 * pi, col = "red")
   }
 
