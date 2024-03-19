@@ -17,6 +17,7 @@
 #' @importFrom magick image_read image_join image_animate image_write
 #' @importFrom stringr str_detect
 #' @importFrom assertthat assert_that is.flag not_empty is.string
+#' @importFrom stringr str_remove
 #' @export
 #' @examples
 #' x3p <- x3p_subsamples[[1]]
@@ -57,6 +58,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, gif_
       assert_that(
         is.string(dir_name)
       )
+      dir_name <- str_remove(dir_name, "/$")
     } else {
       #  dir_name <- tempdir(check = TRUE)
       tmpfile <- tempfile(fileext = "txt")
@@ -250,7 +252,7 @@ x3p_impute <- function(x3p, ifout = FALSE, ifsave = FALSE, dir_name = NULL, gif_
 
   if (ifsave) {
     ### List file names and read in
-    x3p_inner_nomiss_res_focal_impute_gif <- paste0(dir_name, "/gif_p", 0:nimp, ".png") %>%
+    x3p_inner_nomiss_res_focal_impute_gif <- paste0(dir_name, "/gif_p", c(rep(0, 4), 0:nimp, rep(nimp, 9)), ".png") %>%
       map(image_read) %>%
       ### Join the images together
       image_join() %>%
