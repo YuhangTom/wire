@@ -9,6 +9,7 @@ df_ccsig(
   span1 = 400,
   span2 = 40,
   breaks_q = c(0, 0.025, 0.05, 0.95, 0.975, 1),
+  outlier_cycles = 1,
   ifplot = FALSE
 )
 }
@@ -20,6 +21,8 @@ df_ccsig(
 \item{span2}{A positive parameter to control the degree of smoothing in bullterxtrctr::cc_get_signature.}
 
 \item{breaks_q}{A vector of quantiles to split the \code{x} values into five groups for t-test of large hooks.}
+
+\item{outlier_cycles}{a positive integer for the number of times we check for outliers along the boundaries.}
 
 \item{ifplot}{A Boolean flag indicating whether to save ggplot lists in the output attributes.}
 }

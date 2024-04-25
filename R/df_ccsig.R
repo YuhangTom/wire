@@ -6,6 +6,7 @@
 #' @param span1 A positive parameter to control the degree of smoothing in bullterxtrctr::cc_get_signature.
 #' @param span2 A positive parameter to control the degree of smoothing in bullterxtrctr::cc_get_signature.
 #' @param breaks_q A vector of quantiles to split the `x` values into five groups for t-test of large hooks.
+#' @param outlier_cycles a positive integer for the number of times we check for outliers along the boundaries.
 #' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @return A data frame with two columns:
 #' * x: The `x` values from the `x3p` object.
@@ -32,6 +33,7 @@
 #'
 df_ccsig <- function(sig_df, span1 = 400, span2 = 40,
                      breaks_q = c(0, 0.025, 0.05, 0.95, 0.975, 1),
+                     outlier_cycles = 1,
                      ifplot = FALSE) {
   assert_that(
     "data.frame" %in% class(sig_df),
@@ -66,20 +68,26 @@ df_ccsig <- function(sig_df, span1 = 400, span2 = 40,
     slice_head(n = N) %>%
     arrange(x)
 
-  sigs <- sigs %>% mutate(
-    range_x = cut(x,
-      breaks = quantile(x, breaks_q),
-      include.lowest = TRUE, labels = c("left1", "left2", "middle", "right2", "right1")
+  while (outlier_cycles > 0) {
+    sigs <- sigs %>% mutate(
+      range_x = cut(x,
+                    breaks = quantile(x, breaks_q),
+                    include.lowest = TRUE, labels = c("left1", "left2", "middle", "right2", "right1")
+      )
     )
-  )
 
-  # run a t-test in the boundaries to see if there are large 'hooks'
-  left <- t.test(sigs$sig[sigs$range_x == "left1"], sigs$sig[sigs$range_x == "left2"])
-  right <- t.test(sigs$sig[sigs$range_x == "right1"], sigs$sig[sigs$range_x == "right2"])
+    # run a t-test in the boundaries to see if there are large 'hooks'
+    left <- t.test(sigs$sig[sigs$range_x == "left1"], sigs$sig[sigs$range_x == "left2"])
+    right <- t.test(sigs$sig[sigs$range_x == "right1"], sigs$sig[sigs$range_x == "right2"])
 
-  if (left$p.value < 0.01) sigs$sig[sigs$range_x == "left1"] <- NA
-  if (right$p.value < 0.01) sigs$sig[sigs$range_x == "right1"] <- NA
+    if (left$p.value < 0.01) sigs$sig[sigs$range_x == "left1"] <- NA
+    if (right$p.value < 0.01) sigs$sig[sigs$range_x == "right1"] <- NA
 
+    outlier_cycles <- outlier_cycles-1
+
+    sigs <- sigs %>%
+      filter(!is.na(sig))
+  }
   sig_df$sig <- sigs$sig
   sig_df <- sig_df %>%
     filter(!is.na(sig))
