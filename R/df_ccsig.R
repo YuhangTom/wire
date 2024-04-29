@@ -71,8 +71,8 @@ df_ccsig <- function(sig_df, span1 = 400, span2 = 40,
   while (outlier_cycles > 0) {
     sigs <- sigs %>% mutate(
       range_x = cut(x,
-                    breaks = quantile(x, breaks_q),
-                    include.lowest = TRUE, labels = c("left1", "left2", "middle", "right2", "right1")
+        breaks = quantile(x, breaks_q),
+        include.lowest = TRUE, labels = c("left1", "left2", "middle", "right2", "right1")
       )
     )
 
@@ -83,14 +83,13 @@ df_ccsig <- function(sig_df, span1 = 400, span2 = 40,
     if (left$p.value < 0.01) sigs$sig[sigs$range_x == "left1"] <- NA
     if (right$p.value < 0.01) sigs$sig[sigs$range_x == "right1"] <- NA
 
-    outlier_cycles <- outlier_cycles-1
+    outlier_cycles <- outlier_cycles - 1
 
-    sigs <- sigs %>%
+    sig_df$sig <- sigs$sig
+    sig_df <- sig_df %>%
       filter(!is.na(sig))
+    sigs <- sig_df$sig
   }
-  sig_df$sig <- sigs$sig
-  sig_df <- sig_df %>%
-    filter(!is.na(sig))
 
   if (ifplot) {
     sig_plot_df <- full_join(sig_df, raw_sig_df, by = "x") %>%
