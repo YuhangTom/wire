@@ -83,12 +83,13 @@ df_ccsig <- function(sig_df, span1 = 400, span2 = 40,
     if (left$p.value < 0.01) sigs$sig[sigs$range_x == "left1"] <- NA
     if (right$p.value < 0.01) sigs$sig[sigs$range_x == "right1"] <- NA
 
-    outlier_cycles <- outlier_cycles - 1
-
     sig_df$sig <- sigs$sig
     sig_df <- sig_df %>%
       filter(!is.na(sig))
-    sigs <- sig_df$sig
+    sigs <- sigs %>%
+      filter(!is.na(sig))
+
+    outlier_cycles <- outlier_cycles - 1
   }
 
   if (ifplot) {
