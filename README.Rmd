@@ -169,4 +169,3 @@ aligned <- vec_align_sigs_list(raw_sig_df$sig, shift_sig_df$sig, ifplot = TRUE)
 attr(aligned, "sig_align_plot")
 ```
 
-
