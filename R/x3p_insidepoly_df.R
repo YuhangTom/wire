@@ -39,10 +39,15 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
   assert_that(
     "x3p" %in% class(x3p),
     is.string(mask_col),
-    is.number(concavity), concavity > 0,
     is.count(b),
     is.flag(ifplot)
   )
+
+  if (!is.null(concavity)) {
+    assert_that(
+      is.number(concavity), concavity > 0
+    )
+  }
 
   to <-
     from <-
