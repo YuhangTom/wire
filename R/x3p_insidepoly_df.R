@@ -4,7 +4,7 @@
 #'
 #' @param x3p An `x3p` object representing a topographic scan.
 #' @param mask_col A string representing the color to be used for the polygon.
-#' @param concavity A strictly positive number used in `concaveman::concaveman` to influence the shape of the polygon.
+#' @param concavity A strictly positive number used in `concaveman::concaveman` to influence the shape of the polygon. If `NULL`, the shape is taken to be the whole scan.
 #' @param b A positive integer representing the block size for `x3ptools::x3p_average`.
 #' @param ifplot A Boolean flag indicating whether to save ggplot lists in the output attributes.
 #' @return A data frame summarizing the inner polygon. The data frame includes the following columns:
@@ -56,8 +56,14 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
     n_discrete <-
     NULL
 
-  x3p <- x3p %>%
-    x3p_surface_polygon(colour = mask_col, concavity = concavity)
+  if (!is.null(concavity)) {
+    x3p <- x3p %>%
+      x3p_surface_polygon(colour = mask_col, concavity = concavity)
+  } else {
+    x3p <- x3p %>%
+      x3p_add_mask()
+    x3p$mask <- mask_col
+  }
 
   ### Extract inner part as x3p based on mask
   x3p_inner <- x3p_extract(x3p, mask_vals = mask_col)

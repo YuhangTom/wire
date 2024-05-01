@@ -17,7 +17,7 @@ x3p_insidepoly_df(
 
 \item{mask_col}{A string representing the color to be used for the polygon.}
 
-\item{concavity}{A strictly positive number used in \code{concaveman::concaveman} to influence the shape of the polygon.}
+\item{concavity}{A strictly positive number used in \code{concaveman::concaveman} to influence the shape of the polygon. If \code{NULL}, the shape is taken to be the whole scan.}
 
 \item{b}{A positive integer representing the block size for \code{x3ptools::x3p_average}.}
 
