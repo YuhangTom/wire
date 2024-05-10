@@ -359,6 +359,10 @@ references:
     given-names: Susan
     email: srvander@iastate.edu
     orcid: https://orcid.org/0000-0002-3803-0972
+  - family-names: Lin
+    given-names: Yuhang
+    email: yhlin@iastate.edu
+    orcid: https://orcid.org/0000-0002-3600-9889
   - family-names: Krishnan
     given-names: Ganesh
     email: ganeshk@iastate.edu
