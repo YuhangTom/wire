@@ -1,69 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://yuhangtom.github.io/wire/404.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/index.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/df_ccsig.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/df_rmtrend_x3p.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/inside_polygon.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/vec_align_sigs_list.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_MLE_angle_vec.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_boundary_points.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_image_autosize.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_impute.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_insidepoly_df.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_raw_sig_df.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_shift.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_shift_sig_df.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_subsamples.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_surface_polygon.html</loc>
-  </url>
-  <url>
-    <loc>https://yuhangtom.github.io/wire/reference/x3p_vertical.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://yuhangtom.github.io/wire/404.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/LICENSE-text.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/LICENSE.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/authors.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/index.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/df_ccsig.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/df_rmtrend_x3p.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/index.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/inside_polygon.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/pipe.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/vec_align_sigs_list.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_MLE_angle_vec.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_boundary_points.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_image_autosize.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_impute.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_insidepoly_df.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_raw_sig_df.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_shift.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_shift_sig_df.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_subsamples.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_surface_polygon.html</loc></url>
+<url><loc>https://yuhangtom.github.io/wire/reference/x3p_vertical.html</loc></url>
 </urlset>
+
