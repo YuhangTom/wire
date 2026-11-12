@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--05--10-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2026--11--12-yellowgreen.svg)](https://github.com/YuhangTom/wire/commits/main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/wire.png)](https://CRAN.R-project.org/package=wire)
 [![Codecov test
@@ -67,25 +67,25 @@ insidepoly_df <- x3p_insidepoly_df(x3p, mask_col = "#FF0000", concavity = 1.5, b
 attr(insidepoly_df, "x3p_plot")
 ```
 
-<img src="man/figures/README-insidepoly-1.png" width="100%" />
+<img src="man/figures/README-insidepoly-1.png" alt="" width="100%" />
 
 ``` r
 attr(insidepoly_df, "number_of_missing_immediate_neighbors_plot")
 ```
 
-<img src="man/figures/README-insidepoly-2.png" width="100%" />
+<img src="man/figures/README-insidepoly-2.png" alt="" width="100%" />
 
 ``` r
 attr(insidepoly_df, "standard_deviation_of_non_missing_immediate_neighbors_plot")
 ```
 
-<img src="man/figures/README-insidepoly-3.png" width="100%" />
+<img src="man/figures/README-insidepoly-3.png" alt="" width="100%" />
 
 ``` r
 attr(insidepoly_df, "number_of_missing_immediate_neighbors_boxplot")
 ```
 
-<img src="man/figures/README-insidepoly-4.png" width="100%" />
+<img src="man/figures/README-insidepoly-4.png" alt="" width="100%" />
 
 ## Remove trend
 
@@ -108,19 +108,19 @@ x3p_inner_impute <- x3p_impute(x3p_inner_nomiss_res, ifout = TRUE, ifsave = FALS
 attr(x3p_inner_impute, "x3p_impute_0_plot")
 ```
 
-<img src="man/figures/README-impute-1.png" width="100%" />
+<img src="man/figures/README-impute-1.png" alt="" width="100%" />
 
 ``` r
 attr(x3p_inner_impute, "x3p_impute_1_plot")
 ```
 
-<img src="man/figures/README-impute-2.png" width="100%" />
+<img src="man/figures/README-impute-2.png" alt="" width="100%" />
 
 ``` r
 attr(x3p_inner_impute, "x3p_impute_n_plot")
 ```
 
-<img src="man/figures/README-impute-3.png" width="100%" />
+<img src="man/figures/README-impute-3.png" alt="" width="100%" />
 
 ## Rotation
 
@@ -132,25 +132,25 @@ x3p_bin_rotate <- x3p_vertical(x3p_inner_impute, min_score_cut = 5, ifplot = TRU
 attr(x3p_bin_rotate, "nfline_red_plot")
 ```
 
-<img src="man/figures/README-rotate-1.png" width="100%" />
+<img src="man/figures/README-rotate-1.png" alt="" width="100%" />
 
 ``` r
 attr(x3p_bin_rotate, "MLE_loess_red_plot")
 ```
 
-<img src="man/figures/README-rotate-2.png" width="100%" />
+<img src="man/figures/README-rotate-2.png" alt="" width="100%" />
 
 ``` r
 attr(x3p_bin_rotate, "nfline_blue_plot")
 ```
 
-<img src="man/figures/README-rotate-3.png" width="100%" />
+<img src="man/figures/README-rotate-3.png" alt="" width="100%" />
 
 ``` r
 attr(x3p_bin_rotate, "MLE_loess_blue_plot")
 ```
 
-<img src="man/figures/README-rotate-4.png" width="100%" />
+<img src="man/figures/README-rotate-4.png" alt="" width="100%" />
 
 ## Signal extraction
 
@@ -163,7 +163,7 @@ raw_sig_df <- x3p_raw_sig_df(x3p_bin_rotate, ifplot = TRUE)
 attr(raw_sig_df, "sig_df_plot")
 ```
 
-<img src="man/figures/README-signal-1.png" width="100%" />
+<img src="man/figures/README-signal-1.png" alt="" width="100%" />
 
 ``` r
 
@@ -171,13 +171,13 @@ shift_sig_df <- x3p_shift_sig_df(x3p_bin_rotate, ifplot = TRUE)
 attr(shift_sig_df, "x3p_before_shift_plot")
 ```
 
-<img src="man/figures/README-signal-2.png" width="100%" />
+<img src="man/figures/README-signal-2.png" alt="" width="100%" />
 
 ``` r
 attr(shift_sig_df, "x3p_after_shift_plot")
 ```
 
-<img src="man/figures/README-signal-3.png" width="100%" />
+<img src="man/figures/README-signal-3.png" alt="" width="100%" />
 
 ``` r
 attr(shift_sig_df, "fn_align_plot")
@@ -185,13 +185,13 @@ attr(shift_sig_df, "fn_align_plot")
 attr(shift_sig_df, "MSE_plot")
 ```
 
-<img src="man/figures/README-signal-4.png" width="100%" />
+<img src="man/figures/README-signal-4.png" alt="" width="100%" />
 
 ``` r
 attr(shift_sig_df, "sig_df_plot")
 ```
 
-<img src="man/figures/README-signal-5.png" width="100%" />
+<img src="man/figures/README-signal-5.png" alt="" width="100%" />
 
 The signals and hooks can be further smoothed and removed by:
 
@@ -200,7 +200,7 @@ raw_ccsig_df <- df_ccsig(raw_sig_df, ifplot = TRUE)
 attr(raw_ccsig_df, "sig_df_plot")
 ```
 
-<img src="man/figures/README-ccsignals-1.png" width="100%" />
+<img src="man/figures/README-ccsignals-1.png" alt="" width="100%" />
 
 ## Signal alignment
 
@@ -212,4 +212,4 @@ aligned <- vec_align_sigs_list(raw_sig_df$sig, shift_sig_df$sig, ifplot = TRUE)
 attr(aligned, "sig_align_plot")
 ```
 
-<img src="man/figures/README-align-1.png" width="100%" />
+<img src="man/figures/README-align-1.png" alt="" width="100%" />
