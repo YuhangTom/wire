@@ -7,6 +7,7 @@
 ^\.github$
 ^LICENSE\.md$
 ^data-raw$
+^dev$
 ^codecov\.yml$
 
 ^speed-evaluation.csv$
