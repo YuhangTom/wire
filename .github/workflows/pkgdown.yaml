@@ -32,7 +32,11 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::pkgdown, local::.
+          # bulletxtrctr requires smoother, which is archived on CRAN.
+          extra-packages: |
+            any::pkgdown
+            local::.
+            smoother=url::https://cran.r-project.org/src/contrib/Archive/smoother/smoother_1.3.tar.gz
           needs: website
 
       - name: Build site

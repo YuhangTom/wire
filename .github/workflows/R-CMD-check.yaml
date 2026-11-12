@@ -24,7 +24,10 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          # bulletxtrctr requires smoother, which is archived on CRAN.
+          extra-packages: |
+            any::rcmdcheck
+            smoother=url::https://cran.r-project.org/src/contrib/Archive/smoother/smoother_1.3.tar.gz
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
