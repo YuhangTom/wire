@@ -59,6 +59,6 @@ test_that("output return works", {
     x3p_approx, 5
   )
   expect_named(
-    x3p_approx, c("groups", "surface.matrix", "header.info", "matrix.info", "mask")
+    x3p_approx, c("class", "surface.matrix", "header.info", "matrix.info", "mask")
   )
 })
