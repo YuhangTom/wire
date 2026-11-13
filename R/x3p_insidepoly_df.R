@@ -188,7 +188,6 @@ x3p_insidepoly_df <- function(x3p, mask_col = "#FF0000", concavity = 1.5, b = 10
       filter(!is.na(n_discrete)) %>%
       ggplot(aes(x = n_discrete, y = sd_not_miss)) +
       geom_boxplot(fill = "grey80") +
-      coord_cartesian(ylim = c(0, 2)) +
       xlab("Number of missing immediate neighbors (including self)") +
       ylab(expression(paste("standard deviation (", mu, "m)"))) +
       theme_bw()
